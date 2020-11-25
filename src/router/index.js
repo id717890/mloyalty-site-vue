@@ -1,4 +1,5 @@
 import Home from '../views/Home.vue'
+import MainPage from '../views/MainPage.vue'
 import Template from '../views/Template.vue'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -9,7 +10,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: MainPage
   },
   {
     path: '/template/:code',
