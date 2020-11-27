@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import 'vuetify/dist/vuetify.min.css'
+import './assets/scss/_app.scss'
 import Vuetify from 'vuetify'
 
 Vue.use(Vuetify)

@@ -1,0 +1,46 @@
+.mloyalty-panel-footer {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  min-height: 60px;
+  justify-content: space-between;
+  border-top: 1px solid #e6e6e6;
+
+  .shop-cart-icon {
+    margin-left: 32px;
+  }
+
+  .shop-cart-block {
+    position: relative;
+    font-size: 13px;
+    top: -5px;
+  }
+
+  .shop-cart-count {
+    position: relative;
+    top: -0.5rem;
+    padding: 0 5px;
+    color: #ffffff;
+    width: 16px;
+    height: 16px;
+    background: #e94574;
+    border-radius: 40px;
+  }
+
+  .social-btn {
+    margin-right: 8px;
+    display: block;
+    padding: 5px 8px 8px;
+    width: 32px;
+    height: 32px;
+    background: #f0f0f0;
+    border-radius: 8px;
+  }
+
+  .social-btn:hover {
+    background: #e4e2e2;
+  }
+
+  .social-btn img {
+  }
+}
