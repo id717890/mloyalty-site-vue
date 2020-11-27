@@ -64,8 +64,11 @@ import appTypes from '../store/app/types'
 import certificateLayout from '../components/Panel/_Layout'
 import { mapActions, mapMutations, mapState } from 'vuex'
 import panelTypes from '@/store/panel/types'
+import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
+import { START_PAGE } from '@/helpers/const/widgetPage'
 
 export default {
+  mixins: [MixinChangePanelPage],
   components: {
     certificateLayout
   },
@@ -87,6 +90,7 @@ export default {
     ...mapMutations('panel', [panelTypes.TOGGLE_PANEL]),
 
     togglePanel() {
+      // this.changePanelPage(START_PAGE)
       this[panelTypes.TOGGLE_PANEL](!this.showPanel)
     }
   },

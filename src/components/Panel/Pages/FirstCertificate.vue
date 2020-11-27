@@ -41,7 +41,7 @@
       </div>
     </div>
     <div class="controlls">
-      <a href="#" @click.prevent="next" class="ml-black-btn">
+      <a href="#" @click.prevent="nextPage" class="ml-black-btn">
         Продолжить
       </a>
     </div>
@@ -49,14 +49,16 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+// import { mapMutations } from 'vuex'
 import { SENDING_PAGE } from '@/helpers/const/widgetPage'
-import panelTypes from '@/store/panel/types'
+// import panelTypes from '@/store/panel/types'
 import designCarousel from '../DesignCarousel'
 import par from '../Par'
 import MlTextarea from '@/components/UI/MlTextarea'
+import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
 
 export default {
+  mixins: [MixinChangePanelPage],
   components: {
     designCarousel,
     par,
@@ -76,13 +78,14 @@ export default {
     ]
   }),
   methods: {
-    ...mapMutations('panel', [panelTypes.CURRENT_PAGE_SET]),
+    // ...mapMutations('panel', [panelTypes.CURRENT_PAGE_SET]),
     changePar(value) {
       this.selectedPar = value
       this.customPar = null
     },
-    next() {
-      this[panelTypes.CURRENT_PAGE_SET](SENDING_PAGE)
+    nextPage() {
+      this.changePanelPage(SENDING_PAGE)
+      // this[panelTypes.CURRENT_PAGE_SET](SENDING_PAGE)
     }
   }
 }

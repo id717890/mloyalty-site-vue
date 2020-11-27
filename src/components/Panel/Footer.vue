@@ -6,7 +6,7 @@
         src="~@/assets/img/default/shopping-cart.png"
         alt=""
       />
-      <span class="shop-cart-block">
+      <span class="shop-cart-block" @click.prevent="openShopCart">
         Корзина
         <span class="shop-cart-count">2</span>
       </span>
@@ -27,7 +27,17 @@
 </template>
 
 <script>
-export default {}
+import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
+import { BASKET_PAGE } from '@/helpers/const/widgetPage'
+
+export default {
+  mixins: [MixinChangePanelPage],
+  methods: {
+    openShopCart() {
+      this.changePanelPage(BASKET_PAGE)
+    }
+  }
+}
 </script>
 
 <style></style>
