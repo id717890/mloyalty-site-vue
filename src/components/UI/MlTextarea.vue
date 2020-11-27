@@ -14,7 +14,7 @@
       @input="$emit('input', $event.target.value)"
     >
     </textarea>
-    <p class="text-right ml-textarea-length">{{ tlength }}</p>
+    <p class="text-right ml-textarea-length mb-0">{{ length }}</p>
   </div>
 </template>
 
@@ -48,7 +48,7 @@ export default {
     }
   },
   computed: {
-    tlength() {
+    length() {
       const textLength = this.value ? this.value.length : 0
       return `${textLength}/${this.maxlength}`
     }

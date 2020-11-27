@@ -1,6 +1,10 @@
 .mloyalty-panel-body {
   text-align: left;
-  padding: 32px;
+  display: flex;
+
+  .pb {
+    padding: 32px;
+  }
 
   .section {
     color: #000000;
@@ -41,5 +45,17 @@
 
   .par.active {
     border: 1px solid #000000;
+  }
+
+  .preview-eye {
+    font-size: 14px;
+    margin-left: 5px;
+  }
+
+  .controlls {
+    min-height: 72px;
+    border-top: 1px solid #e6e6e6;
+    display: block;
+    padding: 12px 32px;
   }
 }

@@ -1,37 +1,50 @@
 <template>
-  <div>
-    <div class="row">
-      <div class="section">1. Выберите дизайн</div>
-      <design-carousel :items="designs" class="design-carousel" />
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <div class="section">2. Номинал</div>
-        <div class="d-flex flex-row flex-wrap">
-          <par
-            :readonly="false"
-            @input="selectedPar = null"
-            v-model="customPar"
-            :active="customPar !== null"
+  <div class="d-flex flex-column">
+    <div class="pb flex-grow-1">
+      <div class="row">
+        <div class="section">1. Выберите дизайн</div>
+        <design-carousel :items="designs" class="design-carousel" />
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="section">2. Номинал</div>
+          <div class="d-flex flex-row flex-wrap">
+            <par
+              :readonly="false"
+              @input="selectedPar = null"
+              v-model="customPar"
+              :active="customPar !== null"
+            />
+            <par
+              @change-par="changePar"
+              v-for="(par, index) in pars"
+              :value="par"
+              :key="index"
+              :active="par == selectedPar"
+            />
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="section">3. Поздравление</div>
+          <MlTextarea
+            v-model="form.congratulation"
+            placeholder="Ваше поздравление (необязательно)"
           />
-          <par
-            @change-par="changePar"
-            v-for="(par, index) in pars"
-            :value="par"
-            :key="index"
-            :active="par == selectedPar"
-          />
+
+          <div class="d-flex flex-row align-center">
+            <a href="#">
+              <img src="~@/assets/img/eye.png" alt="" />
+              <span class="preview-eye">Предпросмотр</span>
+            </a>
+          </div>
         </div>
       </div>
-      <div class="col-12">
-        <div class="section">3. Поздравление</div>
-        <MlTextarea
-          v-model="form.congratulation"
-          placeholder="Ваше поздравление (необязательно)"
-        />
-      </div>
     </div>
-    <v-btn @click.stop="next"></v-btn>
+    <div class="controlls">
+      <a href="#" @click.prevent="next" class="ml-black-btn">
+        Продолжить
+      </a>
+    </div>
   </div>
 </template>
 

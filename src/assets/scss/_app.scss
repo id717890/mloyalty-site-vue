@@ -5,9 +5,11 @@
 @import './default/panel-body.scss';
 @import './default/transition.scss';
 @import './ui/ml-textarea.scss';
+@import './ui/ml-btns.scss';
 
 a {
   text-decoration: none;
+  color: inherit !important;
 }
 
 * {
