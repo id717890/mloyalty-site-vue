@@ -11,25 +11,23 @@
       src="~@/assets/img/default/burger.png"
       class="burger"
       alt=""
-      @click.stop="togglePanel"
+      @click.stop="togglePanelBurger"
     />
   </div>
 </template>
 
 <script>
 import { mapActions, mapMutations, mapState } from 'vuex'
-import panelTypes from '@/store/panel/types'
+// import panelTypes from '@/store/panel/types'
+import panelBurgerTypes from '@/store/panelBurger/types'
 
 export default {
-  computed: {
-    ...mapState({
-      showPanel: state => state.panel.show
-    })
-  },
+  computed: {},
   methods: {
-    ...mapMutations('panel', [panelTypes.TOGGLE_PANEL]),
-    togglePanel() {
-      this[panelTypes.TOGGLE_PANEL](!this.showPanel)
+    // ...mapMutations('panel', [panelTypes.TOGGLE_PANEL]),
+    ...mapMutations('panelBurger', [panelBurgerTypes.TOGGLE_PANEL_BURGER]),
+    togglePanelBurger() {
+      this[panelBurgerTypes.TOGGLE_PANEL_BURGER]()
     }
   }
 }

@@ -11,6 +11,7 @@
       </v-container>
 
       <v-navigation-drawer
+        style="overflow: visible"
         :width="448"
         :value="showPanel"
         app
@@ -18,13 +19,15 @@
         temporary
         right
       >
-        <!-- <v-btn
-          icon
-          style="position: absolute; left: 0; top:0"
-          @click.stop="drawer = !drawer"
+        <v-btn
+          fab
+          small
+          color="#E6E6E6"
+          class="close-panel-btn"
+          @click.stop="togglePanel"
         >
           <v-icon>mdi-close</v-icon>
-        </v-btn> -->
+        </v-btn>
         <certificate-layout />
         <!-- <v-list-item>
           <v-list-item-avatar>
@@ -55,6 +58,17 @@
           </v-list-item>
         </v-list> -->
       </v-navigation-drawer>
+
+      <v-navigation-drawer
+        :width="320"
+        :value="showPanelBurger"
+        app
+        stateless
+        temporary
+        right
+      >
+        asd
+      </v-navigation-drawer>
     </v-main>
   </v-app>
 </template>
@@ -74,12 +88,13 @@ export default {
   },
   computed: {
     ...mapState({
-      showPanel: state => state.panel.show
+      showPanel: state => state.panel.show,
+      showPanelBurger: state => state.panelBurger.show
     })
   },
   data() {
     return {
-      drawer: true,
+      drawer: false,
       items: [
         { title: 'Home', icon: 'mdi-view-dashboard' },
         { title: 'About', icon: 'mdi-forum' }
@@ -90,7 +105,6 @@ export default {
     ...mapMutations('panel', [panelTypes.TOGGLE_PANEL]),
 
     togglePanel() {
-      // this.changePanelPage(START_PAGE)
       this[panelTypes.TOGGLE_PANEL](!this.showPanel)
     }
   },
