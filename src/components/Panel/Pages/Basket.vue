@@ -1,5 +1,5 @@
 <template>
-  <div class="ml-panel-basket-page">
+  <div class="ml-panel-basket-page h100">
     <div class="d-flex flex-column align-center" v-if="!basket">
       <img src="~@/assets/img/empty-cart.png" alt="" class="empty-cart-img" />
       <section class="empty-text">
@@ -11,7 +11,7 @@
         Добавить сертификат
       </a>
     </div>
-    <div v-else>
+    <div class="h100 d-flex flex-column" v-else>
       <div class="pb">
         <div class="row">
           <div class="col-12">
@@ -55,13 +55,18 @@
           </div>
         </div>
       </div>
-      <div class="pb" style="border-top: 1px solid #E6E6E6">
+      <div class="pb flex-grow-1" style="border-top: 1px solid #E6E6E6">
         <div class="section">Контакты для отправки</div>
         <div class="text2">
           Укажите ваши контакты, чтобы мы могли отправить на них сообщение со
           ссылкой на сертификаты(ы). После получения сообщения вы сможете
           переслать его кому угодно.
         </div>
+      </div>
+      <div class="controlls">
+        <a href="#" @click.prevent="nextPage" class="ml-black-btn">
+          Указать контакты для отправки
+        </a>
       </div>
     </div>
   </div>
