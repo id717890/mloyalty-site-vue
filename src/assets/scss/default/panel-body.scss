@@ -1,6 +1,6 @@
 .mloyalty-panel-body {
   text-align: left;
-  display: flex;
+  display: block;
 
   .pb {
     padding: 32px;
@@ -57,5 +57,16 @@
     border-top: 1px solid #e6e6e6;
     display: block;
     padding: 12px 32px;
+  }
+
+  .text1 {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+
+    letter-spacing: -0.02em;
+
+    color: #000000;
   }
 }

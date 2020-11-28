@@ -8,6 +8,7 @@
 
 @import './ui/ml-textarea.scss';
 @import './ui/ml-btns.scss';
+@import './ui/ml-inputs.scss';
 
 a {
   text-decoration: none;
@@ -19,4 +20,8 @@ a {
   font-style: normal;
   font-weight: normal;
   box-sizing: border-box;
+}
+
+button:focus {
+  outline: none;
 }

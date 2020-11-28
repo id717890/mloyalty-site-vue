@@ -6,7 +6,7 @@
         <div>Ваша корзина пока пуста.</div>
         <div>Добавьте первый сертификат</div>
       </section>
-      <a href="#" @click.prevent="" class="ml-black-btn">
+      <a href="#" @click.prevent="addCertificate" class="ml-black-btn">
         <v-icon>mdi-plus</v-icon>
         Добавить сертификат
       </a>
@@ -15,7 +15,16 @@
 </template>
 
 <script>
-export default {}
+import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
+import { START_PAGE } from '@/helpers/const/widgetPage'
+export default {
+  mixins: [MixinChangePanelPage],
+  methods: {
+    addCertificate() {
+      this.changePanelPage(START_PAGE)
+    }
+  }
+}
 </script>
 
 <style></style>

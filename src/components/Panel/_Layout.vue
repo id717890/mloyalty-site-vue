@@ -14,7 +14,11 @@
 import panelHeader from './Header'
 import panelFooter from './Footer'
 import panelTypes from '../../store/panel/types'
-import { START_PAGE } from '../../helpers/const/widgetPage'
+import {
+  START_PAGE,
+  BASKET_PAGE,
+  SENDING_PAGE
+} from '../../helpers/const/widgetPage'
 import { mapMutations, mapState } from 'vuex'
 import firstCertificate from './Pages/FirstCertificate'
 import basket from './Pages/Basket'
@@ -38,7 +42,7 @@ export default {
     next() {}
   },
   mounted() {
-    this[panelTypes.CURRENT_PAGE_SET](START_PAGE)
+    this[panelTypes.CURRENT_PAGE_SET](SENDING_PAGE)
   }
 }
 </script>
