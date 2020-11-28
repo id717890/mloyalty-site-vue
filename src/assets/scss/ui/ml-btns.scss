@@ -1,3 +1,33 @@
+.ml-black-btn,
+.ml-silver-btn {
+  padding: 14px 85px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.03em;
+  display: block;
+  text-align: center;
+}
+
+.ml-black-btn {
+  background: #000000;
+  color: #ffffff !important;
+
+  i {
+    color: #ffffff !important;
+  }
+}
+
+.ml-silver-btn {
+  background: #f0f0f0;
+  color: #4d4d4d !important;
+
+  i {
+    color: #4d4d4d !important;
+  }
+}
+
 .ml-black-btn {
   padding: 14px 85px;
   background: #000000;
@@ -9,10 +39,13 @@
   color: #ffffff !important;
   display: block;
   text-align: center;
+}
 
-  i {
-    color: #ffffff !important;
-  }
+.ml-black-btn:disabled,
+.ml-black-btn[disabled],
+.ml-black-btn:disabled:hover,
+.ml-black-btn[disabled]:hover {
+  background: #e6e6e6;
 }
 
 /**Кнопка закрытия панели*/

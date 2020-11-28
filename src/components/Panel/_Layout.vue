@@ -17,12 +17,14 @@ import panelTypes from '../../store/panel/types'
 import {
   START_PAGE,
   BASKET_PAGE,
-  SENDING_PAGE
+  SENDING_PAGE,
+  CONFIRMING_PAGE
 } from '../../helpers/const/widgetPage'
 import { mapMutations, mapState } from 'vuex'
 import firstCertificate from './Pages/FirstCertificate'
 import basket from './Pages/Basket'
 import sending from './Pages/Sending'
+import confirming from './Pages/Confirming'
 
 export default {
   components: {
@@ -30,7 +32,8 @@ export default {
     panelFooter,
     firstCertificate,
     basket,
-    sending
+    sending,
+    confirming
   },
   computed: {
     ...mapState({

@@ -25,3 +25,11 @@ a {
 button:focus {
   outline: none;
 }
+
+.error-message {
+  color: #e94574;
+}
+
+.success-message {
+  color: #20ac69 !important;
+}

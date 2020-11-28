@@ -4,7 +4,7 @@
       <div class="col-12">
         <div class="pb">
           <div class="row">
-            <div class="section">Отправка</div>
+            <div class="col-12"><div class="section">Отправка</div></div>
           </div>
           <div class="row">
             <div class="col-12">
@@ -85,47 +85,79 @@
                 v-model="form.phone"
               ></v-text-field>
               <button
+                v-if="!successVerification && !isSentVerificationCode"
                 :disabled="!validatePhone"
                 href="#"
                 class="ml-black-btn w100"
+                @click.stop="sendVerificationCode"
               >
                 Подтвердить
               </button>
             </div>
           </div>
+          <verification-code
+            @success="successVerificationProcess"
+            v-if="isSentVerificationCode && !successVerification"
+            :type="verificationType"
+          />
+          <template v-if="successVerification">
+            <div class="col-12 px-0 pt-0">
+              <v-icon class="success-message">mdi-check-circle</v-icon>
+              <span class="ml-2">Номер подтвержден!</span>
+            </div>
+            <div class="col-12 px-0">
+              <a href="#" @click.prevent="nextPage" class="ml-silver-btn">
+                Продолжить оформление
+              </a>
+            </div>
+          </template>
         </div>
       </div>
     </div>
-
-    <v-btn @click.stop="next"></v-btn>
   </div>
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
-import { START_PAGE } from '@/helpers/const/widgetPage'
+import { CONFIRMING_PAGE } from '@/helpers/const/widgetPage'
+import {
+  SENDING_METHOD_TELEGRAM,
+  SENDING_METHOD_WHATSAPP,
+  SENDING_METHOD_VIBER,
+  SENDING_METHOD_SMS,
+  VERIFICATION_BY_SMS,
+  VERIFICATION_BY_MESSENGER
+} from '@/helpers/const/sendingMethod'
 import panelTypes from '@/store/panel/types'
 import { mask } from 'vue-the-mask'
-
-const METHOD_TELEGRAM = 'telegram'
-const METHOD_WHATSAPP = 'whatsapp'
-const METHOD_VIBER = 'viber'
-const METHOD_SMS = 'sms'
+import verificationCode from '@/components/Panel/VerificationCode'
+import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
 
 export default {
   directives: { mask },
+  components: {
+    verificationCode
+  },
+  mixins: [MixinChangePanelPage],
   data: () => ({
     form: {
       email: null,
       phone: null,
       sendingMethod: null
     },
+    successVerification: null,
+    isSentVerificationCode: false,
     emailRules: [
       v => !!v || 'Необходимо заполнить e-mail',
       v => /.+@.+/.test(v) || 'Введен некорректный e-mail'
     ]
   }),
   computed: {
+    verificationType() {
+      return this.form.sendingMethod === SENDING_METHOD_SMS
+        ? VERIFICATION_BY_SMS
+        : VERIFICATION_BY_MESSENGER
+    },
     isShowPhone() {
       return this.form.sendingMethod === null ? false : true
     },
@@ -136,25 +168,30 @@ export default {
       return this.form?.phone?.length === 15
     },
     isSendingMethodTelegram() {
-      return this.form.sendingMethod === METHOD_TELEGRAM
+      return this.form.sendingMethod === SENDING_METHOD_TELEGRAM
     },
     isSendingMethodWhatsApp() {
-      return this.form.sendingMethod === METHOD_WHATSAPP
+      return this.form.sendingMethod === SENDING_METHOD_WHATSAPP
     },
     isSendingMethodViber() {
-      return this.form.sendingMethod === METHOD_VIBER
+      return this.form.sendingMethod === SENDING_METHOD_VIBER
     },
     isSendingMethodSms() {
-      return this.form.sendingMethod === METHOD_SMS
+      return this.form.sendingMethod === SENDING_METHOD_SMS
     }
   },
   methods: {
-    ...mapMutations('panel', [panelTypes.CURRENT_PAGE_SET]),
+    successVerificationProcess() {
+      this.successVerification = true
+    },
+    sendVerificationCode() {
+      this.isSentVerificationCode = true
+    },
     isSendingMethod(value) {
       return value === this.sendingMethod
     },
-    next() {
-      this[panelTypes.CURRENT_PAGE_SET](START_PAGE)
+    nextPage() {
+      this.changePanelPage(CONFIRMING_PAGE)
     },
     preventNumericInput($event) {
       console.log($event.keyCode) //will display the keyCode value
@@ -188,23 +225,6 @@ export default {
       }
       if (result.length > 10) result = result.substring(0, 19)
       return result
-    },
-    formatPhoneNumber(str) {
-      console.log(str)
-      //Filter only numbers from the input
-      let cleaned = ('' + str).replace(/\D/g, '')
-
-      //Check if the input is of correct length
-      let match = cleaned.match(/^(\d{3})(\d{3})(\d{2})(\d{2})$/)
-      console.log('match', match)
-
-      if (match) {
-        return (
-          '(' + match[1] + ') ' + match[2] + '-' + match[3] + '-' + match[4]
-        )
-      }
-
-      return null
     }
   }
 }

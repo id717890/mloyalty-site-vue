@@ -49,9 +49,7 @@
 </template>
 
 <script>
-// import { mapMutations } from 'vuex'
 import { SENDING_PAGE } from '@/helpers/const/widgetPage'
-// import panelTypes from '@/store/panel/types'
 import designCarousel from '../DesignCarousel'
 import par from '../Par'
 import MlTextarea from '@/components/UI/MlTextarea'

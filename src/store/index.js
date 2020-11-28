@@ -1,6 +1,7 @@
 import app from './app/store'
 import panel from './panel/store'
 import panelBurger from './panelBurger/store'
+import verificationCode from './verificationCode/store'
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -10,6 +11,7 @@ export default new Vuex.Store({
   modules: {
     app,
     panel,
-    panelBurger
+    panelBurger,
+    verificationCode
   }
 })

@@ -59,3 +59,27 @@
     color: black !important;
   }
 }
+
+/*Поле ввода кода верификации*/
+.ml-input-code {
+  width: 48px;
+  min-width: 48px;
+  height: 48px;
+  min-width: 48px;
+  background: #ffffff;
+  border: 1px solid #dbdbdb;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.02em;
+  color: #000000;
+}
+
+.ml-input-code.invalid {
+  border: 1px solid #e94574;
+}
+
+.ml-input-code:focus {
+  border: 1px solid #000000;
+}
