@@ -1,8 +1,8 @@
 .ml-panel-basket-page {
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
+  // display: flex;
+  // height: 100%;
+  // align-items: center;
+  // justify-content: center;
 
   .empty-cart-img {
     margin-bottom: 30px;
@@ -16,5 +16,40 @@
     letter-spacing: -0.02em;
     color: #000000;
     margin-bottom: 24px;
+  }
+
+  .ml-basket-item {
+    display: flex;
+    flex-flow: row;
+
+    .image {
+      display: flex;
+      flex: 0 0 140px;
+    }
+
+    .content {
+      display: flex;
+      flex-flow: column;
+      padding-left: 24px;
+      flex: 1 1 auto;
+
+      .first {
+      }
+
+      .second {
+        display: flex;
+        flex-flow: row;
+        justify-self: start;
+      }
+    }
+  }
+
+  .basket-total {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e6e6e6;
   }
 }

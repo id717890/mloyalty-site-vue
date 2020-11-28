@@ -2,6 +2,7 @@ import app from './app/store'
 import panel from './panel/store'
 import panelBurger from './panelBurger/store'
 import verificationCode from './verificationCode/store'
+import basket from './basket/store'
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
     app,
     panel,
     panelBurger,
-    verificationCode
+    verificationCode,
+    basket
   }
 })

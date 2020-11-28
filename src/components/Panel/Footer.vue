@@ -28,16 +28,33 @@
 
 <script>
 import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
-import { BASKET_PAGE } from '@/helpers/const/widgetPage'
+import { BASKET_PAGE, SENDING_PAGE } from '@/helpers/const/widgetPage'
+import basketTypes from '@/store/basket/types'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   mixins: [MixinChangePanelPage],
+  computed: {
+    ...mapState({
+      currentPage: state => state.panel.page
+    })
+  },
   methods: {
+    ...mapActions('basket', [
+      basketTypes.INIT_EMPTY_BASKET,
+      basketTypes.INIT_TEST_BASKET
+    ]),
     openShopCart() {
+      if (this.currentPage !== BASKET_PAGE) {
+        if (this.currentPage === SENDING_PAGE) {
+          this[basketTypes.INIT_TEST_BASKET]()
+        } else {
+          this[basketTypes.INIT_EMPTY_BASKET]()
+        }
+      }
+
       this.changePanelPage(BASKET_PAGE)
     }
   }
 }
 </script>
-
-<style></style>

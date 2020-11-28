@@ -1,6 +1,6 @@
 .ml-black-btn,
 .ml-silver-btn {
-  padding: 14px 85px;
+  padding: 14px 18px;
   border-radius: 8px;
   font-weight: 500;
   font-size: 16px;
@@ -57,6 +57,10 @@
 
 .ml-black-btn:hover {
   background: #2c2c2c;
+}
+
+.ml-silver-btn:hover {
+  background: #e2e0e0;
 }
 
 .ml-sending-method-btn {
