@@ -8,7 +8,7 @@
       />
       <span class="shop-cart-block" @click.prevent="openShopCart">
         Корзина
-        <span class="shop-cart-count">2</span>
+        <span class="shop-cart-count">{{ allPositions.count }}</span>
       </span>
     </div>
 
@@ -30,14 +30,15 @@
 import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
 import { BASKET_PAGE, SENDING_PAGE } from '@/helpers/const/widgetPage'
 import basketTypes from '@/store/basket/types'
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 
 export default {
   mixins: [MixinChangePanelPage],
   computed: {
     ...mapState({
       currentPage: state => state.panel.page
-    })
+    }),
+    ...mapGetters('basket', ['allPositions'])
   },
   methods: {
     ...mapActions('basket', [

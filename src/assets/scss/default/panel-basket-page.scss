@@ -25,6 +25,7 @@
     .image {
       display: flex;
       flex: 0 0 140px;
+      margin: 5px 0;
     }
 
     .content {
@@ -34,6 +35,8 @@
       flex: 1 1 auto;
 
       .first {
+        margin: 7px 0;
+        display: flex;
       }
 
       .second {
@@ -51,5 +54,9 @@
     margin-top: 16px;
     padding-top: 16px;
     border-top: 1px solid #e6e6e6;
+  }
+
+  .btn-go-detail {
+    cursor: pointer;
   }
 }

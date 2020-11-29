@@ -1,6 +1,9 @@
 <template>
   <div class="ml-panel-basket-page h100">
-    <div class="d-flex flex-column align-center" v-if="!basket">
+    <div
+      class="d-flex flex-column align-center justify-center h100"
+      v-if="!basket"
+    >
       <img src="~@/assets/img/empty-cart.png" alt="" class="empty-cart-img" />
       <section class="empty-text">
         <div>Ваша корзина пока пуста.</div>
@@ -23,7 +26,7 @@
             <div class="ml-basket-item">
               <div class="image">
                 <v-img
-                  :aspect-ratio="16 / 9"
+                  :aspect-ratio="16 / 11"
                   class="ml-img-rounded"
                   :src="require('@/assets/img/example/design1.png')"
                 ></v-img>
@@ -37,13 +40,21 @@
                   <MlNumeric v-model="item.count"> </MlNumeric>
                 </div>
               </div>
+              <div class="d-flex align-center">
+                <img
+                  @click.stop=""
+                  class="btn-go-detail"
+                  src="~@/assets/img/arrow-right.png"
+                  alt=""
+                />
+              </div>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-12 basket-total">
             <div class="text1">Общая стоимость</div>
-            <div class="text1">{{ totalPrice }}₽</div>
+            <div class="text1">{{ allPositions.price }}₽</div>
           </div>
         </div>
         <div class="row">
@@ -75,7 +86,7 @@
 <script>
 import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
 import { START_PAGE } from '@/helpers/const/widgetPage'
-import { mapState } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import MlNumeric from '@/components/UI/MlNumeric'
 
 export default {
@@ -87,17 +98,7 @@ export default {
     ...mapState({
       basket: state => state.basket.basket
     }),
-    totalPrice() {
-      let sum = 0
-      if (this.basket) {
-        this.basket.forEach(item => {
-          const price = item?.price
-          const count = item?.count
-          if (price) sum += price * count
-        })
-      }
-      return sum
-    }
+    ...mapGetters('basket', ['allPositions'])
   },
   methods: {
     shortText(str) {
