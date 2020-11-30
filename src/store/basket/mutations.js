@@ -20,12 +20,21 @@ export default {
   [types.CANCEL_REMOVE_CERTIFICATE](state) {
     let certificate = state.modalConfirmRemove.certificate
     certificate.count = 1
-    state.basket = [
-      ...state.basket.filter(
-        x => x.certificate.id !== certificate.certificate.id
-      ),
-      certificate
-    ]
+    // state.basket = [
+    //   ...state.basket.filter(
+    //     x => x.certificate.id !== certificate.certificate.id
+    //   ),
+    //   certificate
+    // ]
+    const find = state.basket.find(
+      cert =>
+        cert.certificate.id === certificate.certificate.id &&
+        cert.price === certificate.price &&
+        cert.congratulation === certificate.congratulation
+    )
+    if (find) {
+      state.basket.splice(state.basket.indexOf(find), 1, certificate)
+    }
     state.modalConfirmRemove.show = false
     state.modalConfirmRemove.certificate = null
   },
@@ -56,12 +65,25 @@ export default {
       state.modalConfirmRemove.show = true
       state.modalConfirmRemove.certificate = certificate
     } else {
-      state.basket = [
-        ...state.basket.filter(
-          item => item?.certificate?.id !== certificate?.certificate?.id
-        ),
-        certificate
-      ]
+      const find = state.basket.find(
+        cert =>
+          cert.certificate.id === certificate.certificate.id &&
+          cert.price === certificate.price &&
+          cert.congratulation === certificate.congratulation
+      )
+      if (find) {
+        state.basket.splice(state.basket.indexOf(find), 1, certificate)
+      }
+
+      // state.basket = [
+      //   ...state.basket.filter(
+      //     item =>
+      //       item?.certificate?.id !== certificate?.certificate?.id &&
+      //       item?.price !== certificate?.price &&
+      //       item?.congratulation !== certificate?.congratulation
+      //   ),
+      //   certificate
+      // ]
     }
   }
 }
