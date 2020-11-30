@@ -81,7 +81,8 @@ export default {
   watch: {
     basket() {
       Object.keys(this.$refs).forEach(key => {
-        this.$refs[key][0].$forceUpdate()
+        const el = this.$refs[key][0]
+        if (el) el.$forceUpdate()
       })
     }
   },
