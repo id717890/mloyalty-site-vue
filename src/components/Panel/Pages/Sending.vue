@@ -4,7 +4,7 @@
       <div class="col-12">
         <div class="pb">
           <div class="row">
-            <div class="col-12"><div class="section">Отправка</div></div>
+            <div class="col-12 pt-0"><div class="section">Отправка</div></div>
           </div>
           <div class="row">
             <div class="col-12">
@@ -106,9 +106,15 @@
               <span class="ml-2">Номер подтвержден!</span>
             </div>
             <div class="col-12 px-0">
-              <a href="#" @click.prevent="nextPage" class="ml-silver-btn">
+              <button
+                :disabled="!validateForm"
+                href="#"
+                @click.prevent="nextPage"
+                class="ml-silver-btn"
+                style="width: 100%"
+              >
                 Продолжить оформление
-              </a>
+              </button>
             </div>
           </template>
         </div>
@@ -129,6 +135,7 @@ import {
   VERIFICATION_BY_MESSENGER
 } from '@/helpers/const/sendingMethod'
 import panelTypes from '@/store/panel/types'
+import verificationTypes from '@/store/verificationCode/types'
 import { mask } from 'vue-the-mask'
 import verificationCode from '@/components/Panel/VerificationCode'
 import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
@@ -153,6 +160,9 @@ export default {
     ]
   }),
   computed: {
+    validateForm() {
+      return this.validateEmail && this.validatePhone
+    },
     verificationType() {
       return this.form.sendingMethod === SENDING_METHOD_SMS
         ? VERIFICATION_BY_SMS
@@ -181,8 +191,10 @@ export default {
     }
   },
   methods: {
+    ...mapMutations('verificationCode', [verificationTypes.SET_CONTACTS]),
     successVerificationProcess() {
       this.successVerification = true
+      this[verificationTypes.SET_CONTACTS](this.form)
     },
     sendVerificationCode() {
       this.isSentVerificationCode = true
@@ -192,40 +204,40 @@ export default {
     },
     nextPage() {
       this.changePanelPage(CONFIRMING_PAGE)
-    },
-    preventNumericInput($event) {
-      console.log($event.keyCode) //will display the keyCode value
-
-      var keyCode = $event.keyCode ? $event.keyCode : $event.which
-      if (keyCode > 47 && keyCode < 58) {
-      } else {
-        $event.preventDefault()
-      }
-    },
-    inputPhone() {
-      this.form.phone = this.maskedPhone(this.form.phone)
-    },
-    maskedPhone(text) {
-      let result = ''
-      if (!text.length) return text
-      if (text.length > 0 && text.length <= 3) {
-        result = `(${text})`
-      } else if (text.length > 3 && text.length <= 6) {
-        result = `(${text.substring(0, 3)}) ${text.substring(3)}`
-      } else if (text.length > 6 && text.length <= 8) {
-        result = `(${text.substring(0, 3)}) ${text.substring(
-          3,
-          6
-        )} - ${text.substring(6)}`
-      } else if (text.length > 8) {
-        result = `(${text.substring(0, 3)}) ${text.substring(
-          3,
-          6
-        )} - ${text.substring(6, 8)} - ${text.substring(8)}`
-      }
-      if (result.length > 10) result = result.substring(0, 19)
-      return result
     }
+    // preventNumericInput($event) {
+    //   console.log($event.keyCode) //will display the keyCode value
+
+    //   var keyCode = $event.keyCode ? $event.keyCode : $event.which
+    //   if (keyCode > 47 && keyCode < 58) {
+    //   } else {
+    //     $event.preventDefault()
+    //   }
+    // },
+    // inputPhone() {
+    //   this.form.phone = this.maskedPhone(this.form.phone)
+    // },
+    // maskedPhone(text) {
+    //   let result = ''
+    //   if (!text.length) return text
+    //   if (text.length > 0 && text.length <= 3) {
+    //     result = `(${text})`
+    //   } else if (text.length > 3 && text.length <= 6) {
+    //     result = `(${text.substring(0, 3)}) ${text.substring(3)}`
+    //   } else if (text.length > 6 && text.length <= 8) {
+    //     result = `(${text.substring(0, 3)}) ${text.substring(
+    //       3,
+    //       6
+    //     )} - ${text.substring(6)}`
+    //   } else if (text.length > 8) {
+    //     result = `(${text.substring(0, 3)}) ${text.substring(
+    //       3,
+    //       6
+    //     )} - ${text.substring(6, 8)} - ${text.substring(8)}`
+    //   }
+    //   if (result.length > 10) result = result.substring(0, 19)
+    //   return result
+    // }
   }
 }
 </script>

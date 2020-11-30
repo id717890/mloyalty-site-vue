@@ -6,5 +6,8 @@ export default {
   },
   [types.TOGGLE_PANEL_BURGER]: state => {
     state.show = !state.show
+  },
+  [types.SET_CONTACTS]: (state, contacts) => {
+    state.contacts = contacts
   }
 }

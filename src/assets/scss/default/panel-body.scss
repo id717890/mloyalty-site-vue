@@ -75,4 +75,41 @@
     letter-spacing: -0.03em;
     color: #808080;
   }
+
+  .text3 {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    color: #000000;
+  }
+
+  .text4 {
+    font-size: 11px;
+    line-height: 14px;
+    color: #808080;
+  }
+
+  .text-black {
+    color: #000000;
+  }
+
+  .ml-panel-confirming-page {
+    .total-counts,
+    .total-sum {
+      font-size: 16px;
+      line-height: 20px;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      letter-spacing: -0.03em;
+      color: #808080;
+      margin-bottom: 12px;
+    }
+
+    .contacts {
+      border-top: 1px solid #e6e6e6;
+      border-bottom: 1px solid #e6e6e6;
+    }
+  }
 }

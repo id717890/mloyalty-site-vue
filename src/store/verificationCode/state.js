@@ -2,5 +2,10 @@
 
 export default {
   isInitCodeInProccess: false,
-  verificationCode: null
+  verificationCode: null,
+  contacts: {
+    email: null,
+    phone: null,
+    sendingMethod: null
+  }
 }

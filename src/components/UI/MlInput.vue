@@ -1,5 +1,5 @@
 <template>
-  <div class="form-group" :class="{ 'is-invalid': invalid }">
+  <div class="form-group " :class="{ 'is-invalid': invalid }">
     <label class="form-label">
       {{ label }}
       <span v-if="required" class="text-pink">*</span>

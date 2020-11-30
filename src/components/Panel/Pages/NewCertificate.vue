@@ -52,7 +52,7 @@
         class="ml-black-btn"
         style="width: 100%"
       >
-        Продолжить
+        {{ titleNextBtn }}
       </button>
     </div>
   </div>
@@ -64,10 +64,11 @@ import designCarousel from '../DesignCarousel'
 import par from '../Par'
 import MlTextarea from '@/components/UI/MlTextarea'
 import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
-import { mapActions, mapMutations, mapState } from 'vuex'
+import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
 import certificateTypes from '@/store/certificate/types'
 import basketTypes from '@/store/basket/types'
 import { debounce } from 'lodash'
+import { CONFIRMING_PAGE } from '../../../helpers/const/widgetPage'
 
 export default {
   mixins: [MixinChangePanelPage],
@@ -89,9 +90,14 @@ export default {
       options: state => state.certificate.options,
       selectedCertificate: state => state.certificate.selectedCertificate
     }),
+    ...mapGetters(['verificationCode/isVerified', 'basket/allPositions']),
     isAllowContinue() {
       const price = this.customPar ?? this.selectedPar
       return !this.form.certificate || !this.form.congratulation || !price
+    },
+    titleNextBtn() {
+      const count = this['basket/allPositions']?.count
+      return count ? 'Продолжить' : 'Добавить в корзину'
     }
   },
   watch: {
@@ -145,7 +151,11 @@ export default {
     },
     nextPage() {
       this.storeCertificate()
-      this.changePanelPage(SENDING_PAGE)
+      if (this['verificationCode/isVerified']) {
+        this.changePanelPage(CONFIRMING_PAGE)
+      } else {
+        this.changePanelPage(SENDING_PAGE)
+      }
       // this[panelTypes.CURRENT_PAGE_SET](SENDING_PAGE)
     }
   }
