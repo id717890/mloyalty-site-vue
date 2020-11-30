@@ -1,9 +1,10 @@
 export default {
+  basket: state => state.basket,
   /**
    * @returns {Object} { price: 0, count: 0 }
    */
   allPositions: state => {
-    const certificates = state?.basket
+    let certificates = state?.basket
     let result = {
       price: 0,
       count: 0

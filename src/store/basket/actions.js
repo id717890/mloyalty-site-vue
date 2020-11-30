@@ -12,6 +12,12 @@ const testBasket = [
 ]
 
 export default {
+  [types.UPDATE_CERTIFICATE_ACTION]({ commit, state, getters }, certificate) {
+    console.log(state.basket.filter(x => x.certificate.id !== certificate))
+  },
+  // [types.ADD_CERTIFICATE_TO_BASKET]({ commit }, payload) {
+  //   commit(types.ADD_CERTIFICATE, payload)
+  // },
   [types.INIT_EMPTY_BASKET]({ commit }) {
     commit(types.SET_BASKET, null)
   },

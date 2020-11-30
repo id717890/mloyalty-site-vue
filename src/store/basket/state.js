@@ -1,3 +1,7 @@
 export default {
-  basket: null
+  basket: null,
+  modalConfirmRemove: {
+    show: false,
+    certificate: null
+  }
 }

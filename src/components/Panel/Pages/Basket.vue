@@ -21,36 +21,14 @@
             <div class="section">Корзина</div>
           </div>
         </div>
-        <div class="row" v-for="(item, itemIndex) in basket" :key="itemIndex">
-          <div class="col-12">
-            <div class="ml-basket-item">
-              <div class="image">
-                <v-img
-                  :aspect-ratio="16 / 11"
-                  class="ml-img-rounded"
-                  :src="require('@/assets/img/example/design1.png')"
-                ></v-img>
-              </div>
-              <div class="content">
-                <div class="first">
-                  {{ shortText(item.certification.text) }}
-                </div>
-                <!-- <div class="first">{{ 123 }}</div> -->
-                <div class="second">
-                  <MlNumeric v-model="item.count"> </MlNumeric>
-                </div>
-              </div>
-              <div class="d-flex align-center">
-                <img
-                  @click.stop=""
-                  class="btn-go-detail"
-                  src="~@/assets/img/arrow-right.png"
-                  alt=""
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+        <template v-for="(item, itemIndex) in basket">
+          <the-basket-item
+            :ref="'the-basket-item-' + itemIndex"
+            :key="itemIndex"
+            :certificate="item"
+          />
+        </template>
+
         <div class="row">
           <div class="col-12 basket-total">
             <div class="text1">Общая стоимость</div>
@@ -59,7 +37,7 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <a href="#" @click.prevent="" class="ml-silver-btn">
+            <a href="#" @click.prevent="addCertificate" class="ml-silver-btn">
               <v-icon>mdi-plus</v-icon>
               Добавить еще сертификат
             </a>
@@ -87,12 +65,12 @@
 import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
 import { START_PAGE } from '@/helpers/const/widgetPage'
 import { mapGetters, mapState } from 'vuex'
-import MlNumeric from '@/components/UI/MlNumeric'
+import TheBasketItem from '@/components/Panel/TheBasketItem'
 
 export default {
   mixins: [MixinChangePanelPage],
   components: {
-    MlNumeric
+    TheBasketItem
   },
   computed: {
     ...mapState({
@@ -100,15 +78,16 @@ export default {
     }),
     ...mapGetters('basket', ['allPositions'])
   },
+  watch: {
+    basket() {
+      Object.keys(this.$refs).forEach(key => {
+        this.$refs[key][0].$forceUpdate()
+      })
+    }
+  },
   methods: {
-    shortText(str) {
-      if (str && str.length > 50) {
-        return `${str.substring(0, 50)}...`
-      }
-      return str
-    },
     addCertificate() {
-      let i = this.changePanelPage(START_PAGE)
+      this.changePanelPage(START_PAGE)
     }
   }
 }

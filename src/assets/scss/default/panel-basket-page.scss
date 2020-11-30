@@ -25,7 +25,7 @@
     .image {
       display: flex;
       flex: 0 0 140px;
-      margin: 5px 0;
+      // margin: 5px 0;
     }
 
     .content {
@@ -37,6 +37,7 @@
       .first {
         margin: 7px 0;
         display: flex;
+        flex-grow: 1;
       }
 
       .second {

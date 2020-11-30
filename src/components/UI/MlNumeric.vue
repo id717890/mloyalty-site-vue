@@ -3,7 +3,7 @@
     <button @click.stop="decrement">
       <v-icon>mdi-minus</v-icon>
     </button>
-    <div>{{ counter }}</div>
+    <div>{{ value }}</div>
     <button @click.stop="increment">
       <v-icon>mdi-plus</v-icon>
     </button>
@@ -25,19 +25,19 @@ export default {
       default: 1
     }
   },
-  data: () => ({
-    counter: null
-  }),
-  mounted() {
-    this.counter = this.value
-  },
+  data: () => ({}),
+  mounted() {},
+  watch: {},
+  updated(v) {},
   methods: {
     increment() {
-      this.$emit('input', ++this.counter)
+      const n = this.value + 1
+      this.$emit('input', n)
     },
     decrement() {
-      if (this.counter > MIN_VALUE) {
-        this.$emit('input', --this.counter)
+      if (this.value > MIN_VALUE) {
+        let n = this.value - 1
+        this.$emit('input', n)
       }
     }
   }
