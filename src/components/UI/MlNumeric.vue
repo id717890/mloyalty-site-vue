@@ -25,10 +25,6 @@ export default {
       default: 1
     }
   },
-  data: () => ({}),
-  mounted() {},
-  watch: {},
-  updated(v) {},
   methods: {
     increment() {
       const n = this.value + 1

@@ -8,7 +8,9 @@
         <p class="text2">Это действие нельзя отменить.</p>
       </div>
       <div class="action">
-        <a href="#" class="ml-black-btn mr-2" @click.prevent="">Удалить</a>
+        <a href="#" class="ml-black-btn mr-2" @click.prevent="remove"
+          >Удалить</a
+        >
         <a href="#" @click.prevent="cancel" class="ml-flat-btn">Отменить</a>
       </div>
     </div>
@@ -22,7 +24,13 @@ import basketTypes from '@/store/basket/types'
 export default {
   name: 'ModalConfirmRemoveCertificate',
   methods: {
-    ...mapMutations('basket', [basketTypes.CANCEL_REMOVE_CERTIFICATE]),
+    ...mapMutations('basket', [
+      basketTypes.CANCEL_REMOVE_CERTIFICATE,
+      basketTypes.REMOVE_CERTIFICATE
+    ]),
+    remove() {
+      this[basketTypes.REMOVE_CERTIFICATE]()
+    },
     cancel() {
       this[basketTypes.CANCEL_REMOVE_CERTIFICATE]()
     }

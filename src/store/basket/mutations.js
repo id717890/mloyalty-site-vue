@@ -1,6 +1,22 @@
 import types from './types'
 
 export default {
+  [types.REMOVE_CERTIFICATE](state) {
+    const certificate = state.modalConfirmRemove.certificate
+    if (certificate) {
+      const find = state.basket.find(
+        cert =>
+          cert.certificate.id === certificate.certificate.id &&
+          cert.price === certificate.price &&
+          cert.congratulation === certificate.congratulation
+      )
+      if (find) {
+        state.basket.splice(state.basket.indexOf(find), 1)
+      }
+    }
+    state.modalConfirmRemove.show = false
+    state.modalConfirmRemove.certificate = null
+  },
   [types.CANCEL_REMOVE_CERTIFICATE](state) {
     let certificate = state.modalConfirmRemove.certificate
     certificate.count = 1
@@ -11,6 +27,7 @@ export default {
       certificate
     ]
     state.modalConfirmRemove.show = false
+    state.modalConfirmRemove.certificate = null
   },
   [types.SET_BASKET](state, basket) {
     state.basket = basket

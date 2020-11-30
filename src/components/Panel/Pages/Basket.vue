@@ -2,7 +2,7 @@
   <div class="ml-panel-basket-page h100">
     <div
       class="d-flex flex-column align-center justify-center h100"
-      v-if="!basket"
+      v-if="!basket || !basket.length"
     >
       <img src="~@/assets/img/empty-cart.png" alt="" class="empty-cart-img" />
       <section class="empty-text">
