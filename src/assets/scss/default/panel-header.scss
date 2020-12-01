@@ -24,3 +24,24 @@
     line-height: 20px;
   }
 }
+
+.mloyalty-panel-burger-header {
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  height: 60px;
+  min-height: 60px;
+  border-bottom: 1px solid #e6e6e6;
+
+  .title {
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: -0.02em;
+    color: #000000;
+    text-align: center;
+  }
+}
+
+.mloyalty-panel-burger-header.wo-border {
+  border: none !important;
+}

@@ -1,33 +1,32 @@
 <template>
-  <div class="mloyalty-panel-header">
-    <img class="logo" src="~@/assets/img/default/header-logo.png" alt="" />
-    <a href="#" class="how-its-work">
-      Дарить легко
-    </a>
-    <a href="#" class="how-its-work">
-      Как это работает
-    </a>
-    <img
-      src="~@/assets/img/default/burger.png"
-      class="burger"
-      alt=""
-      @click.stop="togglePanelBurger"
-    />
+  <div class="mloyalty-panel-burger-header" :class="{ 'wo-border': !show }">
+    <template v-if="show">
+      <a href="#" class="back-link" @click.prevent="goHome">
+        <img src="@/assets/img/arrow-left.png" alt="" class="mr-2" />
+        Назад
+      </a>
+      <div class="title flex-grow-1">{{ title }}</div>
+    </template>
   </div>
 </template>
 
 <script>
-import { mapActions, mapMutations, mapState } from 'vuex'
-// import panelTypes from '@/store/panel/types'
-import panelBurgerTypes from '@/store/panelBurger/types'
+import MixinChagePage from '@/helpers/mixins/burger/changePage'
+import MixinHeader from '@/helpers/mixins/burger/header'
+import { HOME_PAGE } from '@/helpers/const/widgetPage'
 
 export default {
-  computed: {},
+  name: 'Burger-Header',
+  props: {
+    show: {
+      type: Boolean,
+      default: false
+    }
+  },
+  mixins: [MixinChagePage, MixinHeader],
   methods: {
-    // ...mapMutations('panel', [panelTypes.TOGGLE_PANEL]),
-    ...mapMutations('panelBurger', [panelBurgerTypes.TOGGLE_PANEL_BURGER]),
-    togglePanelBurger() {
-      this[panelBurgerTypes.TOGGLE_PANEL_BURGER]()
+    goHome() {
+      this.changePanelPage(HOME_PAGE)
     }
   }
 }

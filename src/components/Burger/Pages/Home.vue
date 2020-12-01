@@ -1,10 +1,10 @@
 <template>
-  <div class="pb pt-16 ">
+  <div class="pb">
     <dir class="row">
       <div class="col-12">
         <ul class="home-menu">
           <li><a href="#" @click.prevent="">Как это работает</a></li>
-          <li><a href="#" @click.prevent="">Частые вопросы</a></li>
+          <li><a href="#" @click.prevent="goFAQ">Частые вопросы</a></li>
           <li><a href="#" @click.prevent="">Оферта</a></li>
           <li><a href="#" @click.prevent="">Поддержка</a></li>
         </ul>
@@ -40,7 +40,19 @@
 </template>
 
 <script>
-export default {}
+import MixinChagePage from '@/helpers/mixins/burger/changePage'
+import { HOME_PAGE, FAQ_PAGE } from '@/helpers/const/widgetPage'
+
+export default {
+  name: 'Home-Page',
+  components: {},
+  mixins: [MixinChagePage],
+  methods: {
+    goFAQ() {
+      this.changePanelPage(FAQ_PAGE)
+    }
+  }
+}
 </script>
 
 <style></style>

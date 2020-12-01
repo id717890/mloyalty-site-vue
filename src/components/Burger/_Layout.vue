@@ -1,19 +1,24 @@
 <template>
   <div class="mloyalty-panel-burger-layout">
-    <burger-header v-if="!isHomePage" />
+    <burger-header :show="!isHomePage" />
     <div class="flex-grow-1 mloyalty-panel-burger-body">
+      <v-btn
+        v-if="isHomePage"
+        icon
+        large
+        text
+        class="close-btn"
+        @click="togglePanelBurger"
+      >
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
       <transition name="panel-fade" mode="out-in">
-        <section>
-          <v-btn icon large text class="close-btn" @click="togglePanelBurger">
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-          <div v-if="loading" class="h100 d-flex justify-center">
-            <div class="pb flex-grow-1 d-flex justify-center align-center">
-              <MlLoading />
-            </div>
+        <div v-if="loading" class="h100 d-flex justify-center">
+          <div class="pb flex-grow-1 d-flex justify-center align-center">
+            <MlLoading />
           </div>
-          <component v-else :is="component"></component>
-        </section>
+        </div>
+        <component v-else :is="component"></component>
       </transition>
     </div>
     <burger-footer v-if="!isHomePage" />
@@ -30,12 +35,14 @@ import home from './Pages/Home'
 import MlLoading from '@/components/UI/MlLoading'
 import MixinChagePage from '@/helpers/mixins/burger/changePage'
 import panelBurgerTypes from '@/store/panelBurger/types'
+import faq from './Pages/FAQ'
 
 export default {
   components: {
     burgerHeader,
     burgerFooter,
     home,
+    faq,
     MlLoading
   },
   mixins: [MixinChagePage],
