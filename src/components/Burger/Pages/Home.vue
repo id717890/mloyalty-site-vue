@@ -3,10 +3,12 @@
     <dir class="row">
       <div class="col-12">
         <ul class="home-menu">
-          <li><a href="#" @click.prevent="">Как это работает</a></li>
+          <li>
+            <a href="#" @click.prevent="goHowItsWork">Как это работает</a>
+          </li>
           <li><a href="#" @click.prevent="goFAQ">Частые вопросы</a></li>
-          <li><a href="#" @click.prevent="">Оферта</a></li>
-          <li><a href="#" @click.prevent="">Поддержка</a></li>
+          <li><a href="#" @click.prevent="goOffer">Оферта</a></li>
+          <li><a href="#" @click.prevent="goSupport">Поддержка</a></li>
         </ul>
         <hr class="ml-delimeter" />
       </div>
@@ -41,7 +43,13 @@
 
 <script>
 import MixinChagePage from '@/helpers/mixins/burger/changePage'
-import { HOME_PAGE, FAQ_PAGE } from '@/helpers/const/widgetPage'
+import {
+  HOME_PAGE,
+  FAQ_PAGE,
+  HOW_ITS__WORK,
+  SUPPORT,
+  OFFER
+} from '@/helpers/const/widgetPage'
 
 export default {
   name: 'Home-Page',
@@ -50,6 +58,15 @@ export default {
   methods: {
     goFAQ() {
       this.changePanelPage(FAQ_PAGE)
+    },
+    goHowItsWork() {
+      this.changePanelPage(HOW_ITS__WORK)
+    },
+    goOffer() {
+      this.changePanelPage(OFFER)
+    },
+    goSupport() {
+      this.changePanelPage(SUPPORT)
     }
   }
 }

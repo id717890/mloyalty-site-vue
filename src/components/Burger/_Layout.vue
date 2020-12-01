@@ -21,7 +21,7 @@
         <component v-else :is="component"></component>
       </transition>
     </div>
-    <burger-footer v-if="!isHomePage" />
+    <!-- <burger-footer v-if="!isHomePage" /> -->
   </div>
 </template>
 
@@ -36,6 +36,9 @@ import MlLoading from '@/components/UI/MlLoading'
 import MixinChagePage from '@/helpers/mixins/burger/changePage'
 import panelBurgerTypes from '@/store/panelBurger/types'
 import faq from './Pages/FAQ'
+import howItsWork from './Pages/HowItsWork'
+import offer from './Pages/Offer'
+import support from './Pages/Support'
 
 export default {
   components: {
@@ -43,6 +46,9 @@ export default {
     burgerFooter,
     home,
     faq,
+    howItsWork,
+    offer,
+    support,
     MlLoading
   },
   mixins: [MixinChagePage],

@@ -1,4 +1,9 @@
-import { FAQ_PAGE } from '@/helpers/const/widgetPage'
+import {
+  FAQ_PAGE,
+  HOW_ITS__WORK,
+  OFFER,
+  SUPPORT
+} from '@/helpers/const/widgetPage'
 import { mapState } from 'vuex'
 
 export default {
@@ -10,8 +15,13 @@ export default {
       switch (this.component) {
         case FAQ_PAGE:
           return 'Частые вопросы'
+        case HOW_ITS__WORK:
+          return 'Как это работает'
+        case OFFER:
+          return 'Оферта'
+        case SUPPORT:
+          return 'Поддержка'
       }
-      return 123
     }
   }
 }
