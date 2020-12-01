@@ -32,6 +32,7 @@ import sending from './Pages/Sending'
 import confirming from './Pages/Confirming'
 import MlLoading from '@/components/UI/MlLoading'
 import certificateTypes from '@/store/certificate/types'
+import basketTypes from '@/store/basket/types'
 
 export default {
   components: {
@@ -49,9 +50,15 @@ export default {
       loading: state => state.app.loading
     })
   },
+  watch: {
+    component(value) {
+      if (value !== START_PAGE) this[basketTypes.SET_CURRENT_CERTIFICATE](null)
+    }
+  },
   methods: {
     ...mapMutations('panel', [panelTypes.CURRENT_PAGE_SET]),
     ...mapActions('certificate', [certificateTypes.GET_CERTIFICATE_OPTIONS]),
+    ...mapMutations('basket', [basketTypes.SET_CURRENT_CERTIFICATE]),
     next() {}
   },
   mounted() {

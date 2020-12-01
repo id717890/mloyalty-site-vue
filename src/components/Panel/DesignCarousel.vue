@@ -1,12 +1,14 @@
 <template>
   <v-carousel
     @change="$emit('change-certificate', items[$event])"
-    height="230"
+    height="210"
     hide-delimiter-background
     show-arrows-on-hover
+    class="mb-0"
   >
     <v-carousel-item v-for="(item, i) in itemsData" :key="i">
       <v-img
+        height="210"
         :aspect-ratio="16 / 9"
         class="ml-img-rounded"
         :src="require('@/assets/img/example/design1.png')"

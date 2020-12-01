@@ -41,3 +41,27 @@
     -moz-appearance: textfield;
   }
 }
+
+.ml-numeric2 {
+  height: 48px;
+  width: 100%;
+  background: #000000;
+  border-radius: 8px;
+  display: flex;
+  padding: 12px 24px;
+  justify-content: space-between;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+
+  span {
+    // display: flex;
+    // align-items: center;
+  }
+
+  i {
+    color: white !important;
+  }
+}

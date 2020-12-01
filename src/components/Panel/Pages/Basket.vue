@@ -25,6 +25,7 @@
           <the-basket-item
             :ref="'the-basket-item-' + itemIndex"
             :key="itemIndex"
+            :index="itemIndex"
             :certificate="item"
           />
         </template>

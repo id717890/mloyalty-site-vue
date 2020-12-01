@@ -23,12 +23,13 @@
           </div>
         </div>
         <div class="d-flex align-center">
-          <img
-            @click.stop=""
-            class="btn-go-detail"
-            src="~@/assets/img/arrow-right.png"
-            alt=""
-          />
+          <a href="#" @click.prevent="edit">
+            <img
+              class="btn-go-detail"
+              src="~@/assets/img/arrow-right.png"
+              alt=""
+            />
+          </a>
         </div>
       </div>
     </div>
@@ -39,23 +40,36 @@
 import MlNumeric from '@/components/UI/MlNumeric'
 import { mapMutations } from 'vuex'
 import basketTypes from '@/store/basket/types'
+import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
+import { START_PAGE } from '@/helpers/const/widgetPage'
+
 export default {
   name: 'TheBasketItem',
-
   props: {
     certificate: {
       type: Object,
+      require: true
+    },
+    index: {
+      type: Number,
       require: true
     }
   },
   components: {
     MlNumeric
   },
+  mixins: [MixinChangePanelPage],
   methods: {
-    ...mapMutations('basket', [basketTypes.UPDATE_CERTIFICATE]),
-    change(v) {
-      // this.certificate.count = v
+    ...mapMutations('basket', [
+      basketTypes.UPDATE_CERTIFICATE,
+      basketTypes.SET_CURRENT_CERTIFICATE
+    ]),
+    change() {
       this[basketTypes.UPDATE_CERTIFICATE](this.certificate)
+    },
+    edit() {
+      this[basketTypes.SET_CURRENT_CERTIFICATE](this.index)
+      this.changePanelPage(START_PAGE)
     },
     shortText(str) {
       if (str && str.length > 50) {

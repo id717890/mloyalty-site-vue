@@ -52,6 +52,11 @@
     margin-left: 5px;
   }
 
+  .remove-from-basket {
+    font-size: 14px;
+    color: #e94574 !important;
+  }
+
   .controlls {
     min-height: 72px;
     border-top: 1px solid #e6e6e6;
@@ -110,6 +115,28 @@
     .contacts {
       border-top: 1px solid #e6e6e6;
       border-bottom: 1px solid #e6e6e6;
+    }
+  }
+
+  .wrapper-alert {
+    z-index: 10;
+    position: absolute;
+    width: 100%;
+    padding: 12px 32px;
+
+    .black-alert {
+      height: 48px;
+      background: #1f1f1f;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: -0.03em;
+      color: #cccccc;
+      padding: 13px 23px;
+    }
+
+    i {
+      color: #cccccc !important;
     }
   }
 }

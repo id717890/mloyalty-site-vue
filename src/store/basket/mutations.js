@@ -16,6 +16,7 @@ export default {
     }
     state.modalConfirmRemove.show = false
     state.modalConfirmRemove.certificate = null
+    state.currentCertificate = null
   },
   [types.CANCEL_REMOVE_CERTIFICATE](state) {
     let certificate = state.modalConfirmRemove.certificate
@@ -61,6 +62,7 @@ export default {
     }
   },
   [types.UPDATE_CERTIFICATE](state, certificate) {
+    console.log(certificate)
     if (certificate.count === 0) {
       state.modalConfirmRemove.show = true
       state.modalConfirmRemove.certificate = certificate
@@ -74,16 +76,9 @@ export default {
       if (find) {
         state.basket.splice(state.basket.indexOf(find), 1, certificate)
       }
-
-      // state.basket = [
-      //   ...state.basket.filter(
-      //     item =>
-      //       item?.certificate?.id !== certificate?.certificate?.id &&
-      //       item?.price !== certificate?.price &&
-      //       item?.congratulation !== certificate?.congratulation
-      //   ),
-      //   certificate
-      // ]
     }
+  },
+  [types.SET_CURRENT_CERTIFICATE](state, certificateIndex) {
+    state.currentCertificate = certificateIndex
   }
 }
