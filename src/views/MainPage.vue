@@ -36,6 +36,7 @@
         :width="config.panelWidth"
         :value="showPanelBurger"
         app
+        stateless
         temporary
         right
       >

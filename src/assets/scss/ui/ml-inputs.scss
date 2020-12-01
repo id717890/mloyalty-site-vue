@@ -1,4 +1,5 @@
-.ml-input {
+.ml-input,
+.ml-select {
   .v-input__slot {
     border: 1px solid #dbdbdb;
     border-radius: 6px;
@@ -82,4 +83,13 @@
 
 .ml-input-code:focus {
   border: 1px solid #000000;
+}
+
+.ml-hide-details {
+  .v-text-field__details {
+    display: none;
+  }
+}
+
+.ml-select {
 }
