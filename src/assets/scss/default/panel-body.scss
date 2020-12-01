@@ -1,4 +1,5 @@
-.mloyalty-panel-body {
+.mloyalty-panel-body,
+.mloyalty-panel-burger-body {
   text-align: left;
   display: block;
 
@@ -92,6 +93,15 @@
   .text4 {
     font-size: 11px;
     line-height: 14px;
+    color: #808080;
+  }
+
+  .text5 {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.03em;
     color: #808080;
   }
 

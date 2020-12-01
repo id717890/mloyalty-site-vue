@@ -1,4 +1,7 @@
 export default {
   loading: false,
-  code: null
+  code: null,
+  config: {
+    panelWidth: 448
+  }
 }

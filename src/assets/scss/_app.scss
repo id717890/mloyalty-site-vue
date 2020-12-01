@@ -10,6 +10,8 @@
 @import './default/panel-basket-page.scss';
 @import './default/panel-modal.scss';
 
+@import './default/panel-burger-body.scss';
+
 @import './ui/ml-textarea.scss';
 @import './ui/ml-btns.scss';
 @import './ui/ml-inputs.scss';
@@ -55,4 +57,10 @@ button:focus {
 .v-navigation-drawer__content {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+.ml-delimeter {
+  height: 1px;
+  border: none;
+  background: #e6e6e6;
 }

@@ -1,0 +1,38 @@
+.mloyalty-panel-burger-body {
+  .close-btn {
+    position: absolute;
+    right: 33px;
+    top: 19px;
+  }
+
+  ul.home-menu {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 32px;
+    letter-spacing: -0.02em;
+    color: #000000;
+
+    li {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+  }
+
+  .social-btn {
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 8px 8px;
+    width: 40px;
+    height: 40px;
+    background: #f0f0f0;
+    border-radius: 8px;
+    text-align: center;
+    color: #808080;
+  }
+
+  .social-btn:hover {
+    background: #e4e2e2;
+  }
+}

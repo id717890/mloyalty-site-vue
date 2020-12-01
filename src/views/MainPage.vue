@@ -12,7 +12,7 @@
 
       <v-navigation-drawer
         style="overflow: visible"
-        :width="448"
+        :width="config.panelWidth"
         :value="showPanel"
         app
         stateless
@@ -28,19 +28,18 @@
         >
           <v-icon>mdi-close</v-icon>
         </v-btn>
-        <certificate-layout />
+        <panel-layout />
         <modal-confirm-remove-certificate v-if="modalConfirmRemove" />
       </v-navigation-drawer>
 
       <v-navigation-drawer
-        :width="320"
+        :width="config.panelWidth"
         :value="showPanelBurger"
         app
-        stateless
         temporary
         right
       >
-        asd
+        <burger-layout />
       </v-navigation-drawer>
     </v-main>
   </v-app>
@@ -48,7 +47,8 @@
 
 <script>
 import appTypes from '../store/app/types'
-import certificateLayout from '../components/Panel/_Layout'
+import panelLayout from '../components/Panel/_Layout'
+import burgerLayout from '../components/Burger/_Layout'
 import { mapActions, mapMutations, mapState } from 'vuex'
 import panelTypes from '@/store/panel/types'
 import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
@@ -57,14 +57,16 @@ import ModalConfirmRemoveCertificate from '@/components/Panel/ModalConfirm'
 export default {
   mixins: [MixinChangePanelPage],
   components: {
-    certificateLayout,
+    panelLayout,
+    burgerLayout,
     ModalConfirmRemoveCertificate
   },
   computed: {
     ...mapState({
       showPanel: state => state.panel.show,
       showPanelBurger: state => state.panelBurger.show,
-      modalConfirmRemove: state => state.basket.modalConfirmRemove.show
+      modalConfirmRemove: state => state.basket.modalConfirmRemove.show,
+      config: state => state.app.config
     })
   },
   data() {

@@ -15,7 +15,7 @@
       </a>
     </div>
     <div class="h100 d-flex flex-column" v-else>
-      <div class="pb">
+      <div class="pb flex-grow-1">
         <div class="row">
           <div class="col-12">
             <div class="section">Корзина</div>
@@ -45,7 +45,11 @@
           </div>
         </div>
       </div>
-      <div class="pb flex-grow-1" style="border-top: 1px solid #E6E6E6">
+      <div
+        class="pb flex-grow-1"
+        style="border-top: 1px solid #E6E6E6"
+        v-if="!isVerified"
+      >
         <div class="section">Контакты для отправки</div>
         <div class="text2">
           Укажите ваши контакты, чтобы мы могли отправить на них сообщение со
@@ -54,8 +58,16 @@
         </div>
       </div>
       <div class="controlls">
-        <a href="#" @click.prevent="nextPage" class="ml-black-btn">
+        <a
+          v-if="!isVerified"
+          href="#"
+          @click.prevent="goToSending"
+          class="ml-black-btn"
+        >
           Указать контакты для отправки
+        </a>
+        <a v-else href="#" @click.prevent="goToConfirming" class="ml-black-btn">
+          Перейти к оформлению
         </a>
       </div>
     </div>
@@ -64,7 +76,11 @@
 
 <script>
 import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
-import { START_PAGE } from '@/helpers/const/widgetPage'
+import {
+  START_PAGE,
+  CONFIRMING_PAGE,
+  SENDING_PAGE
+} from '@/helpers/const/widgetPage'
 import { mapGetters, mapState } from 'vuex'
 import TheBasketItem from '@/components/Panel/TheBasketItem'
 
@@ -77,7 +93,11 @@ export default {
     ...mapState({
       basket: state => state.basket.basket
     }),
-    ...mapGetters('basket', ['allPositions'])
+    ...mapGetters('basket', ['allPositions']),
+    ...mapGetters(['verificationCode/isVerified']),
+    isVerified() {
+      return this['verificationCode/isVerified']
+    }
   },
   watch: {
     basket() {
@@ -88,6 +108,12 @@ export default {
     }
   },
   methods: {
+    goToConfirming() {
+      this.changePanelPage(CONFIRMING_PAGE)
+    },
+    goToSending() {
+      this.changePanelPage(SENDING_PAGE)
+    },
     addCertificate() {
       this.changePanelPage(START_PAGE)
     }
