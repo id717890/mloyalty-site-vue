@@ -4,7 +4,7 @@
     <a href="#" class="how-its-work">
       Дарить легко
     </a>
-    <a href="#" class="how-its-work">
+    <a href="#" class="how-its-work" @click.prevent="goHowItsWork">
       Как это работает
     </a>
     <img
@@ -18,19 +18,22 @@
 
 <script>
 import { mapActions, mapMutations, mapState } from 'vuex'
-// import panelTypes from '@/store/panel/types'
 import panelBurgerTypes from '@/store/panelBurger/types'
+import MixinChagePage from '@/helpers/mixins/burger/changePage'
+import { HOW_ITS__WORK } from '@/helpers/const/widgetPage'
 
 export default {
+  mixins: [MixinChagePage],
   computed: {},
   methods: {
-    // ...mapMutations('panel', [panelTypes.TOGGLE_PANEL]),
     ...mapMutations('panelBurger', [panelBurgerTypes.TOGGLE_PANEL_BURGER]),
     togglePanelBurger() {
       this[panelBurgerTypes.TOGGLE_PANEL_BURGER]()
+    },
+    goHowItsWork() {
+      this.changePanelBurgerPage(HOW_ITS__WORK)
+      this.togglePanelBurger()
     }
   }
 }
 </script>
-
-<style></style>

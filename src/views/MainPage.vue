@@ -1,14 +1,51 @@
 <template>
   <v-app>
-    <!-- <v-app-bar app></v-app-bar> -->
+    <v-navigation-drawer v-model="drawer" app color="#f5f5f5">
+      <v-list shaped>
+        <v-list-item to="/">
+          <v-list-item-icon>
+            <v-icon v-text="'mdi-home'"></v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Main page </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item to="/orders">
+          <v-list-item-icon>
+            <v-icon v-text="'mdi-cart'"></v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Orders</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item to="/contact">
+          <v-list-item-icon>
+            <v-icon v-text="'mdi-account-box-outline'"></v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Contacts</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+    <v-app-bar app>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+      <v-toolbar flat color="#f5f5f5">
+        <v-toolbar-title>MLOYALTY</v-toolbar-title>
+
+        <v-toolbar-items class="ml-6">
+          <!-- <v-btn text to="/" class="sm-btn-menu">
+            <v-icon>mdi-home</v-icon>
+          </v-btn> -->
+        </v-toolbar-items>
+      </v-toolbar>
+    </v-app-bar>
     <v-main>
-      <v-container class="fill-height">
-        <v-row align="center" justify="center">
-          <v-btn color="pink" dark @click.stop="togglePanel">
+      <!-- <v-btn color="pink" dark @click.stop="togglePanel">
             Toggle
-          </v-btn>
-        </v-row>
-      </v-container>
+          </v-btn> -->
+      <router-view name="main"></router-view>
 
       <v-navigation-drawer
         style="overflow: visible"
@@ -25,6 +62,7 @@
           color="#E6E6E6"
           class="close-panel-btn"
           @click.stop="togglePanel"
+          v-if="!showPanelBurger"
         >
           <v-icon>mdi-close</v-icon>
         </v-btn>

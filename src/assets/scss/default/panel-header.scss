@@ -45,3 +45,12 @@
 .mloyalty-panel-burger-header.wo-border {
   border: none !important;
 }
+
+@media only screen and (min-width: 768px) {
+  .mloyalty-panel-header {
+    position: fixed;
+    width: 100%;
+    background: white;
+    z-index: 10;
+  }
+}

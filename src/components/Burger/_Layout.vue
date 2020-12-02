@@ -65,7 +65,7 @@ export default {
     component(value) {}
   },
   mounted() {
-    this.changePanelPage(HOME_PAGE)
+    this.changePanelBurgerPage(HOME_PAGE)
   },
   methods: {
     ...mapMutations('panelBurger', [panelBurgerTypes.TOGGLE_PANEL_BURGER]),

@@ -26,7 +26,7 @@ export default {
   mixins: [MixinChagePage, MixinHeader],
   methods: {
     goHome() {
-      this.changePanelPage(HOME_PAGE)
+      this.changePanelBurgerPage(HOME_PAGE)
     }
   }
 }

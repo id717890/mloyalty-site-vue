@@ -4,7 +4,7 @@ import burgerTypes from '@/store/panelBurger/types'
 export default {
   methods: {
     ...mapMutations('panelBurger', [burgerTypes.CURRENT_PAGE_SET]),
-    changePanelPage(page) {
+    changePanelBurgerPage(page) {
       this[burgerTypes.CURRENT_PAGE_SET](page)
     }
   }

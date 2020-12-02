@@ -45,3 +45,13 @@
   .social-btn img {
   }
 }
+
+@media only screen and (min-width: 768px) {
+  .mloyalty-panel-footer {
+    position: fixed;
+    width: 100%;
+    background: white;
+    z-index: 10;
+    bottom: 0;
+  }
+}

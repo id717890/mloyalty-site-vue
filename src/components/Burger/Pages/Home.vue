@@ -57,16 +57,16 @@ export default {
   mixins: [MixinChagePage],
   methods: {
     goFAQ() {
-      this.changePanelPage(FAQ_PAGE)
+      this.changePanelBurgerPage(FAQ_PAGE)
     },
     goHowItsWork() {
-      this.changePanelPage(HOW_ITS__WORK)
+      this.changePanelBurgerPage(HOW_ITS__WORK)
     },
     goOffer() {
-      this.changePanelPage(OFFER)
+      this.changePanelBurgerPage(OFFER)
     },
     goSupport() {
-      this.changePanelPage(SUPPORT)
+      this.changePanelBurgerPage(SUPPORT)
     }
   }
 }
