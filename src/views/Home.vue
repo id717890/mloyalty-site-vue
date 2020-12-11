@@ -21,6 +21,15 @@
         >
       </div>
     </div>
+    <div class="row">
+      <div class="col-12">
+        <SwipeButton
+          ref="swipeButton"
+          class="ml-swipe-button"
+          @actionConfirmed="onActionConfirmed"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -29,13 +38,18 @@
 import HelloWorld from '@/components/HelloWorld.vue'
 import { mapMutations } from 'vuex'
 import panelTypes from '@/store/panel/types'
+import SwipeButton from '../components/UI/SwipeButton'
 
 export default {
   name: 'Home',
-  components: {},
+  components: { SwipeButton },
   methods: {
     ...mapMutations('panel', [panelTypes.TOGGLE_PANEL]),
-
+    onActionConfirmed() {
+      setTimeout(() => {
+        this.$refs.swipeButton.reset()
+      }, 1000)
+    },
     togglePanel() {
       this[panelTypes.TOGGLE_PANEL](!this.showPanel)
     },
