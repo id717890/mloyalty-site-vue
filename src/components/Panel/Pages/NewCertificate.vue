@@ -44,7 +44,7 @@
           />
 
           <div class="d-flex flex-row align-center justify-content-between">
-            <a href="#">
+            <a href="#" @click.prevent="openPreview">
               <img src="~@/assets/img/eye.png" alt="" />
               <span class="preview-eye">Предпросмотр</span>
             </a>
@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import { SENDING_PAGE } from '@/helpers/const/widgetPage'
+import { SENDING_PAGE, PREVIEW_PAGE } from '@/helpers/const/widgetPage'
 import designCarousel from '../DesignCarousel'
 import par from '../Par'
 import MlTextarea from '@/components/UI/MlTextarea'
@@ -161,6 +161,9 @@ export default {
       basketTypes.ADD_CERTIFICATE,
       basketTypes.UPDATE_CERTIFICATE
     ]),
+    openPreview() {
+      this.changePanelPage(PREVIEW_PAGE)
+    },
     // ...mapMutations('certificate', [certificateTypes.STORE_CURRENT_CERIFICATE]),
     save() {
       let certificate = this.form

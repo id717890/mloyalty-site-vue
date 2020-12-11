@@ -26,11 +26,15 @@ export default {
     ...mapActions('app', [appTypes.INIT_TEMPLATE])
   },
   mounted() {
-    console.log(this.$route.params)
+    setTimeout(() => {
+      console.log(this.$route.params)
+      console.log(this.$route.query)
+    }, 1000)
+
     this[appTypes.SET_LOADING_APP](true)
     this[appTypes.INIT_TEMPLATE](this.$route.params.code).then(() => {
       setTimeout(() => {
-        this.$router.push('/')
+        // this.$router.push('/')
       }, 2000)
     })
   }

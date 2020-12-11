@@ -1,4 +1,5 @@
-.mloyalty-panel-burger-body {
+.mloyalty-panel-burger-body,
+.mloyalty-panel-body {
   .close-btn {
     position: absolute;
     right: 33px;
@@ -58,6 +59,7 @@
     }
 
     .answer {
+      text-align: justify;
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.2s ease-out;

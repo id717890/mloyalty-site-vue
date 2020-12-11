@@ -20,14 +20,20 @@
     </div>
     <div class="text2">
       Не нашли ответ на свой вопрос? <br />
-      Свяжитесь с нами
+      <a href="#" @click.prevent="goToSupport">Свяжитесь с нами</a>
     </div>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+import panelBurgerTypes from '@/store/panelBurger/types'
+import MixinChangeBurgerPage from '@/helpers/mixins/burger/changePage'
+import { SUPPORT } from '@/helpers/const/widgetPage'
+
 export default {
   name: 'FAQ-Page',
+  mixins: [MixinChangeBurgerPage],
   data: () => ({
     faqs: [
       {
@@ -63,6 +69,11 @@ export default {
     ]
   }),
   methods: {
+    ...mapMutations('panelBurger', [panelBurgerTypes.TOGGLE_PANEL_BURGER]),
+    goToSupport() {
+      this[panelBurgerTypes.TOGGLE_PANEL_BURGER](true)
+      this.changePanelBurgerPage(SUPPORT)
+    },
     toggleFaq(id) {
       let elFaq = this.$refs['faq-item-' + id][0]
       elFaq.classList.toggle('active')

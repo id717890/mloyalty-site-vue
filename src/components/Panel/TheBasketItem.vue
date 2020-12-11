@@ -7,7 +7,9 @@
             :aspect-ratio="16 / 11"
             class="ml-img-rounded"
             :src="require('@/assets/img/example/design1.png')"
-          ></v-img>
+          >
+            <div class="ml-basket-price-label">{{ certificate.price }}₽</div>
+          </v-img>
         </div>
         <div class="content">
           <div class="first">

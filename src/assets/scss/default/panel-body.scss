@@ -113,6 +113,14 @@
     color: #000000;
   }
 
+  .text7 {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 32px;
+    letter-spacing: -0.02em;
+    color: #000000;
+  }
+
   .text-black {
     color: #000000;
   }
@@ -156,6 +164,17 @@
     i {
       color: #cccccc !important;
     }
+  }
+
+  .ml-basket-price-label {
+    align-items: center;
+    padding: 0px 4px;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(40px);
+    border-radius: 4px;
+    bottom: 4px;
+    right: 4px;
   }
 }
 

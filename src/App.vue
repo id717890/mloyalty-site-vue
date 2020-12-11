@@ -2,6 +2,17 @@
   <router-view />
 </template>
 
+<script>
+export default {
+  mounted() {
+    setTimeout(() => {
+      console.log(this.$route.params)
+      console.log(this.$route.query)
+    }, 3000)
+  }
+}
+</script>
+
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
