@@ -1,19 +1,23 @@
 <template>
   <section>
     <div class="mloyalty-panel-header" v-if="!preview">
-      <img class="logo" src="~@/assets/img/default/header-logo.png" alt="" />
-      <a href="#" class="how-its-work">
-        Дарить легко
-      </a>
-      <a href="#" class="how-its-work" @click.prevent="goHowItsWork">
-        Как это работает
-      </a>
-      <img
-        src="~@/assets/img/default/burger.png"
-        class="burger"
-        alt=""
-        @click.stop="togglePanelBurger"
-      />
+      <div class="d-flex align-center">
+        <img class="logo" src="~@/assets/img/default/header-logo.png" alt="" />
+        <a href="#" class="how-its-work ml-2">
+          Дарить легко
+        </a>
+      </div>
+      <div class="d-flex  align-center">
+        <a href="#" class="how-its-work mr-2" @click.prevent="goHowItsWork">
+          Как это работает
+        </a>
+        <img
+          src="~@/assets/img/default/burger.png"
+          class="burger"
+          alt=""
+          @click.stop="togglePanelBurger"
+        />
+      </div>
     </div>
     <div class="mloyalty-panel-header px-8" v-else>
       <a href="#" class="back-link" @click.prevent="goBack">
