@@ -24,7 +24,8 @@ import {
   BASKET_PAGE,
   SENDING_PAGE,
   CONFIRMING_PAGE,
-  PREVIEW_PAGE
+  PREVIEW_PAGE,
+  SUCCESS_PAGE
 } from '../../helpers/const/widgetPage'
 import { mapActions, mapMutations, mapState } from 'vuex'
 import firstCertificate from './Pages/NewCertificate'
@@ -32,6 +33,7 @@ import basket from './Pages/Basket'
 import sending from './Pages/Sending'
 import confirming from './Pages/Confirming'
 import preview from './Pages/Preview'
+import success from './Pages/Success'
 import MlLoading from '@/components/UI/MlLoading'
 import certificateTypes from '@/store/certificate/types'
 import basketTypes from '@/store/basket/types'
@@ -45,6 +47,7 @@ export default {
     sending,
     confirming,
     preview,
+    success,
     MlLoading
   },
   computed: {

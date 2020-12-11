@@ -70,7 +70,7 @@ import { mapActions, mapState } from 'vuex'
 import verificationCodeTypes from '@/store/verificationCode/types'
 import { debounce } from 'lodash'
 
-const TIMER_SECONDS = 3
+const TIMER_SECONDS = 60
 
 export default {
   props: {

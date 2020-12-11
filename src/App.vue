@@ -6,8 +6,8 @@
 export default {
   mounted() {
     setTimeout(() => {
-      console.log(this.$route.params)
-      console.log(this.$route.query)
+      console.log('ROUTE PARAMS', this.$route.params)
+      console.log('ROUTE QUERY', this.$route.query)
     }, 3000)
   }
 }

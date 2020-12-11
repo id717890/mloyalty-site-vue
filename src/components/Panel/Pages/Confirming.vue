@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import { START_PAGE } from '@/helpers/const/widgetPage'
+import { SUCCESS_PAGE } from '@/helpers/const/widgetPage'
 import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
 import { mapGetters, mapState } from 'vuex'
 import {
@@ -116,7 +116,7 @@ export default {
   },
   methods: {
     next() {
-      this.changePanelPage(START_PAGE)
+      this.changePanelPage(SUCCESS_PAGE)
     }
   }
 }
