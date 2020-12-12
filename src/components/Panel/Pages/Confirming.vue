@@ -2,7 +2,7 @@
   <div class="ml-panel-confirming-page h100 d-flex flex-column">
     <div class="pb flex-grow-1">
       <div class="row">
-        <div class="col-12">
+        <div class="col-12 pb-0">
           <div class="section">Оформление</div>
         </div>
         <div class="col-12">
@@ -53,6 +53,7 @@
         </div>
         <div class="col-12 pt-1">
           <v-text-field
+            color="dark"
             type="text"
             height="60"
             label="Номер карты лояльности"

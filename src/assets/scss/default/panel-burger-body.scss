@@ -4,18 +4,27 @@
     position: absolute;
     right: 33px;
     top: 19px;
+    z-index: 2;
   }
 
   ul.home-menu {
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 32px;
-    letter-spacing: -0.02em;
-    color: #000000;
+    padding: 0;
 
     li {
       list-style: none;
       margin-bottom: 24px;
+      color: #000000;
+
+      a {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 32px;
+        letter-spacing: -0.02em;
+      }
+    }
+
+    li:hover {
+      color: #525252;
     }
   }
 

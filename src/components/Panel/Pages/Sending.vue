@@ -9,6 +9,7 @@
           <div class="row">
             <div class="col-12">
               <v-text-field
+                color="dark"
                 append-icon="mdi-check"
                 type="email"
                 required
@@ -73,6 +74,7 @@
           <div class="row" v-if="isShowPhone">
             <div class="col-12 d-flex flex-column">
               <v-text-field
+                color="dark"
                 prepend-inner-icon="+7"
                 append-icon="mdi-check"
                 v-mask="'(###) ###-##-##'"

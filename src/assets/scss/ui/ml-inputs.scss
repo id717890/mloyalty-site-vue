@@ -1,7 +1,7 @@
 .ml-input,
 .ml-select {
   .v-input__slot {
-    border: 1px solid #dbdbdb;
+    border: none;
     border-radius: 6px;
     padding-left: 24px !important;
     padding-right: 24px !important;
@@ -9,6 +9,10 @@
     legend {
       width: inherit !important;
     }
+  }
+
+  fieldset {
+    border: 1px solid #e6e6e6;
   }
 
   .v-label--active {
@@ -24,6 +28,17 @@
     letter-spacing: -0.02em;
 
     color: #4d4d4d;
+  }
+}
+
+.ml-select.v-input--is-focused,
+.ml-input.v-input--is-focused {
+  .v-input__slot {
+    border: none;
+  }
+
+  fieldset {
+    border: 1px solid #000000;
   }
 }
 

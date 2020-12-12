@@ -16,11 +16,11 @@
             outlined
             item-text="name"
             return-object
+            color="dark"
           >
             <template #item="{item}">
               <div>
                 <v-icon v-if="typeId === item.id">mdi-check</v-icon>
-
                 {{ item.name }}
               </div>
             </template>
@@ -38,10 +38,12 @@
             :class="{ novalidate: validateName === false }"
             outlined
             v-model="form.name"
+            color="dark"
           ></v-text-field>
         </div>
         <div class="col-12 pb-0">
           <v-text-field
+            color="dark"
             append-icon="mdi-check"
             type="email"
             required
@@ -56,6 +58,7 @@
         </div>
         <div class="col-12 pb-0">
           <v-text-field
+            color="dark"
             prepend-inner-icon="+7"
             append-icon="mdi-check"
             v-mask="'(###) ###-##-##'"
