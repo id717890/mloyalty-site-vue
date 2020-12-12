@@ -80,8 +80,10 @@ export default {
       let el = this.$refs['answer-' + id][0]
       if (el.style.maxHeight) {
         el.style.maxHeight = null
+        el.style.paddingTop = '0px'
       } else {
-        el.style.maxHeight = el.scrollHeight + 'px'
+        el.style.maxHeight = el.scrollHeight + 10 + 'px'
+        el.style.paddingTop = '10px'
       }
     }
   }

@@ -1,6 +1,6 @@
 import { START_PAGE } from '../../helpers/const/widgetPage'
 
 export default {
-  show: true,
+  show: false,
   page: START_PAGE
 }
