@@ -46,6 +46,12 @@
   }
 }
 
+.mloayalty-certificate-footer {
+  height: 60px;
+  min-height: 60px;
+  border-top: 1px solid #e6e6e6;
+}
+
 @media only screen and (min-width: 768px) {
   .mloyalty-panel-footer {
     position: fixed;

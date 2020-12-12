@@ -11,15 +11,15 @@
           />
         </div>
         <div class="d-flex flex-column pl-10">
-          <a href="#" class="ml-black-btn mb-6" @click.prevent="togglePanel"
-            >Купить сертификат</a
-          >
-          <a href="#" class="ml-black-btn mb-6" @click.prevent="take"
-            >Получить сертификат</a
-          >
-          <a href="#" class="ml-black-btn" @click.prevent="balance"
-            >Узнать баланс сертификата</a
-          >
+          <a href="#" class="ml-black-btn mb-6" @click.prevent="togglePanel">
+            Купить сертификат
+          </a>
+          <router-link class="ml-black-btn mb-6" to="/preview">
+            Получить сертификат
+          </router-link>
+          <a href="#" class="ml-black-btn" @click.prevent="balance">
+            Узнать баланс сертификата
+          </a>
         </div>
       </div>
       <div>

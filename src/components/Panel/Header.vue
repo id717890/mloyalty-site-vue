@@ -2,13 +2,18 @@
   <section>
     <div class="mloyalty-panel-header" v-if="!preview">
       <div class="d-flex align-center">
-        <img class="logo" src="~@/assets/img/default/header-logo.png" alt="" />
+        <img
+          class="logo"
+          src="~@/assets/img/default/header-logo.png"
+          @click.prevent="goToHome"
+          alt=""
+        />
         <a href="#" class="how-its-work ml-2">
           Дарить легко
         </a>
       </div>
       <div class="d-flex  align-center">
-        <a href="#" class="how-its-work mr-2" @click.prevent="goHowItsWork">
+        <a href="#" class="how-its-work mr-2">
           Как это работает
         </a>
         <img
@@ -35,6 +40,7 @@ import panelBurgerTypes from '@/store/panelBurger/types'
 import MixinBurgerChagePage from '@/helpers/mixins/burger/changePage'
 import MixinChagePage from '@/helpers/mixins/panel/changePage'
 import { HOW_ITS__WORK, START_PAGE } from '@/helpers/const/widgetPage'
+import panelTypes from '@/store/panel/types'
 
 export default {
   props: {
@@ -47,6 +53,7 @@ export default {
   computed: {},
   methods: {
     ...mapMutations('panelBurger', [panelBurgerTypes.TOGGLE_PANEL_BURGER]),
+    ...mapMutations('panel', [panelTypes.TOGGLE_PANEL]),
     togglePanelBurger() {
       this[panelBurgerTypes.TOGGLE_PANEL_BURGER]()
     },
@@ -56,6 +63,9 @@ export default {
     },
     goBack() {
       this.changePanelPage(START_PAGE)
+    },
+    goToHome() {
+      this[panelTypes.TOGGLE_PANEL](false)
     }
   }
 }
