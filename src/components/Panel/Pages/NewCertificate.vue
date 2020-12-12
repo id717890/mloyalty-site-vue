@@ -7,7 +7,7 @@
     </div>
     <div class="pb flex-grow-1">
       <div class="row">
-        <div class="col-12">
+        <div class="col-12 pt-0">
           <div class="section">1. Выберите дизайн</div>
           <design-carousel
             :items="options.certificates"
@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12">
+        <div class="col-12 pt-0">
           <div class="section">2. Номинал</div>
           <div class="d-flex flex-row flex-wrap">
             <par
@@ -36,9 +36,10 @@
             />
           </div>
         </div>
-        <div class="col-12">
+        <div class="col-12 pt-0">
           <div class="section">3. Поздравление</div>
           <MlTextarea
+            :rows="3"
             v-model="form.congratulation"
             placeholder="Ваше поздравление (необязательно)"
           />

@@ -1,11 +1,14 @@
+.mloyalty-panel-body {
+  padding-top: 60px;
+}
+
 .mloyalty-panel-body,
 .mloyalty-panel-burger-body {
   text-align: left;
   display: block;
-  padding-top: 60px;
 
   .pb {
-    padding: 32px;
+    padding: 16px 32px 32px;
   }
 
   .section {
