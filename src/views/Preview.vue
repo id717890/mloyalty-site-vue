@@ -10,7 +10,13 @@
         @actionConfirmed="onActionConfirmed"
       />
     </div>
-    <div class="ml-preview-container">
+    <div class="ml-preview-container" v-show="show">
+      <img
+        class="ml-confeti"
+        ref="confeti"
+        src="@/assets/img/confetti.png"
+        alt=""
+      />
       <div class="ml-perview-card ml-perview-card-shrink" ref="preview">
         <div class="row">
           <div class="col-12 text-center d-flex flex-column align-items-center">
@@ -116,21 +122,25 @@ import faq from '@/components/Burger/Pages/FAQ'
 export default {
   components: { SwipeButton, faq },
   data: () => ({
-    show: true
+    show: false
   }),
   methods: {
     onActionConfirmed() {
+      this.$refs.preview.classList.add('ml-perview-card-shrink')
       setTimeout(() => {
         this.show = true
-        this.$refs.swipeButton.reset()
-      }, 1000)
+        this.bounce()
+        // this.$refs.swipeButton.reset()
+      }, 300)
+    },
+    bounce() {
+      setTimeout(() => {
+        this.$refs.preview.classList.remove('ml-perview-card-shrink')
+        this.$refs.confeti.classList.add('ml-confeti-bounce')
+      }, 0)
     }
   },
-  mounted() {
-    setTimeout(() => {
-      this.$refs.preview.classList.remove('ml-perview-card-shrink')
-    }, 100)
-  }
+  mounted() {}
 }
 </script>
 
