@@ -1,6 +1,16 @@
 <template>
   <div class="mloyalty-panel-layout">
     <panel-header :preview="isPreview" />
+    <v-btn
+      fab
+      small
+      elevation="0"
+      color="#E6E6E6"
+      class="ml-close-panel-btn-mobile  hidden-md-and-up"
+      @click.stop="togglePanel"
+    >
+      <v-icon>mdi-close</v-icon>
+    </v-btn>
     <div class="flex-grow-1 mloyalty-panel-body">
       <transition name="panel-fade" mode="out-in">
         <div v-if="loading" class="h100 d-flex justify-center">
@@ -65,10 +75,18 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('panel', [panelTypes.CURRENT_PAGE_SET]),
+    ...mapMutations('panel', [
+      panelTypes.CURRENT_PAGE_SET,
+      panelTypes.TOGGLE_PANEL
+    ]),
     ...mapActions('certificate', [certificateTypes.GET_CERTIFICATE_OPTIONS]),
     ...mapMutations('basket', [basketTypes.SET_CURRENT_CERTIFICATE]),
-    next() {}
+    ...mapState({
+      showPanel: state => state.panel.show
+    }),
+    togglePanel() {
+      this[panelTypes.TOGGLE_PANEL](!this.showPanel)
+    }
   },
   mounted() {
     this[certificateTypes.GET_CERTIFICATE_OPTIONS]()

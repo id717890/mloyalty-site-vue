@@ -41,10 +41,18 @@
 }
 
 /**Кнопка закрытия панели*/
-.close-panel-btn {
+.ml-close-panel-btn {
   position: absolute;
   left: -55px;
   top: 15px;
+}
+
+.ml-close-panel-btn-mobile {
+  position: absolute;
+  right: 16px;
+  top: 76px;
+  z-index: 2;
+  color: #4d4d4d;
 }
 
 .ml-black-btn:hover {

@@ -48,7 +48,7 @@
       <router-view name="main"></router-view>
 
       <v-navigation-drawer
-        style="overflow: visible"
+        style="overflow: visible; height: 100%"
         :width="config.panelWidth"
         :value="showPanel"
         app
@@ -60,7 +60,7 @@
           fab
           small
           color="#E6E6E6"
-          class="close-panel-btn"
+          class="ml-close-panel-btn hidden-sm-and-down"
           @click.stop="togglePanel"
           v-if="!showPanelBurger"
         >

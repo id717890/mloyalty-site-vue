@@ -5,6 +5,10 @@
   height: 60px;
   justify-content: space-between;
   border-bottom: 1px solid #e6e6e6;
+  position: fixed;
+  width: 100%;
+  background: white;
+  z-index: 10;
 
   .logo {
     margin-left: 24px;
@@ -47,10 +51,10 @@
 }
 
 @media only screen and (min-width: 768px) {
-  .mloyalty-panel-header {
-    position: fixed;
-    width: 100%;
-    background: white;
-    z-index: 10;
-  }
+  // .mloyalty-panel-header {
+  //   position: fixed;
+  //   width: 100%;
+  //   background: white;
+  //   z-index: 10;
+  // }
 }

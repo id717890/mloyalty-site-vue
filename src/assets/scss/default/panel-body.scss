@@ -2,6 +2,7 @@
 .mloyalty-panel-burger-body {
   text-align: left;
   display: block;
+  padding-top: 60px;
 
   .pb {
     padding: 32px;
@@ -188,7 +189,7 @@
 
 @media only screen and (min-width: 768px) {
   .mloyalty-panel-body {
-    padding-top: 60px;
+    // padding-top: 60px;
     padding-bottom: 60px;
   }
 }
