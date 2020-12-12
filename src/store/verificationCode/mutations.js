@@ -9,5 +9,8 @@ export default {
   },
   [types.SET_CONTACTS]: (state, contacts) => {
     state.contacts = contacts
+  },
+  [types.SET_TEST_CODE]: (state, code) => {
+    state.code = code
   }
 }

@@ -7,5 +7,6 @@ export default {
     email: null,
     phone: null,
     sendingMethod: null
-  }
+  },
+  code: 1111 // тестовый пин код, код подтверждения
 }

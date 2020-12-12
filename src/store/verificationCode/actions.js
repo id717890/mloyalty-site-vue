@@ -1,11 +1,11 @@
 import types from './types'
 
 export default {
-  [types.SEND_VERIFICATIONCODE_VIA_SMS]: async ({ commit }, payload) => {
+  [types.SEND_VERIFICATIONCODE_VIA_SMS]: async ({ commit, state }, payload) => {
     commit(types.INIT_VERIFICATION_CODE_PROCESS, true)
     const fakePromise = new Promise(resolve => {
       setTimeout(() => {
-        if (payload === 1111) {
+        if (payload === state.code) {
           resolve({ success: true })
         } else {
           resolve({ success: false })
@@ -15,11 +15,14 @@ export default {
     })
     return fakePromise
   },
-  [types.SEND_VERIFICATIONCODE_VIA_MESSANGER]: async ({ commit }, payload) => {
+  [types.SEND_VERIFICATIONCODE_VIA_MESSANGER]: async (
+    { commit, state },
+    payload
+  ) => {
     commit(types.INIT_VERIFICATION_CODE_PROCESS, true)
     const fakePromise = new Promise(resolve => {
       setTimeout(() => {
-        if (payload === 1111) {
+        if (payload === state.code) {
           resolve({ success: true })
         } else {
           resolve({ success: false })

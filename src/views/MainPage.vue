@@ -124,6 +124,8 @@ export default {
       this[panelTypes.TOGGLE_PANEL](!this.showPanel)
     }
   },
-  mounted() {}
+  mounted() {
+    this[panelTypes.TOGGLE_PANEL](false)
+  }
 }
 </script>
