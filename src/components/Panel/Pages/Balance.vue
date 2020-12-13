@@ -1,64 +1,129 @@
 <template>
-  <div>
-    <div class="row pb">
-      <div class="col-12">
-        <div class="section">Проверка баланса</div>
+  <div class="h100 d-flex flex-column">
+    <div v-if="!isSent" class="flex-grow-1">
+      <div class="row pb">
+        <div class="col-12 py-0">
+          <div class="section">Проверка баланса</div>
+        </div>
+        <div class="col-12  py-0">
+          <span class="text2"
+            >Введите последние 4 цифры номера сертификата</span
+          >
+          <MlInputCode4 @change="numberOfCertificate = $event" />
+        </div>
+        <div class="col-12 py-0">
+          <span class="text2">Введите ПИН код</span>
+          <MlInputCode4 @change="pincode = $event" />
+        </div>
+        <div class="col-12 py-0">
+          <span class="text2">Введите номер телефона</span>
+          <v-text-field
+            color="dark"
+            prepend-inner-icon="+7"
+            append-icon="mdi-check"
+            v-mask="'(###) ###-##-##'"
+            required
+            height="60"
+            label="Ваш телефон*"
+            class="ml-input ml-input-prepend-inner mt-2"
+            :class="{ novalidate: validatePhone === false }"
+            outlined
+            v-model="phone"
+          ></v-text-field>
+          <button
+            v-if="!successVerification && !isSentVerificationCode"
+            :disabled="!validatePhone"
+            href="#"
+            class="ml-black-btn w100"
+            @click.stop="sendVerificationCode"
+          >
+            Подтвердить
+          </button>
+        </div>
+        <div class="col-12 pt-0">
+          <verification-code
+            @success="successVerificationProcess"
+            v-if="isSentVerificationCode && !successVerification"
+            :type="verificationType"
+          >
+            <template #text>
+              <div class="col-12 text2">
+                После подтверждения номера телефона мы отобразим полную
+                информацию о подарочном сертификате
+              </div>
+            </template>
+          </verification-code>
+          <template v-if="successVerification">
+            <div class="col-12 px-0 pt-0">
+              <v-icon class="success-message">mdi-check-circle</v-icon>
+              <span class="ml-2">Номер подтвержден!</span>
+            </div>
+          </template>
+        </div>
       </div>
-      <div class="col-12">
-        <span class="text2">Введите последние 4 цифры номера сертификата</span>
-        <MlInputCode4 @change="numberOfCertificate = $event" />
-      </div>
-      <div class="col-12">
-        <span class="text2">Введите ПИН код</span>
-        <MlInputCode4 @change="pincode = $event" />
-      </div>
-      <div class="col-12">
-        <span class="text2">Введите номер телефона</span>
-        <v-text-field
-          color="dark"
-          prepend-inner-icon="+7"
-          append-icon="mdi-check"
-          v-mask="'(###) ###-##-##'"
-          required
-          height="60"
-          label="Ваш телефон*"
-          class="ml-input ml-input-prepend-inner"
-          :class="{ novalidate: validatePhone === false }"
-          outlined
-          v-model="phone"
-        ></v-text-field>
-        <button
-          v-if="!successVerification && !isSentVerificationCode"
-          :disabled="!validatePhone"
-          href="#"
-          class="ml-black-btn w100"
-          @click.stop="sendVerificationCode"
-        >
-          Подтвердить
-        </button>
-      </div>
-      <div class="col-12">
-        <verification-code
-          @success="successVerificationProcess"
-          v-if="isSentVerificationCode && !successVerification"
-          :type="verificationType"
-        />
-        <template v-if="successVerification">
-          <div class="col-12 px-0 pt-0">
-            <v-icon class="success-message">mdi-check-circle</v-icon>
-            <span class="ml-2">Номер подтвержден!</span>
+    </div>
+    <div
+      v-if="isLoading"
+      class="d-flex flex-grow-1 align-items-center justify-content-center"
+    >
+      <MlLoading />
+    </div>
+    <div v-if="isShowBalance" class="flex-grow-1">
+      <div class="row pb">
+        <div class="col-12 py-0">
+          <div class="section text-center">Баланс сертификата</div>
+        </div>
+        <div class="col-12 pa-0">
+          <div class="section text-center">{{ getRandom() }} р.</div>
+        </div>
+        <div class="col-12 pa-0">
+          <div class="text2 text-center">{{ today }}</div>
+        </div>
+        <div class="mloyalty-preview-cert-body mt-8 pb-8">
+          <div class="col-12 text-center">
+            <img src="@/assets/img/example/riv-gosh.png" alt="" />
+            <div class="mloyalty-preview-title mb-2">
+              Сертификат на 3000 ₽ <br />
+              «РивГош»
+            </div>
+            <div class="mloyalty-preview-expiration">
+              Действует до 29.04.2020
+            </div>
+            <div class="mloyalty-preview-congratulation mt-6">
+              С днем рождения! Желаю крепкого здоровья, удачи, благополучия,
+              добра, радости, любви, счастья, хорошего настроения, улыбок, ярких
+              впечатлений. Пусть тепло и уют всегда наполняют твой дом, пусть
+              солнечный свет согревает в любую погоду, при одной мысли о них.
+            </div>
           </div>
-          <div class="col-12 px-0">
-            <button
-              :disabled="!validatePhone"
-              href="#"
-              @click.prevent="nextPage"
-              class="ml-black-btn w100"
-            >
-              Узнать баланс
-            </button>
+        </div>
+        <div class="col-12 text-center">
+          <img
+            src="@/assets/img/example/riv-gosh-bar-code.png"
+            class="mt-6"
+            alt=""
+          />
+          <div class="card-number">
+            Номер карты: 126324789743873
           </div>
-        </template>
+          <div class="card-pin-code">
+            PIN-код: 678 579
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="controlls" v-if="!isShowBalance">
+      <button
+        :disabled="!successVerification"
+        href="#"
+        @click.prevent="getBalance"
+        class="ml-black-btn w100"
+      >
+        Узнать баланс
+      </button>
+      <div class="text4 mt-2">
+        Нажимая кнопку "Узнать баланс", я соглашаюсь с Правилами использования
+        подарочных карт и сертификатов и Офертой.
       </div>
     </div>
   </div>
@@ -69,6 +134,8 @@ import MlInputCode4 from '@/components/UI/MlInputCode4'
 import { mask } from 'vue-the-mask'
 import { VERIFICATION_BY_SMS } from '@/helpers/const/sendingMethod'
 import verificationCode from '@/components/Panel/VerificationCode'
+import MlLoading from '@/components/UI/MlLoading'
+import { format } from 'date-fns'
 
 export default {
   directives: {
@@ -76,9 +143,13 @@ export default {
   },
   components: {
     MlInputCode4,
-    verificationCode
+    verificationCode,
+    MlLoading
   },
   data: () => ({
+    isSent: true,
+    isShowBalance: true,
+    isLoading: false,
     numberOfCertificate: null,
     pincode: null,
     phone: null,
@@ -86,6 +157,10 @@ export default {
     isSentVerificationCode: false
   }),
   computed: {
+    today() {
+      const date = format(new Date(), 'dd.MM.yyyy')
+      return `По состоянию на ${date}`
+    },
     verificationType() {
       return VERIFICATION_BY_SMS
     },
@@ -94,14 +169,29 @@ export default {
     }
   },
   methods: {
+    getRandom() {
+      return Math.round(Math.random() * (20000 - 200) + 200, 0)
+    },
+    getBalance() {
+      this.isLoading = true
+      this.isSent = true
+      this.isShowBalance = false
+      setTimeout(() => {
+        this.isLoading = false
+        this.isShowBalance = true
+      }, 1000)
+    },
     sendVerificationCode() {
       this.isSentVerificationCode = true
     },
     successVerificationProcess() {
       this.successVerification = true
     }
+  },
+  mounted() {
+    this.isShowBalance = false
+    this.isSent = false
+    this.isLoading = false
   }
 }
 </script>
-
-<style></style>

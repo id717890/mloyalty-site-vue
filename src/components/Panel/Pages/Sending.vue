@@ -72,7 +72,7 @@
             </div>
           </div>
           <div class="row" v-if="isShowPhone">
-            <div class="col-12 d-flex flex-column">
+            <div class="col-12 d-flex flex-column pb-0">
               <v-text-field
                 color="dark"
                 prepend-inner-icon="+7"

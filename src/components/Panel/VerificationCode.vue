@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 pt-0">
       <p class="text1">Введите код подтверждения</p>
     </div>
     <div class="col-12 d-flex align-center">
@@ -51,6 +51,7 @@
       Ссылка для получения кода подтверждения в Telegram, отправлена Вам в смс.
       Перейдите по ссылке и получите код подтверждения.
     </div>
+    <slot name="text"> </slot>
     <div class="col-12 text-center text2" v-if="!showResendBtn">
       {{ timerForResendText }}
     </div>

@@ -90,11 +90,11 @@ import panelLayout from '../components/Panel/_Layout'
 import burgerLayout from '../components/Burger/_Layout'
 import { mapActions, mapMutations, mapState } from 'vuex'
 import panelTypes from '@/store/panel/types'
-// import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
+import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
 import ModalConfirmRemoveCertificate from '@/components/Panel/ModalConfirm'
 
 export default {
-  // mixins: [MixinChangePanelPage],
+  mixins: [MixinChangePanelPage],
   components: {
     panelLayout,
     burgerLayout,
@@ -122,6 +122,7 @@ export default {
 
     togglePanel() {
       this[panelTypes.TOGGLE_PANEL](!this.showPanel)
+      this.changePanelPage(null)
     }
   },
   mounted() {
