@@ -11,7 +11,7 @@
           />
         </div>
         <div class="d-flex flex-column pl-10">
-          <a href="#" class="ml-black-btn mb-6" @click.prevent="togglePanel">
+          <a href="#" class="ml-black-btn mb-6" @click.prevent="newCertificate">
             Купить сертификат
           </a>
           <router-link class="ml-black-btn mb-6" to="/preview">
@@ -65,12 +65,15 @@ import { mapMutations } from 'vuex'
 import panelTypes from '@/store/panel/types'
 import verificationTypes from '@/store/verificationCode/types'
 import MlInputCode from '@/components/UI/MlInputCode'
+import { BALANCE_PAGE, START_PAGE } from '@/helpers/const/widgetPage'
+import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
 
 export default {
   name: 'Home',
   components: {
     MlInputCode
   },
+  mixins: [MixinChangePanelPage],
   data: () => ({
     number1OfCode: null,
     number2OfCode: null,
@@ -85,11 +88,16 @@ export default {
     togglePanel() {
       this[panelTypes.TOGGLE_PANEL](!this.showPanel)
     },
+    newCertificate() {
+      this[panelTypes.TOGGLE_PANEL](true)
+      this.changePanelPage(START_PAGE)
+    },
     take() {
       console.log('take')
     },
     balance() {
-      console.log('balance')
+      this[panelTypes.TOGGLE_PANEL](true)
+      this.changePanelPage(BALANCE_PAGE)
     },
     proccessNumber1() {
       if (this.number1OfCode) {

@@ -90,11 +90,11 @@ import panelLayout from '../components/Panel/_Layout'
 import burgerLayout from '../components/Burger/_Layout'
 import { mapActions, mapMutations, mapState } from 'vuex'
 import panelTypes from '@/store/panel/types'
-import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
-import { START_PAGE } from '@/helpers/const/widgetPage'
+// import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
 import ModalConfirmRemoveCertificate from '@/components/Panel/ModalConfirm'
+
 export default {
-  mixins: [MixinChangePanelPage],
+  // mixins: [MixinChangePanelPage],
   components: {
     panelLayout,
     burgerLayout,

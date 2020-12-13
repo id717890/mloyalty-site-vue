@@ -5,6 +5,7 @@ export const SENDING_PAGE = 'sending'
 export const CONFIRMING_PAGE = 'confirming'
 export const PREVIEW_PAGE = 'preview'
 export const SUCCESS_PAGE = 'success'
+export const BALANCE_PAGE = 'balance'
 
 /**BURGER PAGES */
 export const HOME_PAGE = 'home'

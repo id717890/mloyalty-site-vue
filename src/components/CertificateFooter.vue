@@ -8,15 +8,33 @@
           @click.prevent="goToHome"
           alt=""
         />
-        <a href="#" class="how-its-work ml-2">
+        <a href="#" class="share-ref ml-2" v-if="showTitle">
           Дарить легко
         </a>
       </div>
-      <div class="col-6 d-flex justify-content-end align-items-center"></div>
+      <div class="col-6 d-flex justify-content-end align-items-center">
+        <a href="#" class="share-ref mr-3">Поделиться</a>
+        <a href="#" class="mloyalty-social-btn">
+          <v-icon>mdi-telegram</v-icon>
+        </a>
+        <a href="#" class="mloyalty-social-btn">
+          <v-icon>mdi-whatsapp</v-icon>
+        </a>
+        <a href="#" class="mloyalty-social-btn mr-5">
+          <img src="~@/assets/img/default/send-method-viber.png" alt="" />
+        </a>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    showTitle: {
+      type: Boolean,
+      default: false
+    }
+  }
+}
 </script>

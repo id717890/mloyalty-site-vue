@@ -22,6 +22,9 @@ const routes = [
         components: {
           main: () =>
             import(/* webpackChunkName: "about" */ '../views/Home.vue')
+        },
+        meta: {
+          title: 'MLoyalty - Сертификаты программы лояльности'
         }
       },
       {
@@ -33,6 +36,9 @@ const routes = [
         components: {
           main: () =>
             import(/* webpackChunkName: "about" */ '../views/Order.vue')
+        },
+        meta: {
+          title: 'MLoyalty - Заказы'
         }
       },
       {
@@ -44,6 +50,9 @@ const routes = [
         components: {
           main: () =>
             import(/* webpackChunkName: "about" */ '../views/Contact.vue')
+        },
+        meta: {
+          title: 'MLoyalty - Контакты'
         }
       }
     ]
@@ -51,12 +60,18 @@ const routes = [
   {
     path: '/example',
     name: 'Example',
-    component: Template
+    component: Template,
+    meta: {
+      title: 'MLoyalty - Пример страницы'
+    }
   },
   {
     path: '/preview',
     name: 'Preview',
-    component: () => import('../views/Preview.vue')
+    component: () => import('../views/Preview.vue'),
+    meta: {
+      title: 'MLoyalty - Просмотр сертификата'
+    }
   }
 ]
 
@@ -64,6 +79,17 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  // This goes through the matched routes from last to first, finding the closest route with a title.
+  // eg. if we have /some/deep/nested/route and /some, /deep, and /nested have titles, nested's will be chosen.
+  const nearestWithTitle = to.matched
+    .slice()
+    .reverse()
+    .find(r => r.meta && r.meta.title)
+  if (nearestWithTitle) document.title = nearestWithTitle.meta.title
+  next()
 })
 
 export default router

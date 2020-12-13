@@ -26,13 +26,13 @@
       </div>
       <div class="col-12">
         <div class="d-flex ">
-          <a href="#" class="social-btn">
+          <a href="#" class="mloyalty-social-btn">
             <img src="~@/assets/img/default/social-icon-vk.png" alt="" />
           </a>
-          <a href="#" class="social-btn">
+          <a href="#" class="mloyalty-social-btn">
             <img src="~@/assets/img/default/social-icon-facebook.png" alt="" />
           </a>
-          <a href="#" class="social-btn">
+          <a href="#" class="mloyalty-social-btn">
             <img src="~@/assets/img/default/social-icon-ok.png" alt="" />
           </a>
         </div>

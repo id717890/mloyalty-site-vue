@@ -163,8 +163,8 @@ export default {
       basketTypes.UPDATE_CERTIFICATE
     ]),
     openPreview() {
-      this.$router.push('/preview')
-      // this.changePanelPage(PREVIEW_PAGE)
+      // this.$router.push('/preview')
+      this.changePanelPage(PREVIEW_PAGE)
     },
     // ...mapMutations('certificate', [certificateTypes.STORE_CURRENT_CERIFICATE]),
     save() {

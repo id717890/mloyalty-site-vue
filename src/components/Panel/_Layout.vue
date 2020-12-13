@@ -22,12 +22,14 @@
       </transition>
     </div>
     <panel-footer v-if="!isPreview" />
+    <certificate-footer v-if="isPreview" />
   </div>
 </template>
 
 <script>
 import panelHeader from './Header'
 import panelFooter from './Footer'
+import certificateFooter from '../CertificateFooter'
 import panelTypes from '../../store/panel/types'
 import {
   START_PAGE,
@@ -44,6 +46,7 @@ import sending from './Pages/Sending'
 import confirming from './Pages/Confirming'
 import preview from './Pages/Preview'
 import success from './Pages/Success'
+import balance from './Pages/Balance'
 import MlLoading from '@/components/UI/MlLoading'
 import certificateTypes from '@/store/certificate/types'
 import basketTypes from '@/store/basket/types'
@@ -58,7 +61,9 @@ export default {
     confirming,
     preview,
     success,
-    MlLoading
+    MlLoading,
+    certificateFooter,
+    balance
   },
   computed: {
     ...mapState({

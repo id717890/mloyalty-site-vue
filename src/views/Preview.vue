@@ -120,7 +120,7 @@
             </div>
           </div>
         </div>
-        <certificate-footer />
+        <certificate-footer show-title />
       </div>
     </div>
   </div>
@@ -134,7 +134,7 @@ import certificateFooter from '@/components/CertificateFooter'
 export default {
   components: { SwipeButton, faq, certificateFooter },
   data: () => ({
-    show: true
+    show: false
   }),
   methods: {
     onActionConfirmed() {
@@ -153,9 +153,7 @@ export default {
     }
   },
   mounted() {
-    this.bounce()
+    // this.bounce()
   }
 }
 </script>
-
-<style></style>
