@@ -13,7 +13,7 @@
         </a>
       </div>
       <div class="d-flex  align-center">
-        <a href="#" class="how-its-work mr-2">
+        <a href="#" @click.stop="togglePanelBurger" class="how-its-work mr-2">
           Как это работает
         </a>
         <img

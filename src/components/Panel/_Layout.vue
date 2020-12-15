@@ -1,6 +1,6 @@
 <template>
   <div class="mloyalty-panel-layout">
-    <panel-header :preview="isPreview" />
+    <panel-header :preview="isPreview" v-if="!isShowFooterHeader" />
     <v-btn
       fab
       small
@@ -11,7 +11,10 @@
     >
       <v-icon>mdi-close</v-icon>
     </v-btn>
-    <div class="flex-grow-1 mloyalty-panel-body">
+    <div
+      class="flex-grow-1 mloyalty-panel-body"
+      :class="{ 'mloyalty-no-padding-top-bottom': isBalance }"
+    >
       <transition name="panel-fade" mode="out-in">
         <div v-if="loading" class="h100 d-flex justify-center">
           <div class="pb flex-grow-1 d-flex justify-center align-center">
@@ -21,7 +24,7 @@
         <component v-else :is="component"></component>
       </transition>
     </div>
-    <panel-footer v-if="!isPreview" />
+    <panel-footer v-if="!isShowFooterHeader" />
     <certificate-footer v-if="isPreview" />
   </div>
 </template>
@@ -37,7 +40,8 @@ import {
   SENDING_PAGE,
   CONFIRMING_PAGE,
   PREVIEW_PAGE,
-  SUCCESS_PAGE
+  SUCCESS_PAGE,
+  BALANCE_PAGE
 } from '../../helpers/const/widgetPage'
 import { mapActions, mapMutations, mapState } from 'vuex'
 import firstCertificate from './Pages/NewCertificate'
@@ -72,6 +76,12 @@ export default {
     }),
     isPreview() {
       return this.component === PREVIEW_PAGE
+    },
+    isBalance() {
+      return this.component === BALANCE_PAGE
+    },
+    isShowFooterHeader() {
+      return this.component === PREVIEW_PAGE || this.component === BALANCE_PAGE
     }
   },
   watch: {

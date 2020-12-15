@@ -73,7 +73,11 @@
 
 .mloyalty-preview-cert-body {
   border-top: 1px solid #e6e6e6;
-  border-bottom: 1px solid #e6e6e6;
   margin-left: -15px;
   margin-right: -15px;
+}
+
+.mloyalty-no-padding-top-bottom {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
