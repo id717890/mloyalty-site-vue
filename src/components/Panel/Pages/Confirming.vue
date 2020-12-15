@@ -3,14 +3,14 @@
     <div class="pb flex-grow-1">
       <div class="row">
         <div class="col-12 pb-0">
-          <div class="section">Оформление</div>
+          <div class="ml-title1-24-32-600 mb-3">Оформление</div>
         </div>
         <div class="col-12">
-          <div class="total-counts">
+          <div class="ml-text-16-20 d-flex justify-content-between mb-3">
             <span>Всего сертификатов</span>
             <span>{{ allPositions.count }}</span>
           </div>
-          <div class="total-sum">
+          <div class="ml-text-16-20 d-flex justify-content-between">
             <span>Общая стоимость</span>
             <span>{{ allPositions.price }}₽</span>
           </div>
@@ -19,33 +19,44 @@
           <div class="text3">Контакты для отправки</div>
         </div>
         <div class="col-12 contacts">
-          <div class="phone">
-            <span>
+          <div class="phone d-flex align-items-center">
+            <span class="d-flex align-items-center">
               <template v-if="isTelegram">
-                <v-icon class="mr-2">mdi-telegram</v-icon>
-                <span>Telegram: </span>
+                <v-icon class="ml-text-grey">mdi-telegram</v-icon>
+                <span class="ml-text-16-24 ml-text-grey mx-2">Telegram: </span>
               </template>
               <template v-if="isWhatsApp">
-                <v-icon class="mr-2">mdi-whatsapp</v-icon>
-                <span>WhatsApp: </span>
+                <v-icon class="ml-text-grey">mdi-whatsapp</v-icon>
+                <span class="ml-text-grey ml-text-16-24  mx-2">WhatsApp: </span>
               </template>
               <template v-if="isViber">
-                <img src="~@/assets/img/default/send-method-viber.png" alt="" />
-                <span>Viber: </span>
+                <img
+                  src="~@/assets/img/default/send-method-viber.png"
+                  width="20"
+                  style="margin-left: 2px"
+                  alt=""
+                />
+                <span class="ml-text-grey ml-text-16-24  mx-2">Viber: </span>
               </template>
               <template v-if="isSms">
-                <v-icon class="mr-2">mdi-message-processing-outline</v-icon>
-                <span>СМС: </span>
+                <v-icon class="ml-text-grey"
+                  >mdi-message-processing-outline</v-icon
+                >
+                <span class="ml-text-grey ml-text-16-24  mx-2">СМС: </span>
               </template>
             </span>
-            <span class="text-black">+7 {{ contacts.phone }}</span>
+            <span class="ml-text-16-24 ml-text-black"
+              >+7 {{ contacts.phone }}</span
+            >
           </div>
-          <div class="email">
+          <div class="email d-flex align-items-center">
             <span>
-              <v-icon class="mr-2">mdi-email</v-icon>
-              <span>E-mail: </span>
+              <v-icon class="ml-text-grey">mdi-email</v-icon>
+              <span class="ml-text-grey ml-text-16-24  mx-2">E-mail: </span>
             </span>
-            <span class="text-black">{{ contacts.email }}</span>
+            <span class="ml-text-16-24 ml-text-black">{{
+              contacts.email
+            }}</span>
           </div>
         </div>
         <div class="col-12 pb-0">
@@ -57,11 +68,11 @@
             type="text"
             height="60"
             label="Номер карты лояльности"
-            class="ml-input"
+            class="ml-input ml-hide-details"
             outlined
             v-model="loyaltyCard"
           ></v-text-field>
-          <p class="text2">
+          <p class="ml-text-13-16">
             Чтобы получить бонусы за покупку сертификата укажите номер карты
             лояльности BeautyBonus
           </p>
@@ -83,13 +94,15 @@
 <script>
 import { SUCCESS_PAGE } from '@/helpers/const/widgetPage'
 import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters, mapMutations, mapState } from 'vuex'
 import {
   SENDING_METHOD_TELEGRAM,
   SENDING_METHOD_WHATSAPP,
   SENDING_METHOD_VIBER,
   SENDING_METHOD_SMS
 } from '@/helpers/const/sendingMethod'
+import basketTypes from '@/store/basket/types'
+import verificationTypes from '@/store/verificationCode/types'
 
 export default {
   components: {},
@@ -116,8 +129,16 @@ export default {
     }
   },
   methods: {
+    ...mapMutations('basket', [basketTypes.SET_BASKET]),
+    ...mapMutations('verificationCode', [verificationTypes.SET_CONTACTS]),
     next() {
       this.changePanelPage(SUCCESS_PAGE)
+      this[basketTypes.SET_BASKET](null)
+      this[verificationTypes.SET_CONTACTS]({
+        email: null,
+        phone: null,
+        sendingMethod: null
+      })
     }
   }
 }

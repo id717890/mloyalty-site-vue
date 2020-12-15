@@ -9,7 +9,7 @@
         <img src="@/assets/img/arrow-left.png" alt="" class="mr-2" />
         Назад
       </a>
-      <div class="title flex-grow-1">{{ title }}</div>
+      <div class="ml-text-16-24-600 flex-grow-1">{{ title }}</div>
     </template>
   </div>
 </template>

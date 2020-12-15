@@ -80,6 +80,24 @@
   color: #000000;
 }
 
+.ml-text-16-24 {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+  color: #000000;
+}
+
+.ml-text-13-16 {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.03em;
+  color: #808080;
+}
+
 .ml-text-13-20 {
   font-style: normal;
   font-weight: normal;
@@ -89,7 +107,24 @@
   color: #808080;
 }
 
+.ml-text-16-20 {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.03em;
+  color: #808080;
+}
+
 /*TEXT COLORS*/
 .ml-text-red {
   color: #e94574 !important;
+}
+
+.ml-text-grey {
+  color: #808080 !important;
+}
+
+.ml-text-black {
+  color: #000000 !important;
 }

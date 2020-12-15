@@ -1,10 +1,6 @@
 <template>
   <div class="h100 d-flex flex-column align-center justify-content-center">
-    <img
-      src="~@/assets/img/empty-cart.png"
-      alt=""
-      class="empty-cart-img mb-4"
-    />
+    <img src="~@/assets/img/cart1.png" alt="" class="mb-4" width="300" />
     <div class="text-success" style="font-weight: 600;">
       Поздравляем с удачной покупкой!
     </div>
