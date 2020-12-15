@@ -6,7 +6,7 @@
         src="~@/assets/img/default/shopping-cart.png"
         alt=""
       />
-      <span class="shop-cart-block" @click.prevent="openShopCart">
+      <span class="ml-text-13-20 shop-cart-block" @click.prevent="openShopCart">
         Корзина
         <span class="shop-cart-count">{{ allPositions.count }}</span>
       </span>

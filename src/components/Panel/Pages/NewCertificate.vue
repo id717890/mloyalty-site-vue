@@ -47,13 +47,13 @@
           <div class="d-flex flex-row align-center justify-content-between">
             <a href="#" @click.prevent="openPreview">
               <img src="~@/assets/img/eye.png" alt="" />
-              <span class="preview-eye">Предпросмотр</span>
+              <span class="ml-text-14-20-500 ml-2">Предпросмотр</span>
             </a>
             <a
               href="#"
               v-if="isUpdate"
               @click.prevent="removeCertificate"
-              class="remove-from-basket"
+              class="ml-text-14-20-500 ml-text-red"
               >Удалить из корзины</a
             >
           </div>

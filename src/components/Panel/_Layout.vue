@@ -1,6 +1,6 @@
 <template>
   <div class="mloyalty-panel-layout">
-    <panel-header :preview="isPreview" v-if="!isShowFooterHeader" />
+    <panel-header :preview="isPreview" v-if="isShowFooterHeader" />
     <v-btn
       fab
       small
@@ -24,7 +24,7 @@
         <component v-else :is="component"></component>
       </transition>
     </div>
-    <panel-footer v-if="!isShowFooterHeader" />
+    <panel-footer v-if="isShowFooterHeader" />
     <certificate-footer v-if="isPreview" />
   </div>
 </template>
@@ -81,7 +81,9 @@ export default {
       return this.component === BALANCE_PAGE
     },
     isShowFooterHeader() {
-      return this.component === PREVIEW_PAGE || this.component === BALANCE_PAGE
+      if (this.component === BALANCE_PAGE) return false
+      return true
+      // return this.component === PREVIEW_PAGE || this.component === BALANCE_PAGE
     }
   },
   watch: {

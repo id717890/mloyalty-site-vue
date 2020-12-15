@@ -25,11 +25,15 @@
       </div>
     </div>
     <div class="mloyalty-panel-header px-8" v-else>
-      <a href="#" class="back-link" @click.prevent="goBack">
+      <a
+        href="#"
+        class="d-flex align-items-center ml-title-14-20"
+        @click.prevent="goBack"
+      >
         <img src="@/assets/img/arrow-left.png" alt="" class="mr-2" />
         Назад
       </a>
-      <div class="title flex-grow-1">Предпросмотр</div>
+      <div class="ml-text-16-24-600 flex-grow-1">Предпросмотр</div>
     </div>
   </section>
 </template>

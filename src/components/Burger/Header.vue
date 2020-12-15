@@ -1,7 +1,11 @@
 <template>
   <div class="mloyalty-panel-burger-header" :class="{ 'wo-border': !show }">
     <template v-if="show">
-      <a href="#" class="back-link" @click.prevent="goHome">
+      <a
+        href="#"
+        class="ml-title-14-20 d-flex align-items-center"
+        @click.prevent="goHome"
+      >
         <img src="@/assets/img/arrow-left.png" alt="" class="mr-2" />
         Назад
       </a>
