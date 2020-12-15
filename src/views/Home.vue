@@ -1,5 +1,110 @@
 <template>
-  <div class="row h100">
+  <div class="row">
+    <div class="col-lg-6 col-md-8 col-sm-12 offset-lg-3 offset-md-2 px-10">
+      <div class="row">
+        <div class="col-12">
+          <img src="@/assets/img/cart1.png" width="270" alt="" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 pt-5">
+          <h1 class="ml-title-32-32-600">
+            Виртуальные сертификаты и виджеты
+          </h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="block-with-num">
+            <div class="num">1</div>
+            <div class="ml-title-18-24">
+              Введите любые цифры. Они нужны для теста, и будут номером
+              сертификата, кодом подтверждения и пин-кодом
+            </div>
+            <div class="pt-3 d-flex">
+              <MlInputCode
+                ref="code1"
+                v-model="number1OfCode"
+                class="mr-2"
+                @input="proccessNumber1"
+              />
+              <MlInputCode
+                ref="code2"
+                v-model="number2OfCode"
+                @input="proccessNumber2"
+                class="mr-2"
+              />
+              <MlInputCode
+                ref="code3"
+                v-model="number3OfCode"
+                @input="proccessNumber3"
+                class="mr-2"
+              />
+              <MlInputCode
+                ref="code4"
+                v-model="number4OfCode"
+                @input="proccessNumber4"
+                class="mr-2"
+              />
+              <div
+                v-if="successCode"
+                class="d-flex justify-content-center align-items-center pl-4"
+              >
+                <img src="@/assets/img/done.png" alt="" />
+                <h5 class="ml-title-14-20">
+                  Код установлен.
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="block-with-num">
+            <div class="num">2</div>
+            <div class="ml-title-18-24">
+              Выберите, что вы хотите сделать?
+            </div>
+            <div class="pt-4">
+              <div class="row">
+                <div class="col-lg-4 col-sm-12 px-1">
+                  <a
+                    href="#"
+                    class="ml-silver-btn"
+                    @click.prevent="newCertificate"
+                    style="font-size: 14px;"
+                  >
+                    Купить сертификат
+                  </a>
+                </div>
+                <div class="col-lg-4 col-sm-12 px-1">
+                  <router-link
+                    class="ml-silver-btn"
+                    to="/preview"
+                    style="font-size: 14px;"
+                  >
+                    Получить сертификат
+                  </router-link>
+                </div>
+                <div class="col-lg-4 col-sm-12 px-1">
+                  <a
+                    href="#"
+                    class="ml-silver-btn"
+                    style="font-size: 14px;"
+                    @click.prevent="balance"
+                  >
+                    Узнать баланс сертификата
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="row h100">
     <div class="col-12 d-flex flex-column justify-content-center align-center">
       <div class="d-flex flex-row">
         <div class="d-flex flex-column">
@@ -55,7 +160,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
