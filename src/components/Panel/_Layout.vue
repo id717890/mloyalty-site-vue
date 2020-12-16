@@ -7,6 +7,7 @@
       elevation="0"
       color="#F0F0F0"
       class="ml-close-panel-btn-mobile hidden-md-and-up"
+      :class="{ 'ml-close-panel-btn-mobile-balance': isBalance }"
       @click.stop="togglePanel"
       v-if="!isPreview"
     >
