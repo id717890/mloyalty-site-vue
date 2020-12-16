@@ -8,6 +8,7 @@
       color="#F0F0F0"
       class="ml-close-panel-btn-mobile hidden-md-and-up"
       @click.stop="togglePanel"
+      v-if="!isPreview"
     >
       <v-icon color="#4D4D4D">mdi-close</v-icon>
     </v-btn>
