@@ -28,6 +28,7 @@
             class="ml-input ml-input-prepend-inner mt-2"
             :class="{ novalidate: validatePhone === false }"
             outlined
+            autocomplete="off"
             v-model="phone"
           ></v-text-field>
           <button
@@ -204,9 +205,9 @@ export default {
     }
   },
   mounted() {
-    // this.isShowBalance = false
-    // this.isSent = false
-    // this.isLoading = false
+    this.isShowBalance = false
+    this.isSent = false
+    this.isLoading = false
   }
 }
 </script>

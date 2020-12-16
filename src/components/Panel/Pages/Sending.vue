@@ -17,6 +17,7 @@
                 height="60"
                 label="Ваш e-mail*"
                 class="ml-input"
+                autocomplete="off"
                 :class="{ novalidate: validateEmail === false }"
                 outlined
                 v-model="form.email"
@@ -74,6 +75,7 @@
           <div class="row" v-if="isShowPhone">
             <div class="col-12 d-flex flex-column pb-0">
               <v-text-field
+                autocomplete="off"
                 color="dark"
                 prepend-inner-icon="+7"
                 append-icon="mdi-check"

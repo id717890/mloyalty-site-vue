@@ -24,7 +24,7 @@ const routes = [
             import(/* webpackChunkName: "about" */ '../views/Home.vue')
         },
         meta: {
-          title: 'MLoyalty - Сертификаты программы лояльности'
+          title: 'Функциональные виджеты'
         }
       },
       {
@@ -55,6 +55,16 @@ const routes = [
           title: 'MLoyalty - Контакты'
         }
       }
+      // {
+      //   path: 'preview',
+      //   name: 'Preview',
+      //   components: {
+      //     main: () => import('../views/Preview.vue')
+      //   },
+      //   meta: {
+      //     title: 'MLoyalty - Просмотр сертификата'
+      //   }
+      // }
     ]
   },
   {
@@ -70,7 +80,7 @@ const routes = [
     name: 'Preview',
     component: () => import('../views/Preview.vue'),
     meta: {
-      title: 'MLoyalty - Просмотр сертификата'
+      title: 'Получение подарочного сертификата'
     }
   }
 ]

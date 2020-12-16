@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-lg-6 col-md-8 col-sm-12 offset-lg-3 offset-md-2 px-10">
       <div class="row">
-        <div class="col-12">
-          <img src="@/assets/img/cart1.png" width="270" alt="" />
+        <div class="col-12 pa-0">
+          <img src="@/assets/img/cart1.png" width="350" alt="" />
         </div>
       </div>
       <div class="row">
@@ -104,63 +104,6 @@
       </div>
     </div>
   </div>
-  <!-- <div class="row h100">
-    <div class="col-12 d-flex flex-column justify-content-center align-center">
-      <div class="d-flex flex-row">
-        <div class="d-flex flex-column">
-          <h2>Что мне нужно?</h2>
-          <img
-            src="~@/assets/img/empty-cart.png"
-            alt=""
-            class="empty-cart-img mb-4"
-          />
-        </div>
-        <div class="d-flex flex-column pl-10">
-          <a href="#" class="ml-black-btn mb-6" @click.prevent="newCertificate">
-            Купить сертификат
-          </a>
-          <router-link class="ml-black-btn mb-6" to="/preview">
-            Получить сертификат
-          </router-link>
-          <a href="#" class="ml-black-btn" @click.prevent="balance">
-            Узнать баланс сертификата
-          </a>
-        </div>
-      </div>
-      <div>
-        <div class="pt-16">
-          <h5 class="text1">Номер сертификата. Код подтверждения. Пин код.</h5>
-          <MlInputCode
-            ref="code1"
-            v-model="number1OfCode"
-            class="mr-2"
-            @input="proccessNumber1"
-          />
-          <MlInputCode
-            ref="code2"
-            v-model="number2OfCode"
-            @input="proccessNumber2"
-            class="mr-2"
-          />
-          <MlInputCode
-            ref="code3"
-            v-model="number3OfCode"
-            @input="proccessNumber3"
-            class="mr-2"
-          />
-          <MlInputCode
-            ref="code4"
-            v-model="number4OfCode"
-            @input="proccessNumber4"
-            class="mr-2"
-          />
-          <div style="height: 10px">
-            <h5 style="color: green" v-show="successCode">Код установлен.</h5>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
 </template>
 
 <script>

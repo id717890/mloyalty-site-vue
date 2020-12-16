@@ -29,6 +29,7 @@
         <div class="col-12 pb-0">
           <v-text-field
             append-icon="mdi-check"
+            autocomplete="off"
             type="text"
             required
             :rules="nameRules"
@@ -46,6 +47,7 @@
             color="dark"
             append-icon="mdi-check"
             type="email"
+            autocomplete="off"
             required
             :rules="emailRules"
             height="60"
@@ -62,6 +64,7 @@
             prepend-inner-icon="+7"
             append-icon="mdi-check"
             v-mask="'(###) ###-##-##'"
+            autocomplete="off"
             required
             height="60"
             label="Телефон *"

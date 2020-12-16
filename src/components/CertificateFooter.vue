@@ -35,6 +35,11 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+  methods: {
+    goToHome() {
+      this.$router.push('/')
+    }
   }
 }
 </script>

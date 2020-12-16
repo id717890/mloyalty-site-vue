@@ -11,7 +11,7 @@
         @actionConfirmed="onActionConfirmed"
       />
     </div>
-    <div class="ml-preview-container" v-show="show">
+    <div class="ml-preview-container px-4" v-show="show">
       <img
         class="ml-confeti"
         ref="confeti"
@@ -29,15 +29,15 @@
                 Сертификат на 3000 ₽ <br />
                 «РивГош»
               </div>
-              <div class="expiration">
+              <div class="expiration mt-2 mb-3">
                 Действует до 29.04.2020
               </div>
-              <div class="congratulation mt-6" style="padding: 0 100px">
-                С днем рождения! Желаю крепкого здоровья, удачи, благополучия,
-                добра, радости, любви, счастья, хорошего настроения, улыбок,
-                ярких впечатлений. Пусть тепло и уют всегда наполняют твой дом,
-                пусть солнечный свет согревает в любую погоду, при одной мысли о
-                них.
+              <div class="congratulation mt-6 px-10">
+                <div style="text-align:center">С днем рождения!</div>
+                Желаю крепкого здоровья, удачи, благополучия, добра, радости,
+                любви, счастья, хорошего настроения, улыбок, ярких впечатлений.
+                Пусть тепло и уют всегда наполняют твой дом, пусть солнечный
+                свет согревает в любую погоду, при одной мысли о них.
               </div>
             </div>
             <div class="col-12 d-flex flex-column align-items-center">
@@ -149,7 +149,10 @@ export default {
       setTimeout(() => {
         this.$refs.preview.classList.remove('ml-perview-card-shrink')
         this.$refs.confeti.classList.add('ml-confeti-bounce')
-      }, 0)
+        setTimeout(() => {
+          this.$refs.confeti.remove()
+        }, 400)
+      }, 100)
     }
   },
   mounted() {

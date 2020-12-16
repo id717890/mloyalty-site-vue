@@ -5,11 +5,11 @@
       fab
       small
       elevation="0"
-      color="#E6E6E6"
-      class="ml-close-panel-btn-mobile  hidden-md-and-up"
+      color="#F0F0F0"
+      class="ml-close-panel-btn-mobile hidden-md-and-up"
       @click.stop="togglePanel"
     >
-      <v-icon>mdi-close</v-icon>
+      <v-icon color="#4D4D4D">mdi-close</v-icon>
     </v-btn>
     <div
       class="flex-grow-1 mloyalty-panel-body"

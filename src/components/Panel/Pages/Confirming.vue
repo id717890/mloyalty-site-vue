@@ -70,6 +70,7 @@
             label="Номер карты лояльности"
             class="ml-input ml-hide-details"
             outlined
+            autocomplete="off"
             v-model="loyaltyCard"
           ></v-text-field>
           <p class="ml-text-13-16">

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" app color="#f5f5f5">
+    <!-- <v-navigation-drawer v-model="drawer" app color="#f5f5f5">
       <v-list shaped>
         <v-list-item to="/">
           <v-list-item-icon>
@@ -27,20 +27,20 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-    </v-navigation-drawer>
-    <v-app-bar app>
+    </v-navigation-drawer> -->
+    <!-- <v-app-bar app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-toolbar flat color="#f5f5f5">
         <v-toolbar-title>MLOYALTY</v-toolbar-title>
 
         <v-toolbar-items class="ml-6">
-          <!-- <v-btn text to="/" class="sm-btn-menu">
+          <v-btn text to="/" class="sm-btn-menu">
             <v-icon>mdi-home</v-icon>
-          </v-btn> -->
+          </v-btn>
         </v-toolbar-items>
       </v-toolbar>
-    </v-app-bar>
+    </v-app-bar> -->
     <v-main>
       <!-- <v-btn color="pink" dark @click.stop="togglePanel">
             Toggle
@@ -59,12 +59,12 @@
         <v-btn
           fab
           small
-          color="#E6E6E6"
+          color="#F0F0F0"
           class="ml-close-panel-btn hidden-sm-and-down"
           @click.stop="togglePanel"
           v-if="!showPanelBurger"
         >
-          <v-icon>mdi-close</v-icon>
+          <v-icon color="#4D4D4D">mdi-close</v-icon>
         </v-btn>
         <panel-layout />
         <modal-confirm-remove-certificate v-if="modalConfirmRemove" />
