@@ -13,7 +13,9 @@
     </v-btn>
     <div
       class="flex-grow-1 mloyalty-panel-body"
-      :class="{ 'mloyalty-no-padding-top-bottom': isBalance }"
+      :class="{
+        'mloyalty-no-padding-top-bottom': isBalance || isPreview
+      }"
     >
       <transition name="panel-fade" mode="out-in">
         <div v-if="loading" class="h100 d-flex justify-center">
@@ -24,8 +26,8 @@
         <component v-else :is="component"></component>
       </transition>
     </div>
-    <panel-footer v-if="isShowFooterHeader" />
-    <certificate-footer v-if="isPreview" />
+    <panel-footer v-if="isShowFooterHeader && !isPreview" />
+    <!-- <certificate-footer v-if="isPreview" /> -->
   </div>
 </template>
 
@@ -48,7 +50,7 @@ import firstCertificate from './Pages/NewCertificate'
 import basket from './Pages/Basket'
 import sending from './Pages/Sending'
 import confirming from './Pages/Confirming'
-import preview from './Pages/Preview'
+import preview from './Pages/PreviewAnimation'
 import success from './Pages/Success'
 import balance from './Pages/Balance'
 import MlLoading from '@/components/UI/MlLoading'
