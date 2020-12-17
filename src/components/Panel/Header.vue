@@ -27,7 +27,7 @@
     <div class="mloyalty-panel-header px-8" v-else>
       <a
         href="#"
-        class="d-flex align-items-center ml-title-14-20"
+        class="d-flex align-items-center ml-title-14-20 ml-text-grey"
         @click.prevent="goBack"
       >
         <img src="@/assets/img/arrow-left.png" alt="" class="mr-2" />

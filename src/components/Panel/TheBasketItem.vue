@@ -12,7 +12,7 @@
           </v-img>
         </div>
         <div class="content">
-          <div class="first">
+          <div class="first ml-title-14-20 ml-text-grey1">
             {{ shortText(certificate.congratulation) }}
           </div>
           <div class="second">

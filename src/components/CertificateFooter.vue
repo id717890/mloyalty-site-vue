@@ -13,7 +13,7 @@
         </a>
       </div>
       <div class="col-6 d-flex justify-content-end align-items-center">
-        <a href="#" class="share-ref mr-3">Поделиться</a>
+        <a href="#" class="share-ref mr-3">Подписаться</a>
         <a href="#" class="mloyalty-social-btn">
           <v-icon>mdi-telegram</v-icon>
         </a>
@@ -21,7 +21,11 @@
           <v-icon>mdi-whatsapp</v-icon>
         </a>
         <a href="#" class="mloyalty-social-btn mr-5">
-          <img src="~@/assets/img/default/send-method-viber.png" alt="" />
+          <img
+            src="~@/assets/img/default/send-method-viber-unselect3.svg"
+            style="transform: scale(1.35)"
+            alt=""
+          />
         </a>
       </div>
     </div>

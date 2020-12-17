@@ -31,9 +31,9 @@
               </template>
               <template v-if="isViber">
                 <img
-                  src="~@/assets/img/default/send-method-viber.png"
+                  src="~@/assets/img/default/send-method-viber-unselect3.svg"
                   width="20"
-                  style="margin-left: 2px"
+                  style="margin-left: 3px; transform: scale(1.1)"
                   alt=""
                 />
                 <span class="ml-text-grey ml-text-16-24  mx-2">Viber: </span>

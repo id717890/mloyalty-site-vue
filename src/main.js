@@ -5,8 +5,15 @@ import store from './store'
 import 'vuetify/dist/vuetify.min.css'
 import './assets/scss/_app.scss'
 import Vuetify from 'vuetify'
+import VueYandexMetrika from 'vue-yandex-metrika'
 
 Vue.use(Vuetify)
+Vue.use(VueYandexMetrika, {
+  id: '70564408',
+  router: router,
+  env: process.env.NODE_ENV
+})
+
 Vue.config.productionTip = false
 new Vue({
   vuetify: new Vuetify(),

@@ -60,7 +60,20 @@
                 :class="{ active: isSendingMethodViber }"
                 @click.prevent="form.sendingMethod = 'viber'"
               >
-                <img src="~@/assets/img/default/send-method-viber.png" alt="" />
+                <img
+                  src="~@/assets/img/default/send-method-viber-select3.svg"
+                  v-if="isSendingMethodViber"
+                  style="transform: scale(1.3)"
+                  alt=""
+                />
+                <img
+                  v-else
+                  src="~@/assets/img/default/send-method-viber-unselect3.svg"
+                  style="transform: scale(1.3)"
+                  alt=""
+                />
+
+                <!-- <img src="~@/assets/img/default/send-method-viber.png" alt="" /> -->
               </a>
               <a
                 href="#"

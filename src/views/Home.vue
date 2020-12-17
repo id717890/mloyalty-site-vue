@@ -1,9 +1,19 @@
 <template>
   <div class="row">
+    <div class="quiz-wrapper">
+      <div class="quiz-block">
+        <div class="ml-text-16-24-500">
+          Ответьте на 10 вопросов и получите КП
+        </div>
+        <a href="#" class="ml-purple-btn mt-4" @click.prevent="openQuiz"
+          >Узнать условия</a
+        >
+      </div>
+    </div>
     <div class="col-lg-6 col-md-8 col-sm-12 offset-lg-3 offset-md-2 px-10">
       <div class="row">
         <div class="col-12 pa-0">
-          <img src="@/assets/img/cart1.png" width="350" alt="" />
+          <img src="@/assets/img/cart1.png" alt="" />
         </div>
       </div>
       <div class="row">
@@ -132,7 +142,9 @@ export default {
   methods: {
     ...mapMutations('panel', [panelTypes.TOGGLE_PANEL]),
     ...mapMutations('verificationCode', [verificationTypes.SET_TEST_CODE]),
-
+    openQuiz() {
+      Marquiz.showModal('5fda3289c9b57700443842f2')
+    },
     togglePanel() {
       this[panelTypes.TOGGLE_PANEL](!this.showPanel)
     },
@@ -172,10 +184,10 @@ export default {
         if (code1 && code2 && code3 && code4) {
           const code = Number(`${code1}${code2}${code3}${code4}`)
           this[verificationTypes.SET_TEST_CODE](code)
-          this.number1OfCode = null
-          this.number2OfCode = null
-          this.number3OfCode = null
-          this.number4OfCode = null
+          // this.number1OfCode = null
+          // this.number2OfCode = null
+          // this.number3OfCode = null
+          // this.number4OfCode = null
           this.successCode = true
           setTimeout(() => {
             this.successCode = false

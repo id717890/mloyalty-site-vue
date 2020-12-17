@@ -3,7 +3,7 @@
     <template v-if="show">
       <a
         href="#"
-        class="ml-title-14-20 d-flex align-items-center"
+        class="ml-title-14-20 d-flex align-items-center ml-text-grey"
         @click.prevent="goHome"
       >
         <img src="@/assets/img/arrow-left.png" alt="" class="mr-2" />

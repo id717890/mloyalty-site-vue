@@ -71,6 +71,15 @@
   color: #808080;
 }
 
+.ml-text-16-24-500 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+  color: #4d4d4d;
+}
+
 .ml-text-16-24-600 {
   font-style: normal;
   font-weight: 600;
@@ -127,4 +136,8 @@
 
 .ml-text-black {
   color: #000000 !important;
+}
+
+.ml-text-grey1 {
+  color: #4d4d4d !important;
 }
