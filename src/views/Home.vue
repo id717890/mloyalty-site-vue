@@ -13,7 +13,7 @@
     <div class="col-lg-6 col-md-8 col-sm-12 offset-lg-3 offset-md-2 px-10">
       <div class="row">
         <div class="col-12 pa-0">
-          <img src="@/assets/img/cart1.png" alt="" />
+          <img src="@/assets/img/cart1.png" width="450" alt="" />
         </div>
       </div>
       <div class="row">
@@ -109,6 +109,18 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="row quiz-wrapper-mobile">
+        <div class="col-12 d-flex justify-content-end">
+          <div class="quiz-block">
+            <div class="ml-text-16-24-500">
+              Ответьте на 10 вопросов и получите КП
+            </div>
+            <a href="#" class="ml-purple-btn mt-4" @click.prevent="openQuiz"
+              >Узнать условия</a
+            >
           </div>
         </div>
       </div>

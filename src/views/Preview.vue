@@ -32,8 +32,8 @@
               <div class="expiration mt-2 mb-3">
                 Действует до 29.04.2020
               </div>
-              <div class="congratulation mt-6 px-10">
-                <div style="text-align:center">С днем рождения!</div>
+              <div class="congratulation mt-6" style="padding: 0 80px 0 90px ">
+                <div>С днем рождения!</div>
                 Желаю крепкого здоровья, удачи, благополучия, добра, радости,
                 любви, счастья, хорошего настроения, улыбок, ярких впечатлений.
                 Пусть тепло и уют всегда наполняют твой дом, пусть солнечный
