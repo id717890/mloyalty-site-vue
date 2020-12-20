@@ -7,7 +7,7 @@
         >
           <!-- <div class="col-12 py-0"> -->
           <div class="mloyalty-layout">
-            <panel-header />
+            <panel-header :preview="isPreview" />
             <div
               class="flex-grow-1 mloyalty-panel-body"
               :class="{
@@ -26,13 +26,13 @@
                 <!-- <component v-else :is="component"></component> -->
               </transition>
             </div>
-            <panel-footer />
+            <panel-footer v-if="isShowFooterHeader && !isPreview" />
             <modal-confirm-remove-certificate v-if="modalConfirmRemove" />
           </div>
         </div>
       </div>
       <v-navigation-drawer
-        class="elevation-0"
+        class="elevation-0 mloyalty-burger-panel"
         hide-overlay
         :width="config.panelWidth"
         :value="showPanelBurger"
@@ -77,14 +77,14 @@ export default {
       return false
     },
     isPreview() {
-      return false
+      return this.$route.path === '/preview-mobile'
     },
     ...mapState({
       component: state => state.panel.page,
       loading: state => state.app.loading
     }),
     isShowFooterHeader() {
-      if (this.component === BALANCE_PAGE) return false
+      // if (this.component === BALANCE_PAGE) return false
       return true
       // return this.component === PREVIEW_PAGE || this.component === BALANCE_PAGE
     }

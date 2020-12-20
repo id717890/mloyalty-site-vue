@@ -3,5 +3,6 @@ export default {
   code: null,
   config: {
     panelWidth: 448
-  }
+  },
+  isMobile: false
 }

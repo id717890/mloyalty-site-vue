@@ -1,5 +1,5 @@
 <template>
-  <div class="h100 ml-preview-page mloyalty-preview">
+  <div class="h100 mloyalty-preview-mobile">
     <div
       v-if="!show"
       class="h100 d-flex justify-content-center align-items-center"
@@ -13,52 +13,59 @@
     </div>
     <div class="" style="width: 100%" v-show="show">
       <img
-        class="ml-confeti"
+        class="mloyalty-confeti"
         ref="confeti"
         src="@/assets/img/confetti.png"
         alt=""
       />
-      <div class="ml-perview-card ml-perview-card-shrink" ref="preview">
-        <div class="ml-pervie-card-wrapper pt-14">
+      <div
+        class="mloyalty-perview-card mloyalty-perview-card-shrink"
+        ref="preview"
+      >
+        <div style="padding: 0 40px">
           <div class="row">
             <div
               class="col-12 text-center d-flex flex-column align-items-center"
             >
               <img src="@/assets/img/example/riv-gosh.png" alt="" />
-              <div class="m-title mb-2">Сертификат</div>
-              <div class="m-title mb-2">на 3000 ₽</div>
-              <div class="m-title mb-2 m-title-hidden">
+              <div class="ml-title1-24-32-600 mb-2">Сертификат</div>
+              <div class="ml-title1-24-32-600 mb-2">на 3000 ₽</div>
+              <div class="ml-title1-24-32-600 mb-2 m-title-hidden">
                 «РивГош»
               </div>
-              <div class="expiration mt-2 mb-3">
+              <div class="ml-title3-14-24 mt-2 mb-1">
                 Действует до 29.04.2020
               </div>
-              <div class="congratulation mt-6 px-15">
-                <div>С днем рождения!</div>
-                Желаю крепкого здоровья, удачи, благополучия, добра, радости,
-                любви, счастья, хорошего настроения, улыбок, ярких впечатлений.
-                Пусть тепло и уют всегда наполняют твой дом, пусть солнечный
-                свет согревает в любую погоду, при одной мысли о них.
+              <div class="ml-text-16-24 ml-text-grey1 mt-6 text-left">
+                С днем рождения! Желаю крепкого здоровья, удачи, благополучия,
+                добра, радости, любви, счастья, хорошего настроения, улыбок,
+                ярких впечатлений. Пусть тепло и уют всегда наполняют твой дом,
+                пусть солнечный свет согревает в любую погоду, при одной мысли о
+                них.
               </div>
             </div>
             <div class="col-12 d-flex flex-column align-items-center">
               <img
                 src="@/assets/img/example/riv-gosh-card.png"
                 alt=""
-                class="mb-4"
+                class="mb-8 mloyalty-certificate-image"
               />
-              <img src="@/assets/img/example/riv-gosh-bar-code.png" alt="" />
-              <div class="card-number">
+              <img
+                src="@/assets/img/example/riv-gosh-bar-code.png"
+                class="mb-2"
+                alt=""
+              />
+              <div class="ml-text-16-24 ml-text-grey">
                 Номер карты: 126324789743873
               </div>
-              <div class="card-pin-code">
+              <div class="ml-title-4-18-32-500">
                 PIN-код: 678 579
               </div>
             </div>
             <div class="col-12  d-flex flex-column align-items-center">
               <a
                 href="#"
-                class="ml-silver-btn d-flex align-items-center justify-content-center mb-2"
+                class="ml-silver-btn w100 d-flex align-items-center justify-content-center mb-2"
                 style="min-width: 290px"
               >
                 <img
@@ -68,17 +75,25 @@
                 />
                 Сохранить в Wallet
               </a>
-              <a href="#" class="ml-silver-btn mb-2" style="min-width: 290px">
+              <a
+                href="#"
+                class="ml-silver-btn mb-2 w100"
+                style="min-width: 290px"
+              >
                 Сохранить как изображение
               </a>
-              <a href="#" class="ml-silver-btn mb-3" style="min-width: 290px">
+              <a
+                href="#"
+                class="ml-silver-btn mb-3 w100"
+                style="min-width: 290px"
+              >
                 Отпрваить на E-mail
               </a>
             </div>
           </div>
-          <div class="row how-use mt-6 pt-6 px-10">
-            <div class="col-12">
-              <div class="how-use-title mb-3 mt-2">
+          <div class="row ">
+            <div class="col-12 how-use">
+              <div class="ml-text-20-32-600 mb-3 mt-3">
                 Как использовать, и где действует?
               </div>
               <div class="item">
@@ -104,7 +119,7 @@
                 </div>
               </div>
 
-              <div class="ml-info my-6">
+              <div class="ml-text-13-24 my-6">
                 <span>
                   Подробности на сайте
                   <a href="https://rivegauche.ru" target="_blank">
@@ -115,7 +130,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-12 px-14">
+            <div class="col-12">
               <div class="text7 mt-2 mb-2">Часто задаваемые вопросы</div>
               <faq style="margin-left: -32px; margin-right: -32px" />
             </div>
@@ -139,7 +154,7 @@ export default {
   }),
   methods: {
     onActionConfirmed() {
-      this.$refs.preview.classList.add('ml-perview-card-shrink')
+      this.$refs.preview.classList.add('mloyalty-perview-card-shrink')
       setTimeout(() => {
         this.show = true
         this.bounce()
@@ -148,8 +163,8 @@ export default {
     },
     bounce() {
       setTimeout(() => {
-        this.$refs.preview.classList.remove('ml-perview-card-shrink')
-        this.$refs.confeti.classList.add('ml-confeti-bounce')
+        this.$refs.preview.classList.remove('mloyalty-perview-card-shrink')
+        this.$refs.confeti.classList.add('mloyalty-confeti-bounce')
         setTimeout(() => {
           this.$refs.confeti.remove()
         }, 400)

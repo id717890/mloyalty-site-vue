@@ -11,6 +11,7 @@
 @import './default/transition.scss';
 @import './default/panel-basket-page.scss';
 @import './default/panel-modal.scss';
+@import './default/panel-faq.scss';
 
 @import './default/panel-burger-body.scss';
 
@@ -37,6 +38,10 @@ a {
   font-style: normal;
   font-weight: normal;
   box-sizing: border-box;
+}
+
+html {
+  overflow-y: auto;
 }
 
 html,

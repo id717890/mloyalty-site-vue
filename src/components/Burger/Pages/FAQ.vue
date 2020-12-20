@@ -1,17 +1,23 @@
 <template>
   <div class="pb">
     <div
-      class="faq-item"
-      :ref="'faq-item-' + faq.id"
+      class="mloyalty-faq-item"
+      :ref="'mloyalty-faq-item-' + faq.id"
       v-for="faq in faqs"
       :key="faq.id"
     >
-      <div class="question" @click="toggleFaq(faq.id)">
+      <div class="mloyalty-question" @click="toggleFaq(faq.id)">
         {{ faq.question }}
-        <img class="faq-arrow-right" src="~@/assets/img/faq-arrow-right.png" />
-        <img class="faq-arrow-down" src="~@/assets/img/faq-arrow-down.png" />
+        <img
+          class="mloyalty-faq-arrow-right"
+          src="~@/assets/img/faq-arrow-right.png"
+        />
+        <img
+          class="mloyalty-faq-arrow-down"
+          src="~@/assets/img/faq-arrow-down.png"
+        />
       </div>
-      <div class="answer" :ref="'answer-' + faq.id">
+      <div class="mloyalty-answer" :ref="'answer-' + faq.id">
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita quos
         esse voluptate rem quas officiis perspiciatis quisquam totam, vitae
         maxime assumenda nemo sit voluptatem dolorem doloremque ipsam. Eaque,
@@ -75,7 +81,7 @@ export default {
       this.changePanelBurgerPage(SUPPORT)
     },
     toggleFaq(id) {
-      let elFaq = this.$refs['faq-item-' + id][0]
+      let elFaq = this.$refs['mloyalty-faq-item-' + id][0]
       elFaq.classList.toggle('active')
       let el = this.$refs['answer-' + id][0]
       if (el.style.maxHeight) {

@@ -1,5 +1,8 @@
 <template>
-  <div class="mloyalty-panel-footer">
+  <div
+    class="mloyalty-panel-footer"
+    :class="{ 'mloyalty-panel-footer-sticky': !isMobile }"
+  >
     <div>
       <img
         class="shop-cart-icon"
@@ -36,7 +39,8 @@ export default {
   mixins: [MixinChangePanelPage],
   computed: {
     ...mapState({
-      currentPage: state => state.panel.page
+      currentPage: state => state.panel.page,
+      isMobile: state => state.app.isMobile
     }),
     ...mapGetters('basket', ['allPositions'])
   },

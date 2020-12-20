@@ -4,12 +4,15 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 import Lyaout from './components/Layout/Default'
+import appTypes from '@/store/app/types'
 export default {
   components: {
     Lyaout
   },
   methods: {
+    ...mapMutations('app', [appTypes.SET_TYPE_BROWSER]),
     initMarquiz(w, d, s, o) {
       if (!window.__marquiz) window.__marquiz = []
       window.marquiz = function() {
@@ -31,9 +34,10 @@ export default {
     }
   },
   mounted() {
-    // if (window.xprops.testProp) {
-    //   console.log(window.xprops.testProp)
-    // }
+    if (window?.xprops?.isMobile) {
+      console.log('IS MOBILE', window.xprops.isMobile)
+      this[appTypes.SET_TYPE_BROWSER](window.xprops.isMobile)
+    }
     this.initMarquiz(window, document, 'script', {
       host: '//quiz.marquiz.ru',
       id: '5fda3289c9b57700443842f2',

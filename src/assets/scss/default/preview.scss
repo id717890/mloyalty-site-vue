@@ -6,31 +6,6 @@
     align-items: center;
   }
 
-  .ml-confeti {
-    position: absolute;
-    margin-left: 0 auto;
-    width: 100%;
-    transition: all 0.4s ease-in-out;
-    opacity: 0.9;
-  }
-
-  .ml-confeti-bounce {
-    transform: scale(3);
-    opacity: 0;
-  }
-
-  .ml-perview-card {
-    background: #ffffff;
-    box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.12);
-    transition: all 0.8s ease-in-out;
-    opacity: 1;
-  }
-
-  .ml-perview-card-shrink {
-    transform: scale(0.6);
-    opacity: 0;
-  }
-
   .ml-preview-container {
     position: relative;
     padding: 48px 0;
@@ -44,11 +19,73 @@
   }
 }
 
+.mloyalty-preview-mobile {
+  .mloyalty-certificate-image {
+    width: 100%;
+  }
+
+  .mloyalty-confeti {
+    position: absolute;
+    margin-left: 0 auto;
+    width: 100%;
+    transition: all 0.4s ease-in-out;
+    opacity: 0.9;
+  }
+
+  .mloyalty-confeti-bounce {
+    transform: scale(3);
+    opacity: 0;
+  }
+
+  .mloyalty-perview-card-shrink {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+
+  .mloyalty-perview-card {
+    background: #ffffff;
+    transition: all 0.8s ease-in-out;
+    opacity: 1;
+  }
+}
+
+.how-use {
+  border-top: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+
+  .item {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-bottom: 10px;
+
+    .numb {
+      flex: 0 0 30px;
+      font-weight: 600;
+      font-size: 32px;
+      line-height: 32px;
+      letter-spacing: -0.02em;
+      color: #e6e6e6;
+    }
+
+    .content {
+      flex-grow: 1;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: -0.03em;
+      color: #808080;
+    }
+  }
+}
+
 // Extra small devices (portrait phones, less than 576px)
 @media only screen and (max-width: 575.98px) {
-  .ml-preview-page {
-    .ml-preview-container {
-      width: 100%;
+}
+
+@media only screen and (min-width: 576px) {
+  .mloyalty-preview-mobile {
+    .mloyalty-certificate-image {
+      width: 320px;
     }
   }
 }

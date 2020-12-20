@@ -1,6 +1,9 @@
 import types from './types'
 
 export default {
+  [types.SET_TYPE_BROWSER]: (state, isMobile) => {
+    state.isMobile = isMobile
+  },
   [types.TEMPLATE_CODE_SET]: (state, code) => {
     state.code = code
   },

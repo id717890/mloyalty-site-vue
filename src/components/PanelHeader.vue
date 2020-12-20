@@ -23,18 +23,17 @@
       />
     </div>
   </div>
-  <!-- <div class="mloyalty-panel-header px-8" v-else>
-      <a
-        href="#"
-        class="d-flex align-items-center ml-title-14-20 ml-text-grey"
-        @click.prevent="goBack"
-      >
-        <img src="@/assets/img/arrow-left.png" alt="" class="mr-2" />
-        Назад
-      </a>
-      <div class="ml-text-16-24-600 flex-grow-1">Предпросмотр</div>
-    </div>
-  </section> -->
+  <div class="mloyalty-panel-header px-8" v-else>
+    <a
+      href="#"
+      class="d-flex align-items-center ml-title-14-20 ml-text-grey"
+      @click.prevent="goBack"
+    >
+      <img src="@/assets/img/arrow-left.png" alt="" class="mr-2" />
+      Назад
+    </a>
+    <div class="ml-text-16-24-600 flex-grow-1">Предпросмотр</div>
+  </div>
 </template>
 
 <script>
@@ -65,11 +64,10 @@ export default {
       this.togglePanelBurger()
     },
     goBack() {
-      this.changePanelPage(START_PAGE)
+      this.$router.push('/')
     },
     goToHome() {
       this.$router.push('/')
-      // this[panelTypes.TOGGLE_PANEL](false)
     }
   }
 }
