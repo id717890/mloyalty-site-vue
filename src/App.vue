@@ -26,9 +26,9 @@ export default {
     }
   },
   mounted() {
-    if (window.xprops.testProp) {
-      console.log(window.xprops.testProp)
-    }
+    // if (window.xprops.testProp) {
+    //   console.log(window.xprops.testProp)
+    // }
     this.initMarquiz(window, document, 'script', {
       host: '//quiz.marquiz.ru',
       id: '5fda3289c9b57700443842f2',

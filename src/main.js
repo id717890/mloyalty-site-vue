@@ -11,7 +11,11 @@ Vue.use(Vuetify)
 Vue.use(VueYandexMetrika, {
   id: '70564408',
   router: router,
-  env: process.env.NODE_ENV
+  env: process.env.NODE_ENV,
+  clickmap: true,
+  trackLinks: true,
+  accurateTrackBounce: true,
+  webvisor: true
 })
 
 Vue.config.productionTip = false
