@@ -5,6 +5,10 @@
   min-height: 60px;
   justify-content: space-between;
   border-top: 1px solid #e6e6e6;
+  background: white;
+  z-index: 10;
+  position: relative;
+  bottom: 0;
 
   .shop-cart-icon {
     margin-left: 32px;
@@ -49,12 +53,11 @@
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media (min-width: 300px) and (max-width: 767.9) {
+}
+
+@media (min-width: 768px) {
   .mloyalty-panel-footer {
-    position: fixed;
-    width: 100%;
-    background: white;
-    z-index: 10;
-    bottom: 0;
+    position: sticky;
   }
 }

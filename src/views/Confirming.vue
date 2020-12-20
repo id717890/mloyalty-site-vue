@@ -116,6 +116,9 @@ export default {
     ...mapState({
       contacts: state => state.verificationCode.contacts
     }),
+    allPositions() {
+      return this['basket/allPositions']
+    },
     isTelegram() {
       return this.contacts?.sendingMethod === SENDING_METHOD_TELEGRAM
     },
@@ -133,7 +136,8 @@ export default {
     ...mapMutations('basket', [basketTypes.SET_BASKET]),
     ...mapMutations('verificationCode', [verificationTypes.SET_CONTACTS]),
     next() {
-      this.changePanelPage(SUCCESS_PAGE)
+      // this.changePanelPage(SUCCESS_PAGE)
+      this.$router.push('/success')
       this[basketTypes.SET_BASKET](null)
       this[verificationTypes.SET_CONTACTS]({
         email: null,

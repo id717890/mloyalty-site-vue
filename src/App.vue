@@ -1,9 +1,14 @@
 <template>
-  <router-view />
+  <!-- <router-view /> -->
+  <Lyaout />
 </template>
 
 <script>
+import Lyaout from './components/Layout/Default'
 export default {
+  components: {
+    Lyaout
+  },
   methods: {
     initMarquiz(w, d, s, o) {
       if (!window.__marquiz) window.__marquiz = []
@@ -26,9 +31,9 @@ export default {
     }
   },
   mounted() {
-    if (window.xprops.testProp) {
-      console.log(window.xprops.testProp)
-    }
+    // if (window.xprops.testProp) {
+    //   console.log(window.xprops.testProp)
+    // }
     this.initMarquiz(window, document, 'script', {
       host: '//quiz.marquiz.ru',
       id: '5fda3289c9b57700443842f2',

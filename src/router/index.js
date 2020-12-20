@@ -10,23 +10,23 @@ const routes = [
   {
     path: '/',
     // name: 'Home',
-    component: MainPage,
+    component: () => import('../views/NewCertificate.vue'),
     // components: {
     //   default: MainPage,
     //   main: Home
     // },
     children: [
-      {
-        path: '',
-        name: 'Template',
-        components: {
-          main: () =>
-            import(/* webpackChunkName: "about" */ '../views/Home.vue')
-        },
-        meta: {
-          title: 'Функциональные виджеты'
-        }
-      },
+      // {
+      //   path: '',
+      //   name: 'Template',
+      //   components: {
+      //     main: () =>
+      //       import(/* webpackChunkName: "about" */ '../views/Home.vue')
+      //   },
+      //   meta: {
+      //     title: 'Функциональные виджеты'
+      //   }
+      // },
       {
         path: 'orders',
         name: 'Orders',
@@ -66,6 +66,31 @@ const routes = [
       //   }
       // }
     ]
+  },
+  {
+    path: '/sending',
+    name: 'Sending',
+    component: () => import('../views/Sending.vue')
+  },
+  {
+    path: '/confirming',
+    name: 'Confirming',
+    component: () => import('../views/Confirming.vue')
+  },
+  {
+    path: '/success',
+    name: 'Success',
+    component: () => import('../views/Success.vue')
+  },
+  {
+    path: '/basket',
+    name: 'Basket',
+    component: () => import('../views/Basket.vue')
+  },
+  {
+    path: '/preview-mobile',
+    name: 'PreviewMobile',
+    component: () => import('../views/PreviewMobile.vue')
   },
   {
     path: '/example',

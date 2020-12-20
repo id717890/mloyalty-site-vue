@@ -4,7 +4,7 @@
     height="210"
     hide-delimiter-background
     show-arrows-on-hover
-    class="mb-0"
+    class="mb-0 ml-certificate-carousel"
   >
     <v-carousel-item v-for="(item, i) in itemsData" :key="i">
       <v-img

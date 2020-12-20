@@ -16,17 +16,11 @@
 </template>
 
 <script>
-import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
-import { START_PAGE } from '@/helpers/const/widgetPage'
-
 export default {
-  mixins: [MixinChangePanelPage],
   methods: {
     newCertificate() {
-      this.changePanelPage(START_PAGE)
+      this.$router.push('/')
     }
   }
 }
 </script>
-
-<style></style>

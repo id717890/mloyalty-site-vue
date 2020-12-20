@@ -142,7 +142,7 @@
 
 <script>
 import { mapMutations } from 'vuex'
-import { CONFIRMING_PAGE } from '@/helpers/const/widgetPage'
+// import { CONFIRMING_PAGE } from '@/helpers/const/widgetPage'
 import {
   SENDING_METHOD_TELEGRAM,
   SENDING_METHOD_WHATSAPP,
@@ -220,8 +220,42 @@ export default {
       return value === this.sendingMethod
     },
     nextPage() {
-      this.changePanelPage(CONFIRMING_PAGE)
+      this.$router.push('/confirming')
+      // this.changePanelPage(CONFIRMING_PAGE)
     }
+    // preventNumericInput($event) {
+    //   console.log($event.keyCode) //will display the keyCode value
+
+    //   var keyCode = $event.keyCode ? $event.keyCode : $event.which
+    //   if (keyCode > 47 && keyCode < 58) {
+    //   } else {
+    //     $event.preventDefault()
+    //   }
+    // },
+    // inputPhone() {
+    //   this.form.phone = this.maskedPhone(this.form.phone)
+    // },
+    // maskedPhone(text) {
+    //   let result = ''
+    //   if (!text.length) return text
+    //   if (text.length > 0 && text.length <= 3) {
+    //     result = `(${text})`
+    //   } else if (text.length > 3 && text.length <= 6) {
+    //     result = `(${text.substring(0, 3)}) ${text.substring(3)}`
+    //   } else if (text.length > 6 && text.length <= 8) {
+    //     result = `(${text.substring(0, 3)}) ${text.substring(
+    //       3,
+    //       6
+    //     )} - ${text.substring(6)}`
+    //   } else if (text.length > 8) {
+    //     result = `(${text.substring(0, 3)}) ${text.substring(
+    //       3,
+    //       6
+    //     )} - ${text.substring(6, 8)} - ${text.substring(8)}`
+    //   }
+    //   if (result.length > 10) result = result.substring(0, 19)
+    //   return result
+    // }
   }
 }
 </script>
