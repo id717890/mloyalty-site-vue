@@ -18,18 +18,21 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapActions, mapMutations } from 'vuex'
 import basketTypes from '@/store/basket/types'
 
 export default {
   name: 'ModalConfirmRemoveCertificate',
   methods: {
     ...mapMutations('basket', [
-      basketTypes.CANCEL_REMOVE_CERTIFICATE,
+      // basketTypes.CANCEL_REMOVE_CERTIFICATE,
       basketTypes.REMOVE_CERTIFICATE
     ]),
+    ...mapActions('basket', [basketTypes.REMOVE_CERTIFICATE_ACTION]),
     remove() {
-      this[basketTypes.REMOVE_CERTIFICATE]()
+      this[basketTypes.REMOVE_CERTIFICATE_ACTION]().then(() => {
+        this.$router.push('/basket')
+      })
     },
     cancel() {
       this[basketTypes.CANCEL_REMOVE_CERTIFICATE]()

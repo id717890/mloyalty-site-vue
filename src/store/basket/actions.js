@@ -12,6 +12,10 @@ const testBasket = [
 ]
 
 export default {
+  [types.REMOVE_CERTIFICATE_ACTION]({ commit }) {
+    commit(types.REMOVE_CERTIFICATE)
+    return Promise.resolve()
+  },
   [types.UPDATE_CERTIFICATE_ACTION]({ commit, state, getters }, certificate) {
     console.log(state.basket.filter(x => x.certificate.id !== certificate))
   },

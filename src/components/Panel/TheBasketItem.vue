@@ -71,7 +71,8 @@ export default {
     },
     edit() {
       this[basketTypes.SET_CURRENT_CERTIFICATE](this.index)
-      this.changePanelPage(START_PAGE)
+      // this.changePanelPage(START_PAGE)
+      this.$router.push('/')
     },
     shortText(str) {
       if (str && str.length > 50) {

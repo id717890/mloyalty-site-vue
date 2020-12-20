@@ -15,10 +15,10 @@
       </a>
     </div>
     <div class="h100 d-flex flex-column" v-else>
-      <div class="pb flex-grow-1">
+      <div class="pb flex-grow-1 ">
         <div class="row">
-          <div class="col-12">
-            <div class="section">Корзина</div>
+          <div class="col-12 py-0">
+            <div class="section mb-0">Корзина</div>
           </div>
         </div>
         <template v-for="(item, itemIndex) in basket">

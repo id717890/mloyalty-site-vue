@@ -27,9 +27,22 @@
               </transition>
             </div>
             <panel-footer />
+            <modal-confirm-remove-certificate v-if="modalConfirmRemove" />
           </div>
         </div>
       </div>
+      <v-navigation-drawer
+        class="elevation-0"
+        hide-overlay
+        :width="config.panelWidth"
+        :value="showPanelBurger"
+        app
+        stateless
+        temporary
+        right
+      >
+        <burger-layout />
+      </v-navigation-drawer>
     </v-main>
   </v-app>
 </template>
@@ -42,16 +55,23 @@ import panelTypes from '../../store/panel/types'
 import certificateTypes from '@/store/certificate/types'
 import basketTypes from '@/store/basket/types'
 import MlLoading from '@/components/UI/MlLoading'
+import ModalConfirmRemoveCertificate from '@/components/Panel/ModalConfirm'
+import burgerLayout from '@/components/Burger/_Layout'
 
 export default {
   components: {
     PanelHeader,
     PanelFooter,
-    MlLoading
+    MlLoading,
+    ModalConfirmRemoveCertificate,
+    burgerLayout
   },
   computed: {
     ...mapState({
-      loading: state => state.app.loading
+      loading: state => state.app.loading,
+      modalConfirmRemove: state => state.basket.modalConfirmRemove.show,
+      showPanelBurger: state => state.panelBurger.show,
+      config: state => state.app.config
     }),
     isBalance() {
       return false

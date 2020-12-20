@@ -7,7 +7,7 @@
         @click.prevent="goToHome"
         alt=""
       />
-      <a href="#" class="how-its-work ml-2">
+      <a href="#" @click.prevent="goToHome" class="how-its-work ml-2">
         Дарить легко
       </a>
     </div>
@@ -68,7 +68,8 @@ export default {
       this.changePanelPage(START_PAGE)
     },
     goToHome() {
-      this[panelTypes.TOGGLE_PANEL](false)
+      this.$router.push('/')
+      // this[panelTypes.TOGGLE_PANEL](false)
     }
   }
 }
