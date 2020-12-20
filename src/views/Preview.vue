@@ -25,14 +25,15 @@
               class="col-12 text-center d-flex flex-column align-items-center"
             >
               <img src="@/assets/img/example/riv-gosh.png" alt="" />
-              <div class="m-title mb-2">
-                Сертификат на 3000 ₽ <br />
+              <div class="m-title mb-2">Сертификат</div>
+              <div class="m-title mb-2">на 3000 ₽</div>
+              <div class="m-title mb-2 m-title-hidden">
                 «РивГош»
               </div>
               <div class="expiration mt-2 mb-3">
                 Действует до 29.04.2020
               </div>
-              <div class="congratulation mt-6" style="padding: 0 80px 0 90px ">
+              <div class="congratulation mt-6">
                 <div>С днем рождения!</div>
                 Желаю крепкого здоровья, удачи, благополучия, добра, радости,
                 любви, счастья, хорошего настроения, улыбок, ярких впечатлений.

@@ -3,6 +3,10 @@
   .share-ref {
     display: none;
   }
+
+  .congratulation {
+    padding: 0 35px !important;
+  }
 }
 
 // Small devices (landscape phones, 576px and up)
@@ -18,6 +22,10 @@
   .quiz-wrapper-mobile {
     display: block;
   }
+
+  .congratulation {
+    padding: 0 55px !important;
+  }
 }
 
 // Medium devices (tablets, 768px and up)
@@ -30,6 +38,12 @@
 
 // Extra large devices (large desktops, 1200px and up)
 @media only screen and (min-width: 1200px) {
+}
+
+@media only screen and (max-width: 767.98px) {
+  .m-title-hidden {
+    display: none;
+  }
 }
 
 // Medium devices (tablets, 768px and up)

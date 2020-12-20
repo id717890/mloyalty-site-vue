@@ -48,7 +48,7 @@
       <router-view name="main"></router-view>
 
       <v-navigation-drawer
-        style="overflow: visible; height: 100%"
+        style="overflow: visible; height: 100% !important;"
         :width="config.panelWidth"
         :value="showPanel"
         app
