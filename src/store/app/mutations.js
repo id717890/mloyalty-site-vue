@@ -9,5 +9,8 @@ export default {
   },
   [types.SET_LOADING_APP]: (state, loading) => {
     state.loading = loading
+  },
+  [types.SET_APP_CODE]: (state, code) => {
+    state.code = code
   }
 }

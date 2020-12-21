@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <div class="row pa-0 h100">
+      <div class="row py-0 px-4 h100">
         <div
           class="col-lg-4 offset-lg-4 col-sm-12 pa-0 d-flex flex-column  h100"
         >

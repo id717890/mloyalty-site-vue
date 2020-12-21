@@ -109,10 +109,10 @@ export default {
   },
   methods: {
     goToConfirming() {
-      this.changePanelPage(CONFIRMING_PAGE)
+      this.$router.push('/confirming')
     },
     goToSending() {
-      this.changePanelPage(SENDING_PAGE)
+      this.$router.push('/sending')
     },
     addCertificate() {
       this.$router.push('/')

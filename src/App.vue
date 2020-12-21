@@ -1,18 +1,26 @@
 <template>
   <!-- <router-view /> -->
-  <Lyaout />
+  <Lyaout v-if="code" />
+  <div v-else>
+    Не задан код приложения
+  </div>
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 import Lyaout from './components/Layout/Default'
 import appTypes from '@/store/app/types'
 export default {
   components: {
     Lyaout
   },
+  computed: {
+    ...mapState({
+      code: state => state.app.code
+    })
+  },
   methods: {
-    ...mapMutations('app', [appTypes.SET_TYPE_BROWSER]),
+    ...mapMutations('app', [appTypes.SET_TYPE_BROWSER, appTypes.SET_APP_CODE]),
     initMarquiz(w, d, s, o) {
       if (!window.__marquiz) window.__marquiz = []
       window.marquiz = function() {
@@ -34,9 +42,16 @@ export default {
     }
   },
   mounted() {
-    if (window?.xprops?.isMobile) {
+    const isMobile = window?.xprops?.isMobile
+    const code = window?.xprops?.code
+    const goToBalance = window?.xprops?.goToBalance
+    if (isMobile) {
       console.log('IS MOBILE', window.xprops.isMobile)
-      this[appTypes.SET_TYPE_BROWSER](window.xprops.isMobile)
+      this[appTypes.SET_TYPE_BROWSER](isMobile)
+    }
+    if (code) {
+      console.log('APP CODE', code)
+      this[appTypes.SET_APP_CODE](code)
     }
     this.initMarquiz(window, document, 'script', {
       host: '//quiz.marquiz.ru',
