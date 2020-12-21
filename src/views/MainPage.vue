@@ -59,6 +59,16 @@
         <v-btn
           fab
           small
+          elevation="0"
+          color="#F0F0F0"
+          class="ml-close-panel-btn-mobile hidden-md-and-up"
+          @click.stop="togglePanel"
+        >
+          <v-icon color="#4D4D4D">mdi-close</v-icon>
+        </v-btn>
+        <v-btn
+          fab
+          small
           color="#F0F0F0"
           class="ml-close-panel-btn hidden-sm-and-down"
           @click.stop="togglePanel"
@@ -66,8 +76,7 @@
         >
           <v-icon color="#4D4D4D">mdi-close</v-icon>
         </v-btn>
-        <panel-layout />
-        <modal-confirm-remove-certificate v-if="modalConfirmRemove" />
+        <div id="widget-wrapper"></div>
       </v-navigation-drawer>
 
       <v-navigation-drawer
@@ -96,9 +105,7 @@ import ModalConfirmRemoveCertificate from '@/components/Panel/ModalConfirm'
 export default {
   mixins: [MixinChangePanelPage],
   components: {
-    panelLayout,
-    burgerLayout,
-    ModalConfirmRemoveCertificate
+    burgerLayout
   },
   computed: {
     ...mapState({
@@ -123,10 +130,32 @@ export default {
     togglePanel() {
       this[panelTypes.TOGGLE_PANEL](!this.showPanel)
       this.changePanelPage(null)
+    },
+    // Render the component
+    isMobile() {
+      // credit to Timothy Huang for this regex test:
+      // https://dev.to/timhuang/a-simple-way-to-detect-if-browser-is-on-a-mobile-device-with-javascript-44j3
+      if (
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        )
+      ) {
+        return true
+      } else {
+        return false
+      }
+    },
+    initWidget() {
+      MloyaltyWidget({
+        code: 'test-code',
+        isMobile: this.isMobile()
+      }).render('#widget-wrapper')
     }
   },
   mounted() {
     this[panelTypes.TOGGLE_PANEL](false)
+    console.log(this.isMobile())
+    this.initWidget()
   }
 }
 </script>
