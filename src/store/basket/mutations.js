@@ -62,20 +62,23 @@ export default {
     }
   },
   [types.UPDATE_CERTIFICATE](state, certificate) {
-    console.log(certificate)
     if (certificate.count === 0) {
       state.modalConfirmRemove.show = true
       state.modalConfirmRemove.certificate = certificate
     } else {
-      const find = state.basket.find(
-        cert =>
-          cert.certificate.id === certificate.certificate.id &&
-          cert.price === certificate.price &&
-          cert.congratulation === certificate.congratulation
+      // const find = state.basket.find(
+      //   cert =>
+      //     cert.certificate.id === certificate.certificate.id &&
+      //     cert.price === certificate.price &&
+      //     cert.congratulation === certificate.congratulation
+      // )
+      // if (find) {
+      state.basket.splice(
+        state.basket[state.currentCertificate],
+        1,
+        certificate
       )
-      if (find) {
-        state.basket.splice(state.basket.indexOf(find), 1, certificate)
-      }
+      // }
     }
   },
   [types.SET_CURRENT_CERTIFICATE](state, certificateIndex) {

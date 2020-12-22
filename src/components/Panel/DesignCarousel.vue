@@ -1,12 +1,13 @@
 <template>
   <v-carousel
-    @change="$emit('change-certificate', items[$event])"
+    v-if="options"
+    @change="change"
     height="210"
     hide-delimiter-background
     show-arrows-on-hover
     class="mb-0 ml-certificate-carousel"
   >
-    <v-carousel-item v-for="(item, i) in itemsData" :key="i">
+    <v-carousel-item v-for="(item, i) in options.certificates" :key="i">
       <v-img
         height="210"
         :aspect-ratio="16 / 9"
@@ -18,26 +19,17 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
-  props: {
-    items: {
-      type: Array,
-      required: true
-    },
-    current: {
-      type: Object,
-      default: null
+  methods: {
+    change(value) {
+      this.$emit('change-certificate', this.options.certificates[value])
     }
   },
   computed: {
-    itemsData() {
-      // return this.ite
-      if (!this.current) return this.items
-      return [
-        this.current,
-        ...this.items.filter(item => item.id !== this.current.id)
-      ]
-    }
+    ...mapState({
+      options: state => state.certificate.options
+    })
   }
 }
 </script>

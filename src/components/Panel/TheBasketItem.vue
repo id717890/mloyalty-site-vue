@@ -6,7 +6,7 @@
           <v-img
             :aspect-ratio="16 / 11"
             class="ml-img-rounded"
-            :src="require('@/assets/img/example/design1.png')"
+            :src="certificate.certificate.img"
           >
             <div class="ml-basket-price-label">{{ certificate.price }}₽</div>
           </v-img>
@@ -61,6 +61,7 @@ export default {
     MlNumeric
   },
   mixins: [MixinChangePanelPage],
+  computed: {},
   methods: {
     ...mapMutations('basket', [
       basketTypes.UPDATE_CERTIFICATE,

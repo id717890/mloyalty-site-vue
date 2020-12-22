@@ -10,9 +10,6 @@
         <div class="col-12 pt-0">
           <div class="section">1. Выберите дизайн</div>
           <design-carousel
-            ref="designs"
-            :items="options.certificates"
-            :current="this.form.certificate"
             class="design-carousel"
             @change-certificate="changeCertificate"
           />
@@ -96,7 +93,7 @@ import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
 import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
 import certificateTypes from '@/store/certificate/types'
 import basketTypes from '@/store/basket/types'
-import { debounce } from 'lodash'
+import { debounce, cloneDeep } from 'lodash'
 // import { BASKET_PAGE, CONFIRMING_PAGE } from '../../../helpers/const/widgetPage'
 
 export default {
@@ -117,12 +114,13 @@ export default {
     }
   }),
   watch: {
-    'form.certificate'() {
-      this.$refs.designs.$forceUpdate()
-    },
+    // 'form.certificate'() {
+    //   this.$refs.designs.$forceUpdate()
+    // },
     currentCerificate(value) {
       if (!value) {
-        this.changePanelPage(BASKET_PAGE)
+        this.$router.push('/basket')
+        // this.changePanelPage(BASKET_PAGE)
       }
     }
   },
@@ -148,6 +146,17 @@ export default {
     titleNextBtn() {
       const count = this['basket/allPositions']?.count
       return count > 0 ? 'Добавить в корзину' : 'Продолжить'
+    },
+    designs() {
+      let result = []
+      let options = cloneDeep(this.options.certificates)
+      let current = cloneDeep(this.form.certificate)
+      if (current) {
+        result = [current, ...options.filter(item => item.id !== current.id)]
+      } else {
+        result = options
+      }
+      return result
     }
   },
   created() {
@@ -225,9 +234,7 @@ export default {
       }
       // this[panelTypes.CURRENT_PAGE_SET](SENDING_PAGE)
     },
-    beforeDestroy() {
-      console.log(1234)
-    }
+    beforeDestroy() {}
   }
 }
 </script>
