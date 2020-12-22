@@ -1,22 +1,22 @@
 <template>
-  <div class="h100 d-flex flex-column">
+  <div class="h100 d-flex flex-column mloyalty-panel-burger-body">
     <div v-if="!isSent" class="flex-grow-1">
-      <div class="row px-10 pt-5">
+      <div class="row px-8 pt-5 text-left">
         <div class="col-12 py-0">
-          <div class="section">Проверка баланса</div>
+          <div class="ml-text-20-32-600 mb-3">Проверка баланса</div>
         </div>
         <div class="col-12  py-0">
-          <span class="text2"
+          <span class="ml-title-14-20"
             >Введите последние 4 цифры номера сертификата</span
           >
           <MlInputCode4 @change="numberOfCertificate = $event" />
         </div>
         <div class="col-12 py-0">
-          <span class="text2">Введите ПИН код</span>
+          <span class="ml-title-14-20">Введите ПИН код</span>
           <MlInputCode4 @change="pincode = $event" />
         </div>
         <div class="col-12 py-0">
-          <span class="text2">Введите номер телефона</span>
+          <span class="ml-title-14-20">Введите номер телефона</span>
           <v-text-field
             color="dark"
             prepend-inner-icon="+7"
@@ -137,7 +137,7 @@
       >
         Узнать баланс
       </button>
-      <div class="text4 mt-2">
+      <div class="ml-text-11-14 mt-2">
         Нажимая кнопку "Узнать баланс", я соглашаюсь с Правилами использования
         подарочных карт и сертификатов и Офертой.
       </div>
@@ -202,12 +202,17 @@ export default {
     },
     successVerificationProcess() {
       this.successVerification = true
+    },
+    resetForm() {
+      this.isShowBalance = false
+      this.isSent = false
+      this.isLoading = false
+      this.phone = null
+      this.successVerification = null
     }
   },
   mounted() {
-    this.isShowBalance = false
-    this.isSent = false
-    this.isLoading = false
+    this.resetForm()
   }
 }
 </script>

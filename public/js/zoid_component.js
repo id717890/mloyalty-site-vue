@@ -5,8 +5,8 @@ window.MloyaltyWidget = zoid.create({
 
   // The url that will be loaded in the iframe or popup, when someone includes my component on their page
 
-  // url: 'http://localhost:8081/',
-  url: 'http://vidget.lctest.ru/',
+  url: 'http://localhost:8081/',
+  // url: 'http://vidget.lctest.ru/',
 
   dimensions: {
     height: '100%',
@@ -14,6 +14,10 @@ window.MloyaltyWidget = zoid.create({
   },
 
   props: {
+    counter: {
+      type: 'number',
+      required: true
+    },
     code: {
       type: 'string',
       required: true

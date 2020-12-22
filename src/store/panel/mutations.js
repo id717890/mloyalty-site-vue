@@ -6,5 +6,8 @@ export default {
   },
   [types.TOGGLE_PANEL]: (state, isShow) => {
     state.show = isShow
+  },
+  [types.TOGGLE_PANEL_BALANCE]: (state, isShow) => {
+    state.showPanelBalance = isShow
   }
 }

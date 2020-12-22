@@ -131,7 +131,7 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 import panelTypes from '@/store/panel/types'
 import verificationTypes from '@/store/verificationCode/types'
 import MlInputCode from '@/components/UI/MlInputCode'
@@ -151,9 +151,21 @@ export default {
     number4OfCode: null,
     successCode: false
   }),
+  computed: {
+    ...mapState({
+      showPanelBalance: state => state.panel.showPanelBalance
+    })
+  },
   methods: {
-    ...mapMutations('panel', [panelTypes.TOGGLE_PANEL]),
+    ...mapMutations('panel', [
+      panelTypes.TOGGLE_PANEL,
+      panelTypes.TOGGLE_PANEL_BALANCE
+    ]),
     ...mapMutations('verificationCode', [verificationTypes.SET_TEST_CODE]),
+    togglePanelBalance() {
+      console.log(this.showPanelBalance)
+      this[panelTypes.TOGGLE_PANEL_BALANCE](!this.showPanelBalance)
+    },
     openQuiz() {
       Marquiz.showModal('5fda3289c9b57700443842f2')
     },
@@ -168,8 +180,8 @@ export default {
       console.log('take')
     },
     balance() {
-      this[panelTypes.TOGGLE_PANEL](true)
-      this.changePanelPage(BALANCE_PAGE)
+      this.togglePanelBalance()
+      // this.changePanelPage(BALANCE_PAGE)
     },
     proccessNumber1() {
       if (this.number1OfCode) {

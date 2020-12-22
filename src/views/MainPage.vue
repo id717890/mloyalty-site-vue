@@ -89,6 +89,38 @@
       >
         <burger-layout />
       </v-navigation-drawer>
+
+      <v-navigation-drawer
+        style="overflow: visible; height: 100% !important;"
+        :width="config.panelWidth"
+        :value="showPanelBalance"
+        app
+        stateless
+        temporary
+        right
+      >
+        <v-btn
+          fab
+          small
+          elevation="0"
+          color="#F0F0F0"
+          class="ml-close-panel-btn-mobile hidden-md-and-up"
+          @click.stop="togglePanelBalance"
+        >
+          <v-icon color="#4D4D4D">mdi-close</v-icon>
+        </v-btn>
+        <v-btn
+          fab
+          small
+          color="#F0F0F0"
+          class="ml-close-panel-btn hidden-sm-and-down"
+          @click.stop="togglePanelBalance"
+          v-if="!showPanelBurger"
+        >
+          <v-icon color="#4D4D4D">mdi-close</v-icon>
+        </v-btn>
+        <balance ref="balance" />
+      </v-navigation-drawer>
     </v-main>
   </v-app>
 </template>
@@ -101,16 +133,19 @@ import { mapActions, mapMutations, mapState } from 'vuex'
 import panelTypes from '@/store/panel/types'
 import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
 import ModalConfirmRemoveCertificate from '@/components/Panel/ModalConfirm'
+import Balance from '../components/Panel/Pages/Balance'
 
 export default {
   mixins: [MixinChangePanelPage],
   components: {
-    burgerLayout
+    burgerLayout,
+    Balance
   },
   computed: {
     ...mapState({
       showPanel: state => state.panel.show,
       showPanelBurger: state => state.panelBurger.show,
+      showPanelBalance: state => state.panel.showPanelBalance,
       modalConfirmRemove: state => state.basket.modalConfirmRemove.show,
       config: state => state.app.config
     })
@@ -125,11 +160,17 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('panel', [panelTypes.TOGGLE_PANEL]),
+    ...mapMutations('panel', [
+      panelTypes.TOGGLE_PANEL,
+      panelTypes.TOGGLE_PANEL_BALANCE
+    ]),
 
     togglePanel() {
       this[panelTypes.TOGGLE_PANEL](!this.showPanel)
       this.changePanelPage(null)
+    },
+    togglePanelBalance() {
+      this[panelTypes.TOGGLE_PANEL_BALANCE](!this.showPanelBalance)
     },
     // Render the component
     isMobile() {
@@ -146,10 +187,25 @@ export default {
       }
     },
     initWidget() {
+      let counter = 1
+
+      // setInterval(() => {
+      //   counter++
+      //   // console.log('SITE - ', counter)
+      // }, 1000)
+
       MloyaltyWidget({
+        counter: counter,
         code: 'test-code',
         isMobile: this.isMobile()
       }).render('#widget-wrapper')
+    }
+  },
+  watch: {
+    showPanelBalance(value) {
+      if (value) {
+        this.$refs.balance.resetForm()
+      }
     }
   },
   mounted() {

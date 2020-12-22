@@ -181,6 +181,13 @@
   }
 }
 
+.controlls {
+  min-height: 72px;
+  border-top: 1px solid #e6e6e6;
+  display: block;
+  padding: 12px 32px;
+}
+
 @media only screen and (min-width: 768px) {
   .mloyalty-panel-body {
     // padding-top: 60px;
