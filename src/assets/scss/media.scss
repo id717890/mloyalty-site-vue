@@ -30,6 +30,13 @@
 
 // Medium devices (tablets, 768px and up)
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .quiz-wrapper {
+    display: none;
+  }
+
+  .quiz-wrapper-mobile {
+    display: block;
+  }
 }
 
 // Large devices (desktops, 992px and up)
@@ -47,7 +54,7 @@
 }
 
 // Medium devices (tablets, 768px and up)
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 992px) {
   .quiz-wrapper-mobile {
     display: none;
   }

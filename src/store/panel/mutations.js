@@ -5,6 +5,7 @@ export default {
     state.page = page
   },
   [types.TOGGLE_PANEL]: (state, isShow) => {
+    console.log(isShow)
     state.show = isShow
   },
   [types.TOGGLE_PANEL_BALANCE]: (state, isShow) => {

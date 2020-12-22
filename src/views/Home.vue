@@ -23,7 +23,7 @@
           </h1>
         </div>
       </div>
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-12">
           <div class="block-with-num">
             <div class="num">1</div>
@@ -68,13 +68,13 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="row">
         <div class="col-12">
-          <div class="block-with-num">
-            <div class="num">2</div>
+          <div class="block-with-num pt-5 pb-3">
+            <!-- <div class="num">2</div> -->
             <div class="ml-title-18-24">
-              Выберите, что вы хотите сделать?
+              Выберите, что вы хотите сделать с сертификатом?
             </div>
             <div class="pt-4">
               <div class="row">
@@ -85,7 +85,7 @@
                     @click.prevent="newCertificate"
                     style="font-size: 14px;"
                   >
-                    Купить сертификат
+                    Купить
                   </a>
                 </div>
                 <div class="col-lg-4 col-sm-12 px-1">
@@ -94,7 +94,7 @@
                     to="/preview"
                     style="font-size: 14px;"
                   >
-                    Получить сертификат
+                    Получить
                   </router-link>
                 </div>
                 <div class="col-lg-4 col-sm-12 px-1">
@@ -104,7 +104,7 @@
                     style="font-size: 14px;"
                     @click.prevent="balance"
                   >
-                    Узнать баланс сертификата
+                    Узнать баланс
                   </a>
                 </div>
               </div>
@@ -134,14 +134,14 @@ import HelloWorld from '@/components/HelloWorld.vue'
 import { mapMutations, mapState } from 'vuex'
 import panelTypes from '@/store/panel/types'
 import verificationTypes from '@/store/verificationCode/types'
-import MlInputCode from '@/components/UI/MlInputCode'
+// import MlInputCode from '@/components/UI/MlInputCode'
 import { BALANCE_PAGE, START_PAGE } from '@/helpers/const/widgetPage'
 import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
 
 export default {
   name: 'Home',
   components: {
-    MlInputCode
+    // MlInputCode
   },
   mixins: [MixinChangePanelPage],
   data: () => ({

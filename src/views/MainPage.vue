@@ -63,6 +63,7 @@
           color="#F0F0F0"
           class="ml-close-panel-btn-mobile hidden-md-and-up"
           @click.stop="togglePanel"
+          v-if="isShowMobileCloseBtn"
         >
           <v-icon color="#4D4D4D">mdi-close</v-icon>
         </v-btn>
@@ -76,7 +77,7 @@
         >
           <v-icon color="#4D4D4D">mdi-close</v-icon>
         </v-btn>
-        <div id="widget-wrapper"></div>
+        <div id="widget-wrapper" ref="widget-wrapper"></div>
       </v-navigation-drawer>
 
       <v-navigation-drawer
@@ -152,6 +153,7 @@ export default {
   },
   data() {
     return {
+      isShowMobileCloseBtn: true,
       drawer: false,
       items: [
         { title: 'Home', icon: 'mdi-view-dashboard' },
@@ -166,8 +168,14 @@ export default {
     ]),
 
     togglePanel() {
-      this[panelTypes.TOGGLE_PANEL](!this.showPanel)
-      this.changePanelPage(null)
+      const isShow = !this.showPanel
+      // if (isShow === true) {
+      //   this.initWidget()
+      // }
+      // if (this.showPanel === false) {
+      // }
+      this[panelTypes.TOGGLE_PANEL](isShow)
+      // this.changePanelPage(null)
     },
     togglePanelBalance() {
       this[panelTypes.TOGGLE_PANEL_BALANCE](!this.showPanelBalance)
@@ -188,6 +196,7 @@ export default {
     },
     initWidget() {
       let counter = 1
+      this.$refs['widget-wrapper'].innerHTML = null
 
       // setInterval(() => {
       //   counter++
@@ -197,7 +206,10 @@ export default {
       MloyaltyWidget({
         counter: counter,
         code: 'test-code',
-        isMobile: this.isMobile()
+        isMobile: this.isMobile(),
+        onHideClose: value => {
+          this.$set(this, 'isShowMobileCloseBtn', !value)
+        }
       }).render('#widget-wrapper')
     }
   },

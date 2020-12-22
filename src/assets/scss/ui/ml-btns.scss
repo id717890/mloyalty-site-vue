@@ -48,9 +48,9 @@
 }
 
 .ml-close-panel-btn-mobile {
-  position: absolute;
-  right: 16px;
-  top: 70px;
+  position: fixed !important;
+  right: 32px;
+  top: 21px;
   z-index: 2;
   color: #4d4d4d;
 }

@@ -25,6 +25,10 @@ window.MloyaltyWidget = zoid.create({
     isMobile: {
       type: 'boolean',
       required: false
+    },
+    onHideClose: {
+      type: 'function',
+      required: true
     }
   }
 })
