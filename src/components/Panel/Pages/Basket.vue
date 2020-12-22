@@ -83,7 +83,6 @@ import {
 } from '@/helpers/const/widgetPage'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import TheBasketItem from '@/components/Panel/TheBasketItem'
-import basketTypes from '@/store/basket/types'
 
 export default {
   mixins: [MixinChangePanelPage],
@@ -109,7 +108,6 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('basket', [basketTypes.SET_CURRENT_CERTIFICATE]),
     goToConfirming() {
       this.changePanelPage(CONFIRMING_PAGE)
     },
@@ -117,7 +115,6 @@ export default {
       this.changePanelPage(SENDING_PAGE)
     },
     addCertificate() {
-      this[basketTypes.SET_CURRENT_CERTIFICATE](null)
       this.changePanelPage(START_PAGE)
     }
   }
