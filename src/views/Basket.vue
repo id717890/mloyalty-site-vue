@@ -81,8 +81,9 @@ import {
   CONFIRMING_PAGE,
   SENDING_PAGE
 } from '@/helpers/const/widgetPage'
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters, mapMutations, mapState } from 'vuex'
 import TheBasketItem from '@/components/Panel/TheBasketItem'
+import basketTypes from '@/store/basket/types'
 
 export default {
   mixins: [MixinChangePanelPage],
@@ -108,6 +109,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations('basket', [basketTypes.SET_CURRENT_CERTIFICATE]),
     goToConfirming() {
       this.$router.push('/confirming')
     },
@@ -115,6 +117,7 @@ export default {
       this.$router.push('/sending')
     },
     addCertificate() {
+      this[basketTypes.SET_CURRENT_CERTIFICATE](null)
       this.$router.push('/')
     }
   }

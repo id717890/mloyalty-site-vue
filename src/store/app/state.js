@@ -4,5 +4,7 @@ export default {
   config: {
     panelWidth: 448
   },
-  isMobile: false
+  isMobile: false,
+  showBtnBasket: true,
+  showBtnBurger: true
 }

@@ -12,5 +12,13 @@ export default {
   },
   [types.SET_APP_CODE]: (state, code) => {
     state.code = code
+  },
+  [types.SET_BTN_VISIBLE]: (state, { isShowBurger, isShowBasket }) => {
+    if (isShowBasket === true || isShowBasket === false) {
+      state.showBtnBasket = isShowBasket
+    }
+    if (isShowBurger === true || isShowBurger === false) {
+      state.showBtnBurger = isShowBurger
+    }
   }
 }

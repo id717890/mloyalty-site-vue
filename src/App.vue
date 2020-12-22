@@ -1,9 +1,10 @@
 <template>
   <!-- <router-view /> -->
-  <Lyaout v-if="code" />
+  <Lyaout />
+  <!-- <Lyaout v-if="code" />
   <div v-else>
     Не задан код приложения
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -42,7 +43,7 @@ export default {
     }
   },
   mounted() {
-    console.log('WIN', window)
+    // console.log('WIN', window)
     const isMobile = window?.xprops?.isMobile
     const code = window?.xprops?.code
     const counter = window?.xprops?.counter

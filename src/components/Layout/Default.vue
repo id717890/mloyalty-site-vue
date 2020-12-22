@@ -7,7 +7,7 @@
         >
           <!-- <div class="col-12 py-0"> -->
           <div class="mloyalty-layout">
-            <panel-header :preview="isPreview" />
+            <!-- <panel-header :preview="isPreview" /> -->
             <div
               class="flex-grow-1 mloyalty-panel-body"
               :class="{
@@ -26,7 +26,25 @@
                 <!-- <component v-else :is="component"></component> -->
               </transition>
             </div>
-            <panel-footer v-if="isShowFooterHeader && !isPreview" />
+            <!-- <panel-footer v-if="isShowFooterHeader && !isPreview" /> -->
+            <v-btn
+              v-if="showBtnBurger"
+              @click.stop="togglePanelBurger"
+              :style="{ bottom: paddingBottomForBasketAndBurger }"
+              class="mloyalty-circle-burger"
+              fab
+              width="48"
+              height="48"
+              small
+              elevation="0"
+              color="#F0F0F0"
+            >
+              <img src="@/assets/img/default/burger.png" alt="" />
+            </v-btn>
+            <basket-btn
+              v-if="showBtnBasket"
+              :style="{ bottom: paddingBottomForBasketAndBurger }"
+            />
             <modal-confirm-remove-certificate v-if="modalConfirmRemove" />
           </div>
         </div>
@@ -48,8 +66,8 @@
 </template>
 
 <script>
-import PanelHeader from '../PanelHeader'
-import PanelFooter from '../PanelFooter'
+// import PanelHeader from '../PanelHeader'
+// import PanelFooter from '../PanelFooter'
 import { mapState, mapMutations, mapActions } from 'vuex'
 import panelTypes from '../../store/panel/types'
 import certificateTypes from '@/store/certificate/types'
@@ -57,14 +75,16 @@ import basketTypes from '@/store/basket/types'
 import MlLoading from '@/components/UI/MlLoading'
 import ModalConfirmRemoveCertificate from '@/components/Panel/ModalConfirm'
 import burgerLayout from '@/components/Burger/_Layout'
-
+import panelBurgerTypes from '@/store/panelBurger/types'
+import BasketBtn from '@/components/BasketBtn'
 export default {
   components: {
-    PanelHeader,
-    PanelFooter,
+    // PanelHeader,
+    // PanelFooter,
     MlLoading,
     ModalConfirmRemoveCertificate,
-    burgerLayout
+    burgerLayout,
+    BasketBtn
   },
   computed: {
     ...mapState({
@@ -72,7 +92,37 @@ export default {
       modalConfirmRemove: state => state.basket.modalConfirmRemove.show,
       showPanelBurger: state => state.panelBurger.show,
       config: state => state.app.config
+      // showBtnBasket: state => state.app.showBtnBasket,
+      // showBtnBurger: state => state.app.showBtnBurger
     }),
+    paddingBottomForBasketAndBurger() {
+      let value = 0
+      if (this.$route.path === '/') value = 83
+      if (this.$route.path === '/confirming') value = 125
+      return `${value}px`
+    },
+    showBtnBasket() {
+      let isShow = true
+      if (
+        this.$route.path === '/basket' ||
+        this.$route.path === '/success' ||
+        this.$route.path === '/sending' ||
+        this.$route.path === '/preview-mobile'
+      )
+        isShow = false
+      return isShow
+    },
+    showBtnBurger() {
+      let isShow = true
+      if (
+        this.$route.path === '/basket' ||
+        this.$route.path === '/success' ||
+        this.$route.path === '/sending' ||
+        this.$route.path === '/preview-mobile'
+      )
+        isShow = false
+      return isShow
+    },
     isBalance() {
       return false
     },
@@ -92,6 +142,9 @@ export default {
   watch: {
     component(value) {
       if (value !== START_PAGE) this[basketTypes.SET_CURRENT_CERTIFICATE](null)
+    },
+    showPanelBurger(newValue) {
+      window.xprops.onHideClose(newValue)
     }
   },
   methods: {
@@ -101,11 +154,15 @@ export default {
     ]),
     ...mapActions('certificate', [certificateTypes.GET_CERTIFICATE_OPTIONS]),
     ...mapMutations('basket', [basketTypes.SET_CURRENT_CERTIFICATE]),
+    ...mapMutations('panelBurger', [panelBurgerTypes.TOGGLE_PANEL_BURGER]),
     ...mapState({
       showPanel: state => state.panel.show
     }),
     togglePanel() {
       this[panelTypes.TOGGLE_PANEL](!this.showPanel)
+    },
+    togglePanelBurger() {
+      this[panelBurgerTypes.TOGGLE_PANEL_BURGER]()
     }
   },
   mounted() {

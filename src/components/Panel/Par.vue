@@ -2,10 +2,10 @@
   <div class="par" @click="selectPar" :class="{ active }">
     <input
       @input="$emit('input', Number($event.target.value))"
-      style="width: 130px"
+      style="width: 80px"
       min="1"
       type="number"
-      placeholder="Свой номинал"
+      placeholder="Указать"
       :value="value"
       v-if="!readonly"
     />

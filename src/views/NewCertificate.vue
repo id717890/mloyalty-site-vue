@@ -10,6 +10,7 @@
         <div class="col-12 pt-0">
           <div class="section">1. Выберите дизайн</div>
           <design-carousel
+            ref="designs"
             :items="options.certificates"
             :current="this.form.certificate"
             class="design-carousel"
@@ -41,7 +42,7 @@
           <MlTextarea
             :rows="3"
             v-model="form.congratulation"
-            placeholder="Ваше поздравление (необязательно)"
+            placeholder="Не забудьте написать несколько приятных слов, они так важны..."
           />
 
           <div class="d-flex flex-row align-center justify-content-between">
@@ -116,6 +117,9 @@ export default {
     }
   }),
   watch: {
+    'form.certificate'() {
+      this.$refs.designs.$forceUpdate()
+    },
     currentCerificate(value) {
       if (!value) {
         this.changePanelPage(BASKET_PAGE)
@@ -139,11 +143,11 @@ export default {
     },
     isAllowContinue() {
       const price = this.customPar ?? this.selectedPar
-      return !this.form.certificate || !this.form.congratulation || !price
+      return !this.form.certificate || !price
     },
     titleNextBtn() {
       const count = this['basket/allPositions']?.count
-      return count ? 'Продолжить' : 'Добавить в корзину'
+      return count > 0 ? 'Добавить в корзину' : 'Продолжить'
     }
   },
   created() {

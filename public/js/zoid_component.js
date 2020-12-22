@@ -14,6 +14,10 @@ window.MloyaltyWidget = zoid.create({
   },
 
   props: {
+    counter: {
+      type: 'number',
+      required: true
+    },
     code: {
       type: 'string',
       required: true
@@ -21,6 +25,10 @@ window.MloyaltyWidget = zoid.create({
     isMobile: {
       type: 'boolean',
       required: false
+    },
+    onHideClose: {
+      type: 'function',
+      required: true
     }
   }
 })

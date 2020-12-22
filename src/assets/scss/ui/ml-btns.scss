@@ -59,6 +59,37 @@
   top: 16px;
 }
 
+.mloyalty-circle-burger {
+  position: fixed;
+  // bottom: 94px;
+  left: 32px;
+}
+
+.mloyalty-circle-basket {
+  position: fixed;
+  // bottom: 94px;
+  right: 32px;
+
+  .shop-cart-count {
+    display: inline-block;
+    position: absolute;
+    top: -12px;
+    right: 0px;
+    padding: 0 5px;
+    min-width: 16px;
+    min-height: 16px;
+    background: #e94574;
+    border-radius: 40px;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 9px;
+    line-height: 15px;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+  }
+}
+
 .ml-black-btn:hover {
   background: #2c2c2c;
 }

@@ -11,7 +11,7 @@
         height="210"
         :aspect-ratio="16 / 9"
         class="ml-img-rounded"
-        :src="require('@/assets/img/example/design1.png')"
+        :src="item.img"
       ></v-img>
     </v-carousel-item>
   </v-carousel>
@@ -31,6 +31,7 @@ export default {
   },
   computed: {
     itemsData() {
+      // return this.ite
       if (!this.current) return this.items
       return [
         this.current,
