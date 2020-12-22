@@ -42,9 +42,10 @@ export default {
     }
   },
   mounted() {
+    console.log('WIN', window)
     const isMobile = window?.xprops?.isMobile
     const code = window?.xprops?.code
-    const goToBalance = window?.xprops?.goToBalance
+    const counter = window?.xprops?.counter
     if (isMobile) {
       console.log('IS MOBILE', window.xprops.isMobile)
       this[appTypes.SET_TYPE_BROWSER](isMobile)
@@ -53,6 +54,7 @@ export default {
       console.log('APP CODE', code)
       this[appTypes.SET_APP_CODE](code)
     }
+    console.log('INIT COUNTER ', counter)
     this.initMarquiz(window, document, 'script', {
       host: '//quiz.marquiz.ru',
       id: '5fda3289c9b57700443842f2',
@@ -65,6 +67,15 @@ export default {
       console.log('ROUTE PARAMS', this.$route.params)
       console.log('ROUTE QUERY', this.$route.query)
     }, 3000)
+
+    // setInterval(() => {
+    //   // console.log('window.xprops', window?.xprops)
+    //   window.xprops.onProps(prop => {
+    //     console.log(prop)
+    //   })
+
+    //   // Always 0
+    // }, 1000)
   }
 }
 </script>
