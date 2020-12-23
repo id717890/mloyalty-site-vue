@@ -68,14 +68,12 @@ export default {
       console.log('ROUTE QUERY', this.$route.query)
     }, 3000)
 
-    setInterval(() => {
-      // console.log('WIDGET window.xprops', window?.xprops?.onProps)
-      // console.log('WIDGET - XCHILD', window.xchild)
-      // window.xprops.onProps(props => {
-      //   console.log(props.counter)
-      // })
-      // Always 0
-    }, 3000)
+    // setInterval(() => {
+    //   // console.log('WIDGET window.xprops', window?.xprops?.onProps)
+    //   // console.log('WIDGET - XCHILD', window.xchild)
+    //   console.log('WIDGET counter', window.xprops.counter)
+    //   // Always 0
+    // }, 3000)
   }
 }
 </script>

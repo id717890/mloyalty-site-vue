@@ -117,6 +117,11 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  if (to?.path === '/preview-mobile') {
+    window?.xprops?.onHideClose(true)
+  } else {
+    window?.xprops?.onHideClose(false)
+  }
   // This goes through the matched routes from last to first, finding the closest route with a title.
   // eg. if we have /some/deep/nested/route and /some, /deep, and /nested have titles, nested's will be chosen.
   const nearestWithTitle = to.matched

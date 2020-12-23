@@ -97,7 +97,8 @@ export default {
     }),
     paddingBottomForBasketAndBurger() {
       let value = 0
-      if (this.$route.path === '/') value = 83
+      if (this.$route.path === '/' || this.$route.path === '/sending')
+        value = 83
       if (this.$route.path === '/confirming') value = 125
       return `${value}px`
     },
@@ -106,7 +107,6 @@ export default {
       if (
         this.$route.path === '/basket' ||
         this.$route.path === '/success' ||
-        this.$route.path === '/sending' ||
         this.$route.path === '/preview-mobile'
       )
         isShow = false
@@ -117,7 +117,6 @@ export default {
       if (
         this.$route.path === '/basket' ||
         this.$route.path === '/success' ||
-        this.$route.path === '/sending' ||
         this.$route.path === '/preview-mobile'
       )
         isShow = false
@@ -144,7 +143,7 @@ export default {
       if (value !== START_PAGE) this[basketTypes.SET_CURRENT_CERTIFICATE](null)
     },
     showPanelBurger(newValue) {
-      window.xprops.onHideClose(newValue)
+      window?.xprops?.onHideClose(newValue)
     }
   },
   methods: {

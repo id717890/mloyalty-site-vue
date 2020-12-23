@@ -12,6 +12,19 @@
       />
     </div>
     <div style="width: 100%" v-show="show">
+      <div class="mloyalty-panel-header-2 px-8 ">
+        <a
+          href="#"
+          class="d-flex align-items-center ml-title-14-20 ml-text-grey"
+          @click.prevent="goBack"
+        >
+          <img src="@/assets/img/arrow-left.png" alt="" class="mr-2" />
+          Назад
+        </a>
+        <div class="ml-text-16-24-600 flex-grow-1 text-center">
+          Предпросмотр
+        </div>
+      </div>
       <img
         class="mloyalty-confeti"
         ref="confeti"
@@ -153,6 +166,9 @@ export default {
     show: false
   }),
   methods: {
+    goBack() {
+      this.$router.push('/')
+    },
     onActionConfirmed() {
       this.$refs.preview.classList.add('mloyalty-perview-card-shrink')
       setTimeout(() => {
