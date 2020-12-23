@@ -5,11 +5,12 @@ export default {
     commit(types.INIT_VERIFICATION_CODE_PROCESS, true)
     const fakePromise = new Promise(resolve => {
       setTimeout(() => {
-        if (payload === state.code) {
-          resolve({ success: true })
-        } else {
-          resolve({ success: false })
-        }
+        resolve({ success: true })
+        // if (payload === state.code) {
+        //   resolve({ success: true })
+        // } else {
+        //   resolve({ success: false })
+        // }
         commit(types.INIT_VERIFICATION_CODE_PROCESS, false)
       }, 1000)
     })
@@ -22,11 +23,12 @@ export default {
     commit(types.INIT_VERIFICATION_CODE_PROCESS, true)
     const fakePromise = new Promise(resolve => {
       setTimeout(() => {
-        if (payload === state.code) {
-          resolve({ success: true })
-        } else {
-          resolve({ success: false })
-        }
+        // if (payload === state.code) {
+        //   resolve({ success: true })
+        // } else {
+        //   resolve({ success: false })
+        // }
+        resolve({ success: true })
         commit(types.INIT_VERIFICATION_CODE_PROCESS, false)
       }, 1000)
     })

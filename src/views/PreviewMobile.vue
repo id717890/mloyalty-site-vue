@@ -1,8 +1,8 @@
 <template>
-  <div class="h100 mloyalty-preview-mobile">
+  <div class="vh100 mloyalty-preview-mobile">
     <div
       v-if="!show"
-      class="h100 d-flex justify-content-center align-items-center"
+      class="vh100 d-flex justify-content-center align-items-center"
     >
       <SwipeButton
         ref="swipeButton"
@@ -11,7 +11,7 @@
         @actionConfirmed="onActionConfirmed"
       />
     </div>
-    <div class="" style="width: 100%" v-show="show">
+    <div style="width: 100%" v-show="show">
       <img
         class="mloyalty-confeti"
         ref="confeti"

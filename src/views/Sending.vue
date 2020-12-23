@@ -4,10 +4,26 @@
       <div class="col-12">
         <div class="pb">
           <div class="row">
-            <div class="col-12 pt-0"><div class="section">Отправка</div></div>
+            <div class="col-12 pt-0">
+              <div class="section mb-0">Отправка</div>
+            </div>
           </div>
           <div class="row">
             <div class="col-12">
+              <v-text-field
+                color="dark"
+                append-icon="mdi-check"
+                type="text"
+                required
+                :rules="nameRules"
+                height="60"
+                label="Ваш имя*"
+                class="ml-input"
+                autocomplete="off"
+                :class="{ novalidate: validateName === false }"
+                outlined
+                v-model="form.name"
+              ></v-text-field>
               <v-text-field
                 color="dark"
                 append-icon="mdi-check"
@@ -23,8 +39,7 @@
                 v-model="form.email"
               ></v-text-field>
               <div class="ml-input-noty">
-                E-mail нужен для оперативного ответа службы тех. поддержки в
-                случае неуспешной отправки сертификата.
+                Имя и E-mail нужен для оперативного ответа службы тех. поддержки
               </div>
             </div>
           </div>
@@ -33,8 +48,8 @@
               <div class="text1">Выберите, как вам отправить сертификат(ы)</div>
               <div class="ml-input-noty">
                 Сообщение со ссылкой на сертификат(ы) будет отправлено вам по
-                мессенджеру или в sms. После его получения вы сможете переслать
-                его кому угодно.
+                мессенджеру или в sms. После вы сможете переслать его кому
+                угодно.
               </div>
             </div>
             <div class="col-12 d-flex">
@@ -166,6 +181,7 @@ export default {
   data: () => ({
     form: {
       email: null,
+      name: null,
       phone: null,
       sendingMethod: null
     },
@@ -174,11 +190,12 @@ export default {
     emailRules: [
       v => !!v || 'Необходимо заполнить e-mail',
       v => /.+@.+/.test(v) || 'Введен некорректный e-mail'
-    ]
+    ],
+    nameRules: [v => !!v || 'Необходимо заполнить имя']
   }),
   computed: {
     validateForm() {
-      return this.validateEmail && this.validatePhone
+      return this.validateEmail && this.validatePhone && this.validateName
     },
     verificationType() {
       return this.form.sendingMethod === SENDING_METHOD_SMS
@@ -190,6 +207,9 @@ export default {
     },
     validateEmail() {
       return /.+@.+/.test(this.form.email)
+    },
+    validateName() {
+      return this.form?.name?.length > 0
     },
     validatePhone() {
       return this.form?.phone?.length === 15

@@ -68,9 +68,6 @@ export default {
       console.log('ROUTE QUERY', this.$route.query)
     }, 3000)
 
-    window.xprops.onProps(function(props) {
-      console.log(props.counter)
-    })
     setInterval(() => {
       // console.log('WIDGET window.xprops', window?.xprops?.onProps)
       // console.log('WIDGET - XCHILD', window.xchild)
