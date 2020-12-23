@@ -204,6 +204,13 @@ export default {
         isMobile: this.isMobile(),
         onHideClose: value => {
           this.$set(this, 'isShowMobileCloseBtn', !value)
+        },
+        testFunc: callback => {
+          const handler = () => callback()
+          window.addEventListener('hashchange', handler)
+          return {
+            cancel: () => window.removeEventListener('hashchange', handler)
+          }
         }
       }).render('#widget-wrapper')
 
@@ -223,9 +230,13 @@ export default {
     this[panelTypes.TOGGLE_PANEL](false)
     console.log(this.isMobile())
     this.initWidget()
-    setTimeout(() => {
-      this.counter = 99
-    }, 2000)
+    // setTimeout(() => {
+    //   let newVal = this.counter + 1
+    //   this.$set(this, 'counter', newVal)
+    //   console.log('SITE', this.counter)
+    //   console.log('SITE', window.xchild)
+    //   // this.testFunc()
+    // }, 3000)
   }
 }
 </script>

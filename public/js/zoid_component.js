@@ -29,6 +29,10 @@ window.MloyaltyWidget = zoid.create({
     onHideClose: {
       type: 'function',
       required: true
+    },
+    testFunc: {
+      type: 'function',
+      required: true
     }
   }
 })
