@@ -198,7 +198,6 @@ export default {
       }
     },
     changeCertificate(value) {
-      console.log(value)
       this.form.certificate = value
     },
     storeCertificate() {

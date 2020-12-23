@@ -153,6 +153,7 @@ export default {
   },
   data() {
     return {
+      counter: 1,
       isShowMobileCloseBtn: true,
       drawer: false,
       items: [
@@ -195,22 +196,20 @@ export default {
       }
     },
     initWidget() {
-      let counter = 1
       this.$refs['widget-wrapper'].innerHTML = null
 
-      // setInterval(() => {
-      //   counter++
-      //   // console.log('SITE - ', counter)
-      // }, 1000)
-
       MloyaltyWidget({
-        counter: counter,
+        counter: this.counter,
         code: 'test-code',
         isMobile: this.isMobile(),
         onHideClose: value => {
           this.$set(this, 'isShowMobileCloseBtn', !value)
         }
       }).render('#widget-wrapper')
+
+      // setTimeout(() => {
+      //   iii.then(x => console.log('XXX', x))
+      // }, 3000)
     }
   },
   watch: {
@@ -224,6 +223,9 @@ export default {
     this[panelTypes.TOGGLE_PANEL](false)
     console.log(this.isMobile())
     this.initWidget()
+    setTimeout(() => {
+      this.counter = 99
+    }, 2000)
   }
 }
 </script>
