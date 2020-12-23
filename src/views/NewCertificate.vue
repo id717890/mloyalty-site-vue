@@ -187,8 +187,8 @@ export default {
       this[basketTypes.UPDATE_CERTIFICATE](certificate)
       this.alert = true
       setTimeout(() => {
-        this.alert = false
-      }, 3000)
+        this.$router.push('/basket')
+      }, 1500)
     },
     changeCount() {
       this[basketTypes.UPDATE_CERTIFICATE](this['basket/currentCertificate'])

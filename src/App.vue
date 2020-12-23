@@ -43,7 +43,6 @@ export default {
     }
   },
   mounted() {
-    // console.log('WIN', window)
     const isMobile = window?.xprops?.isMobile
     const code = window?.xprops?.code
     const counter = window?.xprops?.counter
@@ -69,14 +68,17 @@ export default {
       console.log('ROUTE QUERY', this.$route.query)
     }, 3000)
 
-    // setInterval(() => {
-    //   // console.log('window.xprops', window?.xprops)
-    //   window.xprops.onProps(prop => {
-    //     console.log(prop)
-    //   })
-
-    //   // Always 0
-    // }, 1000)
+    window.xprops.onProps(function(props) {
+      console.log(props.counter)
+    })
+    setInterval(() => {
+      // console.log('WIDGET window.xprops', window?.xprops?.onProps)
+      // console.log('WIDGET - XCHILD', window.xchild)
+      // window.xprops.onProps(props => {
+      //   console.log(props.counter)
+      // })
+      // Always 0
+    }, 3000)
   }
 }
 </script>

@@ -31,6 +31,12 @@
   }
 }
 
+.v-menu__content .v-list-item.primary--text,
+.v-menu__content .v-list-item.primary--text::before {
+  color: black !important;
+  background-color: #fafafa !important;
+}
+
 .ml-select.v-input--is-focused,
 .ml-input.v-input--is-focused {
   .v-input__slot {
@@ -68,7 +74,7 @@
   }
   .v-input__prepend-inner i {
     font-size: 16px;
-    color: black !important;
+    color: black;
   }
 
   .v-input__prepend-inner i.primary--text {

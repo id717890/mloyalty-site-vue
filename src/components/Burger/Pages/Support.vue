@@ -19,7 +19,9 @@
             color="dark"
           >
             <template #item="{item}">
-              <div>
+              <div
+                :style="{ paddingLeft: typeId === item.id ? '0px' : '30px' }"
+              >
                 <v-icon v-if="typeId === item.id">mdi-check</v-icon>
                 {{ item.name }}
               </div>
@@ -66,6 +68,7 @@
             v-mask="'(###) ###-##-##'"
             autocomplete="off"
             required
+            :rules="phoneRules"
             height="60"
             label="Телефон *"
             class="ml-input ml-input-prepend-inner ml-hide-details"
@@ -130,6 +133,7 @@ export default {
       v => /.+@.+/.test(v) || 'Введен некорректный E-mail'
     ],
     nameRules: [v => !!v || 'Необходимо заполнить Имя'],
+    phoneRules: [v => !!v || 'Необходимо заполнить Телефон'],
     option: {
       types: [
         {

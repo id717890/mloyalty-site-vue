@@ -77,7 +77,7 @@ export default {
   methods: {
     ...mapMutations('panelBurger', [panelBurgerTypes.TOGGLE_PANEL_BURGER]),
     goToSupport() {
-      this[panelBurgerTypes.TOGGLE_PANEL_BURGER](true)
+      // this[panelBurgerTypes.TOGGLE_PANEL_BURGER](true)
       this.changePanelBurgerPage(SUPPORT)
     },
     toggleFaq(id) {
