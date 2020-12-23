@@ -20,7 +20,7 @@
       <div
         class="mloyalty-answer"
         :ref="'answer-' + faq.id"
-        v-html="faq.answer"
+        v-html="fakeText"
       ></div>
     </div>
   </div>
@@ -30,6 +30,7 @@
 export default {
   name: 'Offer-Page',
   data: () => ({
+    fakeText: `Здесь будет текст соответствующего раздела оферты, он будет подтягиваться из api, после того как менеджер его  задаст самостоятельно или использует типовую форму, предлагаемую сервисом.`,
     faqs: [
       {
         id: 1,
