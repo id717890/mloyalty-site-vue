@@ -1,0 +1,41 @@
+.mloyalty-swiper-slide {
+  width: 280px;
+  height: 200px;
+}
+
+.mloyalty-swiper-slide.swiper-slide-active {
+  .overlay {
+    display: none;
+  }
+}
+
+.mloyalty-swiper-slide-wrapper {
+  border-radius: 8px;
+  height: 200px;
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.548);
+  }
+
+  img {
+    height: 200px;
+    width: 100%;
+    border-radius: 8px;
+  }
+}
+
+// .swiper-slide {
+//   width: 60%;
+// }
+// .swiper-slide:nth-child(2n) {
+//   width: 40%;
+// }
+// .swiper-slide:nth-child(3n) {
+//   width: 20%;
+// }
