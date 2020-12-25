@@ -10,7 +10,7 @@
   >
     <img
       class="shop-cart-icon"
-      src="~@/assets/img/default/shopping-cart.png"
+      src="~@/assets/img/default/shopping-cart.svg"
       alt=""
     />
     <span class="shop-cart-count">{{ allPositions.count }}</span>

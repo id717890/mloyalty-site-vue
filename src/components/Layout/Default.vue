@@ -27,6 +27,7 @@
               </transition>
             </div>
             <!-- <panel-footer v-if="isShowFooterHeader && !isPreview" /> -->
+            <!-- Кнопка бургера -->
             <v-btn
               v-if="showBtnBurger"
               @click.stop="togglePanelBurger"
@@ -43,7 +44,10 @@
             </v-btn>
             <basket-btn
               v-if="showBtnBasket"
-              :style="{ bottom: paddingBottomForBasketAndBurger }"
+              :class="{ 'right-for-sending': isSendingPage }"
+              :style="{
+                bottom: paddingBottomForBasketAndBurger
+              }"
             />
             <modal-confirm-remove-certificate v-if="modalConfirmRemove" />
           </div>
@@ -95,10 +99,14 @@ export default {
       // showBtnBasket: state => state.app.showBtnBasket,
       // showBtnBurger: state => state.app.showBtnBurger
     }),
+    /**Смещение для кнопки корзины если страницы ввода контактов, т.к. кнопку бургера скрываем */
+    isSendingPage() {
+      return this.$route.path === '/sending'
+    },
     paddingBottomForBasketAndBurger() {
       let value = 0
       if (this.$route.path === '/' || this.$route.path === '/sending')
-        value = 83
+        value = 94
       if (this.$route.path === '/confirming') value = 125
       return `${value}px`
     },
@@ -117,6 +125,7 @@ export default {
       if (
         this.$route.path === '/basket' ||
         this.$route.path === '/success' ||
+        this.$route.path === '/sending' ||
         this.$route.path === '/preview-mobile'
       )
         isShow = false

@@ -1,10 +1,10 @@
 <template>
   <!-- <router-view /> -->
   <Lyaout />
-  <!-- <Lyaout v-if="code" />
-  <div v-else>
-    Не задан код приложения
-  </div> -->
+  <!-- <Lyaout v-if="code" /> -->
+  <!-- <div v-else> -->
+  <!-- Не задан код приложения -->
+  <!-- </div> -->
 </template>
 
 <script>

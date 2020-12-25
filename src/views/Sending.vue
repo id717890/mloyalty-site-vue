@@ -10,36 +10,41 @@
           </div>
           <div class="row">
             <div class="col-12">
-              <v-text-field
-                color="dark"
-                append-icon="mdi-check"
-                type="text"
-                required
-                :rules="nameRules"
-                height="60"
-                label="Ваш имя*"
-                class="ml-input"
-                autocomplete="off"
-                :class="{ novalidate: validateName === false }"
-                outlined
-                v-model="form.name"
-              ></v-text-field>
-              <v-text-field
-                color="dark"
-                append-icon="mdi-check"
-                type="email"
-                required
-                :rules="emailRules"
-                height="60"
-                label="Ваш e-mail*"
-                class="ml-input"
-                autocomplete="off"
-                :class="{ novalidate: validateEmail === false }"
-                outlined
-                v-model="form.email"
-              ></v-text-field>
-              <div class="ml-input-noty">
-                Имя и E-mail нужен для оперативного ответа службы тех. поддержки
+              <v-form ref="form">
+                <v-text-field
+                  ref="name"
+                  color="dark"
+                  append-icon="mdi-check"
+                  type="text"
+                  required
+                  :rules="nameRules"
+                  height="60"
+                  label="Ваш имя*"
+                  class="ml-input ml-hide-details mb-3"
+                  autocomplete="off"
+                  :class="{ novalidate: validateName === false }"
+                  outlined
+                  v-model="form.name"
+                ></v-text-field>
+                <v-text-field
+                  color="dark"
+                  append-icon="mdi-check"
+                  type="email"
+                  required
+                  :rules="emailRules"
+                  height="60"
+                  label="Ваш e-mail*"
+                  class="ml-input ml-hide-details"
+                  autocomplete="off"
+                  :class="{ novalidate: validateEmail === false }"
+                  outlined
+                  v-model="form.email"
+                ></v-text-field>
+              </v-form>
+
+              <div class="ml-input-noty" style="margin-top:-5px">
+                Имя и E-mail нужны для оперативного ответа службы технической
+                поддержки
               </div>
             </div>
           </div>
@@ -186,7 +191,7 @@ export default {
       sendingMethod: null
     },
     successVerification: null,
-    isSentVerificationCode: false,
+    isSentVerificationCode: false, //Признак того что отправили код, т.е. нажали на кнопку "Подтвердить"
     emailRules: [
       v => !!v || 'Необходимо заполнить e-mail',
       v => /.+@.+/.test(v) || 'Введен некорректный e-mail'
@@ -235,6 +240,7 @@ export default {
     },
     sendVerificationCode() {
       this.isSentVerificationCode = true
+      this.$refs.form.validate()
     },
     isSendingMethod(value) {
       return value === this.sendingMethod

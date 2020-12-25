@@ -13,7 +13,6 @@ Vue.use(VueYandexMetrika, {
   router: router,
   env: process.env.NODE_ENV
 })
-
 Vue.config.productionTip = false
 new Vue({
   vuetify: new Vuetify(),

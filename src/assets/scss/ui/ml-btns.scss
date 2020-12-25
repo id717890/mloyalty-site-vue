@@ -62,20 +62,24 @@
 .mloyalty-circle-burger {
   position: fixed;
   // bottom: 94px;
-  left: 32px;
+  right: 32px;
+}
+
+.mloyalty-circle-basket.right-for-sending {
+  right: 32px;
 }
 
 .mloyalty-circle-basket {
   position: fixed;
   // bottom: 94px;
-  right: 32px;
+  right: 92px;
 
   .shop-cart-count {
     display: inline-block;
     position: absolute;
-    top: -12px;
-    right: 0px;
-    padding: 0 5px;
+    top: -17px;
+    right: -2px;
+    padding: 0 3px;
     min-width: 16px;
     min-height: 16px;
     background: #e94574;

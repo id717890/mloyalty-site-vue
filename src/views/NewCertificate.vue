@@ -7,16 +7,17 @@
     </div>
     <div class="pb flex-grow-1">
       <div class="row">
-        <div class="col-12 pt-0">
-          <div class="section">1. Выберите дизайн</div>
+        <div class="col-12 pt-3">
+          <div class="section mb-6">1. Выберите дизайн</div>
           <design-carousel
+            style="margin-left: -33px; margin-right: -33px"
             class="design-carousel"
             @change-certificate="changeCertificate"
           />
         </div>
       </div>
       <div class="row">
-        <div class="col-12 pt-0">
+        <div class="col-12 pt-0 pb-1">
           <div class="section">2. Номинал</div>
           <div class="d-flex flex-row flex-wrap">
             <par
@@ -39,10 +40,12 @@
           <MlTextarea
             :rows="3"
             v-model="form.congratulation"
-            placeholder="Не забудьте написать несколько приятных слов, они так важны..."
+            placeholder="Не забудьте написать несколько приятных слов получателю сертификата"
           />
 
-          <div class="d-flex flex-row align-center justify-content-between">
+          <div
+            class="d-flex flex-row align-center justify-content-between pt-3"
+          >
             <a href="#" @click.prevent="openPreview">
               <img src="~@/assets/img/eye.png" alt="" />
               <span class="ml-text-14-20-500 ml-2">Предпросмотр</span>

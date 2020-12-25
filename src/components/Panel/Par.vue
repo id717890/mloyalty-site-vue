@@ -2,7 +2,7 @@
   <div class="par" @click="selectPar" :class="{ active }">
     <input
       @input="$emit('input', Number($event.target.value))"
-      style="width: 80px"
+      style="width: 61px"
       min="1"
       type="number"
       placeholder="Указать"
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import { mask } from 'vue-the-mask'
+
 export default {
   model: {
     prop: 'value',
@@ -36,6 +38,9 @@ export default {
       required: false,
       default: false
     }
+  },
+  directives: {
+    mask
   },
   methods: {
     selectPar() {

@@ -6,7 +6,7 @@
     <div>
       <img
         class="shop-cart-icon"
-        src="~@/assets/img/default/shopping-cart.png"
+        src="~@/assets/img/default/shopping-cart.svg"
         alt=""
       />
       <span class="ml-text-13-20 shop-cart-block" @click.prevent="openShopCart">

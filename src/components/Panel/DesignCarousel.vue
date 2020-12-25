@@ -3,7 +3,7 @@
     <swiper
       @init="init"
       @slideChange="slideChange"
-      class="swiper"
+      class="mloyalty-swiper swiper"
       ref="swiper-cert"
       :options="swiperOption"
     >
@@ -17,6 +17,7 @@
           <img :src="item.img" alt="" height="200" />
         </div>
       </swiper-slide>
+      <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
   </div>
 </template>
@@ -25,11 +26,16 @@
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 
 // import style (>= Swiper 6.x)
-// import 'swiper/swiper-bundle.css'
+import 'swiper/swiper-bundle.css'
 
 // import style (<= Swiper 5.x)
 // import 'swiper/css/swiper.css'
 import 'swiper/swiper.scss'
+
+import { Swiper as SwiperClass, Pagination } from 'swiper/swiper.esm'
+// import getAwesomeSwiper from 'vue-awesome-swiper/dist/exporter'
+SwiperClass.use([Pagination])
+// Vue.use(getAwesomeSwiper(SwiperClass))
 
 import { mapGetters, mapState } from 'vuex'
 export default {
@@ -44,7 +50,7 @@ export default {
       slidesPerGroup: 1,
       loop: true,
       centeredSlides: true,
-      spaceBetween: 5,
+      spaceBetween: 8,
       pagination: {
         el: '.swiper-pagination',
         clickable: true

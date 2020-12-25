@@ -21,16 +21,12 @@
     margin-bottom: 12px;
   }
 
-  .design-carousel {
-    margin-bottom: 48px;
-  }
-
   .par {
     cursor: pointer;
     border: 1px solid #e6e6e6;
     box-sizing: border-box;
     border-radius: 8px;
-    padding: 8px 16px;
+    padding: 9px 14px 9px 12px;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -38,8 +34,32 @@
     display: flex;
     align-items: center;
     color: #4d4d4d;
-    margin-right: 10px;
-    margin-bottom: 10px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type='number'] {
+      -moz-appearance: textfield;
+
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 20px;
+    }
+
+    input::placeholder {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 20px;
+      color: #b3b3b3;
+    }
 
     input,
     input:focus,
@@ -51,6 +71,10 @@
 
   .par.active {
     border: 1px solid #000000;
+
+    span {
+      color: #000000;
+    }
   }
 
   .controlls {

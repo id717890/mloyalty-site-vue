@@ -1,5 +1,5 @@
 <template>
-  <div class="form-group">
+  <div class="form-group" style="position: relative">
     <label class="form-label">
       {{ label }}
       <span v-if="required" class="text-pink">*</span>

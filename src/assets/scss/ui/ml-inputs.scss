@@ -83,7 +83,13 @@
 }
 
 /*Поле ввода кода верификации*/
+input[type='text'].ml-input-code,
 .ml-input-code {
+  /* Remove First */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
   width: 48px;
   min-width: 48px;
   height: 48px;
