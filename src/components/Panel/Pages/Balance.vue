@@ -25,7 +25,8 @@
             required
             height="60"
             label="Ваш телефон*"
-            class="ml-input ml-input-prepend-inner mt-2"
+            :rules="phoneRules"
+            class="ml-input ml-input-prepend-inner mt-2 ml-hide-details"
             :class="{ novalidate: validatePhone === false }"
             outlined
             autocomplete="off"
@@ -170,7 +171,8 @@ export default {
     pincode: null,
     phone: null,
     successVerification: null,
-    isSentVerificationCode: false
+    isSentVerificationCode: false,
+    phoneRules: [v => !!v || 'Необходимо заполнить Телефон']
   }),
   computed: {
     today() {

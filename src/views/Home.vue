@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div>
     <div class="quiz-wrapper">
       <div class="quiz-block">
         <div class="ml-text-16-24-500">
@@ -13,7 +13,7 @@
     <div class="col-lg-6 col-md-8 col-sm-12 offset-lg-3 offset-md-2 px-10">
       <div class="row">
         <div class="col-12 pa-0">
-          <img src="@/assets/img/cart1.png" width="390" alt="" />
+          <img src="@/assets/img/cart1.png" width="360" alt="" />
         </div>
       </div>
       <div class="row">
