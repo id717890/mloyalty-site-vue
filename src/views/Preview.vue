@@ -33,7 +33,7 @@
               <div class="expiration mt-2 mb-3">
                 Действует до 29.04.2020
               </div>
-              <div class="congratulation mt-6">
+              <div class="congratulation-preview mt-6">
                 <div>С днем рождения!</div>
                 Желаю крепкого здоровья, удачи, благополучия, добра, радости,
                 любви, счастья, хорошего настроения, улыбок, ярких впечатлений.
@@ -45,9 +45,13 @@
               <img
                 src="@/assets/img/example/riv-gosh-card.png"
                 alt=""
-                class="mb-4"
+                class="mb-4 mloyalty-certificate-image"
               />
-              <img src="@/assets/img/example/riv-gosh-bar-code.png" alt="" />
+              <img
+                src="@/assets/img/example/riv-gosh-bar-code.png"
+                class="mloyalty-preview-bar-code"
+                alt=""
+              />
               <div class="card-number">
                 Номер карты: 126324789743873
               </div>
@@ -58,8 +62,7 @@
             <div class="col-12  d-flex flex-column align-items-center">
               <a
                 href="#"
-                class="ml-silver-btn d-flex align-items-center justify-content-center mb-2"
-                style="min-width: 290px"
+                class="ml-silver-btn d-flex align-items-center justify-content-center mb-2 mloyalty-preview-btn"
               >
                 <img
                   class="mr-3"
@@ -68,10 +71,10 @@
                 />
                 Сохранить в Wallet
               </a>
-              <a href="#" class="ml-silver-btn mb-2" style="min-width: 290px">
+              <a href="#" class="ml-silver-btn mb-2 mloyalty-preview-btn">
                 Сохранить как изображение
               </a>
-              <a href="#" class="ml-silver-btn mb-3" style="min-width: 290px">
+              <a href="#" class="ml-silver-btn mb-3 mloyalty-preview-btn">
                 Отпрваить на E-mail
               </a>
             </div>
@@ -157,7 +160,9 @@ export default {
     }
   },
   mounted() {
-    // this.bounce()
+    this.show = true
+    this.onActionConfirmed()
+    this.bounce()
   }
 }
 </script>

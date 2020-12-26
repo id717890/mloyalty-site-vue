@@ -7,6 +7,10 @@
   .congratulation {
     padding: 0 35px !important;
   }
+
+  .quiz-wrapper {
+    display: none;
+  }
 }
 
 // Small devices (landscape phones, 576px and up)
@@ -37,6 +41,10 @@
   .quiz-wrapper-mobile {
     display: block;
   }
+
+  .home-card {
+    width: 330px;
+  }
 }
 
 // Large devices (desktops, 992px and up)
@@ -57,5 +65,9 @@
 @media only screen and (min-width: 992px) {
   .quiz-wrapper-mobile {
     display: none;
+  }
+
+  .home-card {
+    width: 360px;
   }
 }

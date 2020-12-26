@@ -2,20 +2,17 @@
   <div class="pb">
     <div
       class="faq-item"
-      :ref="'faq-item-' + faq.id"
-      v-for="faq in faqs"
-      :key="faq.id"
+      :ref="'faq-item-' + faqIndex"
+      v-for="(faq, faqIndex) in faqs"
+      :key="faqIndex"
     >
-      <div class="question" @click="toggleFaq(faq.id)">
+      <div class="question" @click="toggleFaq(faqIndex)">
         {{ faq.question }}
         <img class="faq-arrow-right" src="~@/assets/img/faq-arrow-right.png" />
         <img class="faq-arrow-down" src="~@/assets/img/faq-arrow-down.png" />
       </div>
-      <div class="answer" :ref="'answer-' + faq.id">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita quos
-        esse voluptate rem quas officiis perspiciatis quisquam totam, vitae
-        maxime assumenda nemo sit voluptatem dolorem doloremque ipsam. Eaque,
-        dolores iusto.
+      <div class="answer" :ref="'answer-' + faqIndex">
+        {{ faq.answer }}
       </div>
     </div>
     <div class="text2">
@@ -37,34 +34,52 @@ export default {
   data: () => ({
     faqs: [
       {
-        id: 1,
-        question: 'Что такое есть?',
+        question: 'Кто получит сертифкат после покупки?',
         answer:
-          'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita quos esse voluptate rem quas officiis perspiciatis quisquam totam, vitae maxime assumenda nemo sit voluptatem dolorem doloremque ipsam. Eaque, dolores iusto.'
+          'Ссылка для скачивания сертификата придёт либо в смс, либо в один из мессенджеров тому, кто купил сертификат.'
       },
       {
-        id: 2,
-        question: 'Как начисляютяс бонусы?',
+        question: 'Как подарить сертификат?',
         answer:
-          'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita quos esse voluptate rem quas officiis perspiciatis quisquam totam, vitae maxime assumenda nemo sit voluptatem dolorem doloremque ipsam. Eaque, dolores iusto.'
+          'Чтобы подарить сертификат необходимо всего лишь переслать ссылку для скачивания сертификата по смс, в социальные сети или в любой из мессенджеров.'
       },
       {
-        id: 3,
-        question: 'Как считаются бонусы?',
-        answer:
-          'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita quos esse voluptate rem quas officiis perspiciatis quisquam totam, vitae maxime assumenda nemo sit voluptatem dolorem doloremque ipsam. Eaque, dolores iusto.'
+        question: 'Сертификат будет как-то оформлен?',
+        answer: `Да, при переходе по ссылке, получатель увидит праздничную анимацию, поздравление, номинал и изображение сертификата. Также, получатель сразу сможет сохранить сертификат в любом удобном формате. Чтобы увидеть как будет оформлен сертификат, на главной странице нажмите кнопку “Предпросмотр”.`
       },
       {
-        id: 4,
-        question: 'Где узнать об акциях?',
-        answer:
-          'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita quos esse voluptate rem quas officiis perspiciatis quisquam totam, vitae maxime assumenda nemo sit voluptatem dolorem doloremque ipsam. Eaque, dolores iusto.'
+        question: 'Как узнать срок действия сертификата?',
+        answer: `Сертификат действует ровно 1 год с момента его покупки. Получатель сертификата увидит эту информацию при переходе по ссылке. Также, всегда можно подписаться на нашего бота и попросить его напомнить о том, что сертификат нужно успеть погасить.`
       },
       {
-        id: 5,
-        question: 'Где узнать о Партнёрах?',
-        answer:
-          'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita quos esse voluptate rem quas officiis perspiciatis quisquam totam, vitae maxime assumenda nemo sit voluptatem dolorem doloremque ipsam. Eaque, dolores iusto.'
+        question: 'Как использовать сертификат?',
+        answer: `
+        Для использования сертификата необходимо назвать его номер или показать штрих-код и назвать или ввести пинкод. Если номинала сертификата на хватает для оплаты всей покупки, доплатить можно наиличным или безналичным способом.
+В одну покупку действует только один серитфикат.
+        `
+      },
+      {
+        question: 'В каких магазинах действует?',
+        answer: `Сертификат можно использовать в любом розничном магазине сети РИВ ГОШ.`
+      },
+      {
+        question: 'Сколько раз можно использовать?',
+        answer: `Сертификат можно использовать до момента пока на нём есть средства и до момента пока он действителен. Срок действия сертификата указан на странице получения сертификата. 
+Баланс сертификата можно проверить на сайте http://www.rivegauche.ru/ или узнать у нашего бота.`
+      },
+      {
+        question: 'Не пришла ссылка на сертификат?',
+        answer: `Напишите нам об этом, в разделе “Поддержка” или спросите у бота, что делать в таком случае, он поможет.`
+      },
+      {
+        question: 'Не получается использовать сертификат?',
+        answer: `Напишите нам об этом, в разделе “Поддержка” или спросите у бота, что делать в таком случае, он поможет. 
+Также, Вам необходимо будет уточнить магазин и номер сертификата. `
+      },
+      {
+        question: 'Я случайно удалил ссылку, что делать?',
+        answer: `Напишите нам об этом, в разделе “Поддержка” или спросите у бота, что делать в таком случае, он поможет. 
+Для получения доступа к сертификату Вам необходимо будет подтвердить свой номер телефона, на который оформлялась покупка сертификата.`
       }
     ]
   }),
