@@ -1,24 +1,24 @@
 # mloyalty_site_vue
 
-## Project setup
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
-```
 npm run serve
+
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Подключение Zoid
 
-### Lints and fixes files
-```
-npm run lint
-```
+1. На стороннем сайте подключить два скрипта
+   -zoid.js (библиотека zoid, расположена public\js\zoid.js)
+   -zoid_component.js (компоннет, который подключается и на сайте, и на виджете, чтобы связять их между собой. распологается public\js\zoid_component.js)
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+2. На сайте опеределить HTML элемент где будет рендериться компонент, присвоить элементу уникальный ID (например widget-wrapper)
+
+3. В JS скрипте (обычно перед закрывающимся тегом body), проинициализировать zoid_component в HTML элементе который определили в п2.
+
+MloyaltyWidget({
+  code: 'QWERTY' //здесь будет код приложения по которому будет инициализироваться виджет, пока этот параметр не обязательный
+}).render('#widget-wrapper');
+```
