@@ -6,7 +6,7 @@
     :value="value"
     @input="$emit('input', $event.target.value)"
     maxlength="1"
-    v-mask="'#'"
+    :mask="'#'"
   />
 </template>
 
@@ -28,6 +28,23 @@ export default {
     },
     invalid: {
       type: Boolean
+    }
+  },
+  methods: {
+    isNumber(evt) {
+      console.log('isNumber')
+      // return true
+      evt = evt ? evt : window.event
+      var charCode = evt.which ? evt.which : evt.keyCode
+      if (
+        charCode > 31 &&
+        (charCode < 48 || charCode > 57) &&
+        charCode !== 46
+      ) {
+        evt.preventDefault()
+      } else {
+        return true
+      }
     }
   }
 }

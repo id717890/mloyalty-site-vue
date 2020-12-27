@@ -160,9 +160,9 @@ export default {
     }
   },
   mounted() {
-    this.show = true
-    this.onActionConfirmed()
-    this.bounce()
+    // this.show = true
+    // this.onActionConfirmed()
+    // this.bounce()
   }
 }
 </script>

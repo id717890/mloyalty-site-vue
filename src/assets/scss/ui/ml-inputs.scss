@@ -77,7 +77,15 @@
 }
 
 /*Поле ввода кода верификации*/
+input[type='text'].ml-input-code,
 .ml-input-code {
+  /* Remove First */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
   width: 48px;
   min-width: 48px;
   height: 48px;
@@ -90,14 +98,30 @@
   line-height: 32px;
   letter-spacing: -0.02em;
   color: #000000;
+  outline: none;
 }
 
 .ml-input-code.invalid {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
   border: 1px solid #e94574;
+  outline: none;
 }
 
 .ml-input-code:focus {
+  /* Remove First */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
   border: 1px solid #000000;
+  outline: none;
 }
 
 .ml-hide-details {

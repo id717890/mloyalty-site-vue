@@ -1,17 +1,23 @@
 <template>
   <div class="pb">
     <div
-      class="faq-item"
-      :ref="'faq-item-' + faqIndex"
+      class="mloyalty-faq-item"
+      :ref="'mloyalty-faq-item-' + faqIndex"
       v-for="(faq, faqIndex) in faqs"
       :key="faqIndex"
     >
-      <div class="question" @click="toggleFaq(faqIndex)">
+      <div class="mloyalty-question" @click="toggleFaq(faqIndex)">
         {{ faq.question }}
-        <img class="faq-arrow-right" src="~@/assets/img/faq-arrow-right.png" />
-        <img class="faq-arrow-down" src="~@/assets/img/faq-arrow-down.png" />
+        <img
+          class="mloyalty-faq-arrow-right"
+          src="~@/assets/img/faq-arrow-right.png"
+        />
+        <img
+          class="mloyalty-faq-arrow-down"
+          src="~@/assets/img/faq-arrow-down.png"
+        />
       </div>
-      <div class="answer" :ref="'answer-' + faqIndex">
+      <div class="mloyalty-answer" :ref="'answer-' + faqIndex">
         {{ faq.answer }}
       </div>
     </div>
@@ -90,7 +96,7 @@ export default {
       this.changePanelBurgerPage(SUPPORT)
     },
     toggleFaq(id) {
-      let elFaq = this.$refs['faq-item-' + id][0]
+      let elFaq = this.$refs['mloyalty-faq-item-' + id][0]
       elFaq.classList.toggle('active')
       let el = this.$refs['answer-' + id][0]
       if (el.style.maxHeight) {
