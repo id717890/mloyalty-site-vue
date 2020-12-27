@@ -6,7 +6,7 @@
     :value="value"
     @input="$emit('input', $event.target.value)"
     maxlength="1"
-    :mask="'#'"
+    v-mask="'#'"
   />
 </template>
 

@@ -112,3 +112,9 @@
     color: #808080;
   }
 }
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  text-shadow: none;
+  -webkit-text-fill-color: initial;
+}

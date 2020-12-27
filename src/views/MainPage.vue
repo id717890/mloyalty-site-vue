@@ -42,11 +42,7 @@
       </v-toolbar>
     </v-app-bar> -->
     <v-main>
-      <!-- <v-btn color="pink" dark @click.stop="togglePanel">
-            Toggle
-          </v-btn> -->
       <router-view name="main"></router-view>
-
       <v-navigation-drawer
         style="overflow: visible; height: 100% !important;"
         :width="config.panelWidth"
@@ -73,22 +69,10 @@
           color="#F0F0F0"
           class="ml-close-panel-btn hidden-sm-and-down"
           @click.stop="togglePanel"
-          v-if="!showPanelBurger"
         >
           <v-icon color="#4D4D4D">mdi-close</v-icon>
         </v-btn>
         <div id="widget-wrapper" ref="widget-wrapper"></div>
-      </v-navigation-drawer>
-
-      <v-navigation-drawer
-        :width="config.panelWidth"
-        :value="showPanelBurger"
-        app
-        stateless
-        temporary
-        right
-      >
-        <burger-layout />
       </v-navigation-drawer>
 
       <v-navigation-drawer
@@ -116,7 +100,6 @@
           color="#F0F0F0"
           class="ml-close-panel-btn hidden-sm-and-down"
           @click.stop="togglePanelBalance"
-          v-if="!showPanelBurger"
         >
           <v-icon color="#4D4D4D">mdi-close</v-icon>
         </v-btn>
@@ -127,27 +110,20 @@
 </template>
 
 <script>
-import appTypes from '../store/app/types'
-import panelLayout from '../components/Panel/_Layout'
-import burgerLayout from '../components/Burger/_Layout'
-import { mapActions, mapMutations, mapState } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 import panelTypes from '@/store/panel/types'
 import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
-import ModalConfirmRemoveCertificate from '@/components/Panel/ModalConfirm'
 import Balance from '../components/Panel/Pages/Balance'
 
 export default {
   mixins: [MixinChangePanelPage],
   components: {
-    burgerLayout,
     Balance
   },
   computed: {
     ...mapState({
       showPanel: state => state.panel.show,
-      showPanelBurger: state => state.panelBurger.show,
       showPanelBalance: state => state.panel.showPanelBalance,
-      modalConfirmRemove: state => state.basket.modalConfirmRemove.show,
       config: state => state.app.config
     })
   },
