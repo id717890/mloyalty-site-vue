@@ -116,3 +116,9 @@
 .vh100 {
   height: 100vh;
 }
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  text-shadow: none;
+  -webkit-text-fill-color: initial;
+}

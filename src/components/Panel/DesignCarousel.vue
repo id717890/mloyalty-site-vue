@@ -1,7 +1,6 @@
 <template>
   <div v-if="options">
     <swiper
-      @init="init"
       @slideChange="slideChange"
       class="mloyalty-swiper swiper"
       ref="swiper-cert"

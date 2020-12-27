@@ -7,8 +7,8 @@
     </div>
     <div class="pb flex-grow-1">
       <div class="row">
-        <div class="col-12 pt-3">
-          <div class="section mb-6">1. Выберите дизайн</div>
+        <div class="col-12 pt-0">
+          <div class="section ">1. Выберите дизайн</div>
           <design-carousel
             style="margin-left: -33px; margin-right: -33px"
             class="design-carousel"

@@ -69,10 +69,10 @@
                 alt=""
               />
               <div class="ml-text-16-24 ml-text-grey">
-                Номер карты: 126324789743873
+                Номер: 2998760000012
               </div>
               <div class="ml-title-4-18-32-500">
-                PIN-код: 678 579
+                PIN-код: 6789
               </div>
             </div>
             <div class="col-12  d-flex flex-column align-items-center">
@@ -93,21 +93,21 @@
                 class="ml-silver-btn mb-2 w100"
                 style="min-width: 290px"
               >
-                Сохранить как изображение
+                Сохранить в галерею
               </a>
               <a
                 href="#"
                 class="ml-silver-btn mb-3 w100"
                 style="min-width: 290px"
               >
-                Отпрваить на E-mail
+                Отправить на E-mail
               </a>
             </div>
           </div>
           <div class="row ">
             <div class="col-12 how-use">
               <div class="ml-text-20-32-600 mb-3 mt-3">
-                Как использовать, и где действует?
+                Как использовать?
               </div>
               <div class="item">
                 <div class="numb">1</div>
