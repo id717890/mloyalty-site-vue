@@ -1,7 +1,7 @@
 <template>
   <input
     v-bind="$attrs"
-    class="form-control ml-input-code"
+    class="form-control  ml-input-code"
     :class="{ invalid }"
     :value="value"
     @input="$emit('input', $event.target.value)"
