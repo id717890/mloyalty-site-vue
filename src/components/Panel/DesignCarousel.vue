@@ -1,5 +1,12 @@
 <template>
   <div v-if="options">
+    <div class="loading-designs" v-if="loading">
+      <v-progress-circular
+        indeterminate
+        size="30"
+        color="primary"
+      ></v-progress-circular>
+    </div>
     <swiper
       @slideChange="slideChange"
       class="mloyalty-swiper swiper"
@@ -37,18 +44,20 @@ SwiperClass.use([Pagination])
 // Vue.use(getAwesomeSwiper(SwiperClass))
 
 import { mapGetters, mapState } from 'vuex'
+import { set } from 'date-fns'
 export default {
   components: {
     Swiper,
     SwiperSlide
   },
   data: () => ({
+    loading: true,
     swiperOption: {
       autoHeight: true,
       slidesPerView: 'auto',
       slidesPerGroup: 1,
       loop: true,
-      centeredSlides: true,
+      // centeredSlides: true,
       spaceBetween: 8,
       pagination: {
         el: '.swiper-pagination',
@@ -71,11 +80,16 @@ export default {
       } else {
         this.$emit('change-certificate', this.options.certificates[0])
       }
+      setTimeout(() => {
+        console.log('init + loading')
+        this.offsetSlide(false)
+      }, 750)
     },
     change(value) {
       this.$emit('change-certificate', this.options.certificates[value])
     },
     slideChange(item) {
+      console.log('slideChange')
       const count = this.countCertificates
       if (!count) return
       const index = item.activeIndex
@@ -87,6 +101,28 @@ export default {
       }
       const cert = this.options.certificates[diff]
       this.$emit('change-certificate', cert)
+      this.offsetSlide()
+    },
+    /** Смещение слайдера как в дизайне */
+    offsetSlide(isLoading = null) {
+      let item = this.$refs['swiper-cert'].$swiper
+      console.log('offsetSlide OUT', item)
+      if (item) {
+        console.log('offsetSlide IN', item)
+        let el = document.getElementsByClassName('swiper-wrapper')[0]
+        let translateX = item.translate
+        const xposle = translateX + 35
+        this.$nextTick(() => {
+          console.log('move ', translateX, xposle)
+          setTimeout(() => {
+            el.style.transform = `translate3d(${xposle}px, 0px, 0px)`
+          })
+        })
+
+        if (isLoading !== null) {
+          this.loading = false
+        }
+      }
     }
   },
   mounted() {

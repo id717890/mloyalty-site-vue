@@ -68,7 +68,7 @@
         </div>
       </div>
     </div>
-    <div class="controlls" v-if="!isUpdate">
+    <div class="controlls" v-if="!isUpdate" ref="controlls">
       <button
         :disabled="isAllowContinue"
         @click.prevent="nextPage"
@@ -78,7 +78,7 @@
         {{ titleNextBtn }}
       </button>
     </div>
-    <div class="controlls" v-if="isUpdate">
+    <div class="controlls" v-if="isUpdate" ref="controlls">
       <button @click.prevent="save" class="ml-black-btn" style="width: 100%">
         Сохранить изменения
       </button>
@@ -87,7 +87,6 @@
 </template>
 
 <script>
-// import { SENDING_PAGE, PREVIEW_PAGE } from '@/helpers/const/widgetPage'
 import designCarousel from '@/components/Panel/DesignCarousel'
 import par from '@/components/Panel/Par'
 import MlTextarea from '@/components/UI/MlTextarea'
@@ -97,7 +96,6 @@ import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
 import certificateTypes from '@/store/certificate/types'
 import basketTypes from '@/store/basket/types'
 import { debounce, cloneDeep } from 'lodash'
-// import { BASKET_PAGE, CONFIRMING_PAGE } from '../../../helpers/const/widgetPage'
 
 export default {
   mixins: [MixinChangePanelPage],
@@ -117,13 +115,9 @@ export default {
     }
   }),
   watch: {
-    // 'form.certificate'() {
-    //   this.$refs.designs.$forceUpdate()
-    // },
     currentCerificate(value) {
       if (!value) {
         this.$router.push('/basket')
-        // this.changePanelPage(BASKET_PAGE)
       }
     }
   },
@@ -165,15 +159,25 @@ export default {
   created() {
     const DEBOUNCE_TIMEOUT = process.env.VUE_APP_DEBOUNCE_TIMEOUT ?? 2000
     this.debounced = {
-      storeCertificate: debounce(this.storeCertificate, DEBOUNCE_TIMEOUT)
+      storeCertificate: debounce(this.storeCertificate, DEBOUNCE_TIMEOUT),
+      handleScroll: debounce(this.handleScroll, DEBOUNCE_TIMEOUT)
     }
+  },
+  destroyed() {
+    // window.removeEventListener('scroll', this.handleScroll)
   },
   mounted() {
     if (this.isUpdate) {
       this.loadCertificateFromStore()
     }
+    // window.addEventListener('scroll', this.handleScroll)
   },
   methods: {
+    handleScroll(e) {
+      // console.log(e)
+      console.log(this.$refs.controlls.getBoundingClientRect().top)
+      console.log(window.scrollY)
+    },
     ...mapMutations('basket', [
       basketTypes.ADD_CERTIFICATE,
       basketTypes.UPDATE_CERTIFICATE
