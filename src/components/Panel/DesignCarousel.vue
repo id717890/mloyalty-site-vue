@@ -66,7 +66,7 @@ export default {
     }
   }),
   methods: {
-    init() {
+    async init() {
       if (this.currentCerificate) {
         const findCertificate = this.options?.certificates.find(
           x => x.id === this.currentCerificate.certificate.id
@@ -111,18 +111,27 @@ export default {
         console.log('offsetSlide IN', item)
         let el = document.getElementsByClassName('swiper-wrapper')[0]
         let translateX = item.translate
-        const xposle = translateX + 35
+        const offset = translateX + 35
         this.$nextTick(() => {
-          console.log('move ', translateX, xposle)
+          console.log('move ', translateX, offset)
           setTimeout(() => {
-            el.style.transform = `translate3d(${xposle}px, 0px, 0px)`
+            el.style.transform = `translate3d(${offset}px, 0px, 0px)`
           })
+          if (isLoading !== null) {
+            // setTimeout(() => {
+            this.loading = false
+            // }, 1500)
+          }
+          // return Promise.resolve()
         })
 
-        if (isLoading !== null) {
-          this.loading = false
-        }
+        // if (isLoading !== null) {
+        //   //   // setTimeout(() => {
+        //   this.loading = false
+        //   //   // }, 1500)
+        // }
       }
+      return Promise.resolve()
     }
   },
   mounted() {
