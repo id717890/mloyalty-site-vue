@@ -3,6 +3,7 @@ import MainPage from '../views/MainPage.vue'
 import Template from '../views/Template.vue'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '@/store'
 
 Vue.use(VueRouter)
 
@@ -117,6 +118,9 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  //При перехоадах сбрасываем отсутп от низ для кнопок бургера и корзины
+  store.commit('app/SET_BOTTOM_OFFSET', 0)
+
   if (to?.path === '/preview-mobile') {
     window?.xprops?.onHideClose(true)
   } else {

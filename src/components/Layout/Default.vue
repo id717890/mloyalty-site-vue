@@ -39,6 +39,7 @@
               small
               elevation="0"
               color="#F0F0F0"
+              ref="burger-btn"
             >
               <img src="@/assets/img/default/burger.png" alt="" />
             </v-btn>
@@ -95,7 +96,8 @@ export default {
       loading: state => state.app.loading,
       modalConfirmRemove: state => state.basket.modalConfirmRemove.show,
       showPanelBurger: state => state.panelBurger.show,
-      config: state => state.app.config
+      config: state => state.app.config,
+      offsetBottom: state => state.app.offsetBottom
       // showBtnBasket: state => state.app.showBtnBasket,
       // showBtnBurger: state => state.app.showBtnBurger
     }),
@@ -104,11 +106,15 @@ export default {
       return this.$route.path === '/sending'
     },
     paddingBottomForBasketAndBurger() {
-      let value = 0
-      if (this.$route.path === '/' || this.$route.path === '/sending')
-        value = 94
-      if (this.$route.path === '/confirming') value = 125
-      return `${value}px`
+      const defaultValue = 18
+      // let offset = defaultValue
+      // if (this.offsetBottom > 0) {
+      const offset = defaultValue + Number(this.offsetBottom) - 10
+      // }
+      // if (this.$route.path === '/' || this.$route.path === '/sending')
+      //   value = 94
+      // if (this.$route.path === '/confirming') value = 125
+      return `${offset}px`
     },
     showBtnBasket() {
       let isShow = true

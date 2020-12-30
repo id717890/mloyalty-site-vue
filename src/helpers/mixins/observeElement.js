@@ -4,9 +4,11 @@ import { mapMutations } from 'vuex'
 export default {
   destroyed() {
     window.removeEventListener('scroll', this.handleScroll)
+    window.removeEventListener('resize', this.handleScroll)
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
+    window.addEventListener('resize', this.handleScroll)
   },
   methods: {
     ...mapMutations('app', [appTypes.SET_BOTTOM_OFFSET]),

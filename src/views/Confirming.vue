@@ -80,7 +80,7 @@
         </div>
       </div>
     </div>
-    <div class="controlls">
+    <div class="controlls" ref="controlls">
       <a href="#" @click.prevent="next" class="ml-black-btn">
         Оплатить {{ allPositions.price }} ₽
       </a>
@@ -95,6 +95,7 @@
 <script>
 import { SUCCESS_PAGE } from '@/helpers/const/widgetPage'
 import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
+import MixinObserveElement from '@/helpers/mixins/observeElement'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import {
   SENDING_METHOD_TELEGRAM,
@@ -107,7 +108,7 @@ import verificationTypes from '@/store/verificationCode/types'
 
 export default {
   components: {},
-  mixins: [MixinChangePanelPage],
+  mixins: [MixinChangePanelPage, MixinObserveElement],
   data: () => ({
     loyaltyCard: null
   }),
@@ -116,6 +117,9 @@ export default {
     ...mapState({
       contacts: state => state.verificationCode.contacts
     }),
+    observedElement() {
+      return this.$refs.controlls
+    },
     allPositions() {
       return this['basket/allPositions']
     },

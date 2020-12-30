@@ -59,7 +59,7 @@
             >
           </div>
         </div>
-        <div class="col-12" v-if="isUpdate && currentCerificate">
+        <div class="col-12 mb-5" v-if="isUpdate && currentCerificate">
           <MlNumeric2
             ref="numeric"
             v-model="currentCerificate.count"
@@ -170,7 +170,8 @@ export default {
     if (this.isUpdate) {
       this.loadCertificateFromStore()
     }
-    window.addEventListener('scroll', this.handleScroll)
+    // window.addEventListener('scroll', this.handleScroll)
+    this.handleScroll()
   },
   methods: {
     ...mapMutations('basket', [

@@ -25,13 +25,15 @@ export default {
   name: 'ModalConfirmRemoveCertificate',
   methods: {
     ...mapMutations('basket', [
-      // basketTypes.CANCEL_REMOVE_CERTIFICATE,
+      basketTypes.CANCEL_REMOVE_CERTIFICATE,
       basketTypes.REMOVE_CERTIFICATE
     ]),
     ...mapActions('basket', [basketTypes.REMOVE_CERTIFICATE_ACTION]),
     remove() {
       this[basketTypes.REMOVE_CERTIFICATE_ACTION]().then(() => {
-        this.$router.push('/basket')
+        if (this.$route.path !== '/basket') {
+          this.$router.push('/basket')
+        }
       })
     },
     cancel() {

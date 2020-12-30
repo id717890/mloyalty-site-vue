@@ -125,7 +125,7 @@
                 v-if="!successVerification && !isSentVerificationCode"
                 :disabled="!validatePhone"
                 href="#"
-                class="ml-black-btn w100"
+                class="ml-black-btn w100 mb-5"
                 @click.stop="sendVerificationCode"
               >
                 Подтвердить
@@ -147,7 +147,7 @@
                 :disabled="!validateForm"
                 href="#"
                 @click.prevent="nextPage"
-                class="ml-silver-btn"
+                class="ml-silver-btn mb-3"
                 style="width: 100%"
               >
                 Продолжить оформление
