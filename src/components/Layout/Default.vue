@@ -144,14 +144,14 @@ export default {
       return this.$route.path === '/preview-mobile'
     },
     ...mapState({
-      component: state => state.panel.page,
+      // component: state => state.panel.page,
       loading: state => state.app.loading
-    }),
-    isShowFooterHeader() {
-      // if (this.component === BALANCE_PAGE) return false
-      return true
-      // return this.component === PREVIEW_PAGE || this.component === BALANCE_PAGE
-    }
+    })
+    // isShowFooterHeader() {
+    //   // if (this.component === BALANCE_PAGE) return false
+    //   return true
+    //   // return this.component === PREVIEW_PAGE || this.component === BALANCE_PAGE
+    // }
   },
   watch: {
     component(value) {

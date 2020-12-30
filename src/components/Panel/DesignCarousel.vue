@@ -83,7 +83,7 @@ export default {
       setTimeout(() => {
         console.log('init + loading')
         this.offsetSlide(false)
-      }, 750)
+      })
     },
     slideChange(item) {
       console.log('slideChange')

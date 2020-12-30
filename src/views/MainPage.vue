@@ -85,48 +85,47 @@
 </template>
 
 <script>
-import appTypes from '../store/app/types'
-import panelLayout from '../components/Panel/_Layout'
-import burgerLayout from '../components/Burger/_Layout'
-import { mapActions, mapMutations, mapState } from 'vuex'
-import panelTypes from '@/store/panel/types'
-import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
-import ModalConfirmRemoveCertificate from '@/components/Panel/ModalConfirm'
+// import appTypes from '../store/app/types'
+// import panelLayout from '../components/Panel/_Layout'
+// import burgerLayout from '../components/Burger/_Layout'
+// import { mapActions, mapMutations, mapState } from 'vuex'
+// import panelTypes from '@/store/panel/types'
+// import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
+// import ModalConfirmRemoveCertificate from '@/components/Panel/ModalConfirm'
 
 export default {
-  mixins: [MixinChangePanelPage],
-  components: {
-    panelLayout,
-    burgerLayout,
-    ModalConfirmRemoveCertificate
-  },
-  computed: {
-    ...mapState({
-      showPanel: state => state.panel.show,
-      showPanelBurger: state => state.panelBurger.show,
-      modalConfirmRemove: state => state.basket.modalConfirmRemove.show,
-      config: state => state.app.config
-    })
-  },
-  data() {
-    return {
-      drawer: false,
-      items: [
-        { title: 'Home', icon: 'mdi-view-dashboard' },
-        { title: 'About', icon: 'mdi-forum' }
-      ]
-    }
-  },
-  methods: {
-    ...mapMutations('panel', [panelTypes.TOGGLE_PANEL]),
-
-    togglePanel() {
-      this[panelTypes.TOGGLE_PANEL](!this.showPanel)
-      this.changePanelPage(null)
-    }
-  },
-  mounted() {
-    this[panelTypes.TOGGLE_PANEL](false)
-  }
+  // mixins: [MixinChangePanelPage],
+  // components: {
+  //   panelLayout,
+  //   burgerLayout,
+  //   ModalConfirmRemoveCertificate
+  // },
+  // computed: {
+  //   ...mapState({
+  //     showPanel: state => state.panel.show,
+  //     showPanelBurger: state => state.panelBurger.show,
+  //     modalConfirmRemove: state => state.basket.modalConfirmRemove.show,
+  //     config: state => state.app.config
+  //   })
+  // },
+  // data() {
+  //   return {
+  //     drawer: false,
+  //     items: [
+  //       { title: 'Home', icon: 'mdi-view-dashboard' },
+  //       { title: 'About', icon: 'mdi-forum' }
+  //     ]
+  //   }
+  // },
+  // methods: {
+  //   ...mapMutations('panel', [panelTypes.TOGGLE_PANEL]),
+  //   togglePanel() {
+  //     this[panelTypes.TOGGLE_PANEL](!this.showPanel)
+  //     this.changePanelPage(null)
+  //   }
+  // },
+  // mounted() {
+  //   this[panelTypes.TOGGLE_PANEL](false)
+  // }
 }
 </script>
