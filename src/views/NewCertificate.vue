@@ -92,13 +92,14 @@ import par from '@/components/Panel/Par'
 import MlTextarea from '@/components/UI/MlTextarea'
 import MlNumeric2 from '@/components/UI/MlNumeric2'
 import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
+import MixinObserveElement from '@/helpers/mixins/observeElement'
 import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
 import certificateTypes from '@/store/certificate/types'
 import basketTypes from '@/store/basket/types'
 import { debounce, cloneDeep } from 'lodash'
 
 export default {
-  mixins: [MixinChangePanelPage],
+  mixins: [MixinChangePanelPage, MixinObserveElement],
   components: {
     designCarousel,
     par,
@@ -130,6 +131,9 @@ export default {
       'basket/allPositions',
       'basket/currentCertificate'
     ]),
+    observedElement() {
+      return this.$refs.controlls
+    },
     isUpdate() {
       return this['basket/currentCertificate'] ? true : false
     },
@@ -159,25 +163,16 @@ export default {
   created() {
     const DEBOUNCE_TIMEOUT = process.env.VUE_APP_DEBOUNCE_TIMEOUT ?? 2000
     this.debounced = {
-      storeCertificate: debounce(this.storeCertificate, DEBOUNCE_TIMEOUT),
-      handleScroll: debounce(this.handleScroll, DEBOUNCE_TIMEOUT)
+      storeCertificate: debounce(this.storeCertificate, DEBOUNCE_TIMEOUT)
     }
-  },
-  destroyed() {
-    // window.removeEventListener('scroll', this.handleScroll)
   },
   mounted() {
     if (this.isUpdate) {
       this.loadCertificateFromStore()
     }
-    // window.addEventListener('scroll', this.handleScroll)
+    window.addEventListener('scroll', this.handleScroll)
   },
   methods: {
-    handleScroll(e) {
-      // console.log(e)
-      console.log(this.$refs.controlls.getBoundingClientRect().top)
-      console.log(window.scrollY)
-    },
     ...mapMutations('basket', [
       basketTypes.ADD_CERTIFICATE,
       basketTypes.UPDATE_CERTIFICATE

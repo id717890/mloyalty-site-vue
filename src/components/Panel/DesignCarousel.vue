@@ -85,9 +85,6 @@ export default {
         this.offsetSlide(false)
       }, 750)
     },
-    change(value) {
-      this.$emit('change-certificate', this.options.certificates[value])
-    },
     slideChange(item) {
       console.log('slideChange')
       const count = this.countCertificates
@@ -116,20 +113,11 @@ export default {
           console.log('move ', translateX, offset)
           setTimeout(() => {
             el.style.transform = `translate3d(${offset}px, 0px, 0px)`
-          })
+          }, 100)
           if (isLoading !== null) {
-            // setTimeout(() => {
-            this.loading = false
-            // }, 1500)
+            this.loading = isLoading
           }
-          // return Promise.resolve()
         })
-
-        // if (isLoading !== null) {
-        //   //   // setTimeout(() => {
-        //   this.loading = false
-        //   //   // }, 1500)
-        // }
       }
       return Promise.resolve()
     }

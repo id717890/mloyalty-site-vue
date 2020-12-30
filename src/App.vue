@@ -21,26 +21,7 @@ export default {
     })
   },
   methods: {
-    ...mapMutations('app', [appTypes.SET_TYPE_BROWSER, appTypes.SET_APP_CODE]),
-    initMarquiz(w, d, s, o) {
-      if (!window.__marquiz) window.__marquiz = []
-      window.marquiz = function() {
-        window.Marquiz
-          ? Marquiz.add(arguments)
-          : window.__marquiz.push(arguments)
-      }
-      var j = d.createElement(s)
-      j.async = true
-      j.src = '//script.marquiz.ru/v2.js'
-      j.onload = function() {
-        if (document.readyState !== 'loading') Marquiz.init(o)
-        else
-          document.addEventListener('DOMContentLoaded', function() {
-            Marquiz.init(o)
-          })
-      }
-      d.head.insertBefore(j, d.head.firstElementChild)
-    }
+    ...mapMutations('app', [appTypes.SET_TYPE_BROWSER, appTypes.SET_APP_CODE])
   },
   mounted() {
     const isMobile = window?.xprops?.isMobile
@@ -55,14 +36,6 @@ export default {
       this[appTypes.SET_APP_CODE](code)
     }
     console.log('INIT COUNTER ', counter)
-    this.initMarquiz(window, document, 'script', {
-      host: '//quiz.marquiz.ru',
-      id: '5fda3289c9b57700443842f2',
-      autoOpen: false,
-      autoOpenFreq: 'once',
-      openOnExit: false,
-      disableOnMobile: false
-    })
     setTimeout(() => {
       console.log('ROUTE PARAMS', this.$route.params)
       console.log('ROUTE QUERY', this.$route.query)

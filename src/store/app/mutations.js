@@ -1,6 +1,9 @@
 import types from './types'
 
 export default {
+  [types.SET_BOTTOM_OFFSET]: (state, value) => {
+    state.offsetBottom = value
+  },
   [types.SET_TYPE_BROWSER]: (state, isMobile) => {
     state.isMobile = isMobile
   },

@@ -6,5 +6,6 @@ export default {
   },
   isMobile: false,
   showBtnBasket: true,
-  showBtnBurger: true
+  showBtnBurger: true,
+  offsetBottom: 0
 }
