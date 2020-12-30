@@ -8,6 +8,7 @@
         :invalid="invalidCode"
         ref="code1"
         v-model="number1OfCode"
+        type="number"
         class="mr-2"
         @input="proccessNumber1"
       />
@@ -15,6 +16,7 @@
         ref="code2"
         :invalid="invalidCode"
         v-model="number2OfCode"
+        type="number"
         @input="proccessNumber2"
         class="mr-2"
       />
@@ -22,6 +24,7 @@
         ref="code3"
         :invalid="invalidCode"
         v-model="number3OfCode"
+        type="number"
         @input="proccessNumber3"
         class="mr-2"
       />
@@ -29,6 +32,7 @@
         ref="code4"
         :invalid="invalidCode"
         v-model="number4OfCode"
+        type="number"
         @input="proccessNumber4"
         class="mr-2"
       />

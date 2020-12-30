@@ -9,6 +9,7 @@
           ref="code1"
           v-model="number1OfCode"
           class="mr-2"
+          type="number"
           @input="proccessNumber1"
         />
         <MlInputCode

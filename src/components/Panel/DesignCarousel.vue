@@ -83,7 +83,7 @@ export default {
       setTimeout(() => {
         console.log('init + loading')
         this.offsetSlide(false)
-      })
+      }, 800)
     },
     slideChange(item) {
       console.log('slideChange')
@@ -113,10 +113,10 @@ export default {
           console.log('move ', translateX, offset)
           setTimeout(() => {
             el.style.transform = `translate3d(${offset}px, 0px, 0px)`
+            if (isLoading !== null) {
+              this.loading = isLoading
+            }
           }, 100)
-          if (isLoading !== null) {
-            this.loading = isLoading
-          }
         })
       }
       return Promise.resolve()
