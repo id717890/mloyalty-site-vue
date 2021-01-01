@@ -71,8 +71,6 @@
 </template>
 
 <script>
-// import PanelHeader from '../PanelHeader'
-// import PanelFooter from '../PanelFooter'
 import { mapState, mapMutations, mapActions } from 'vuex'
 import panelTypes from '../../store/panel/types'
 import certificateTypes from '@/store/certificate/types'
@@ -84,8 +82,6 @@ import panelBurgerTypes from '@/store/panelBurger/types'
 import BasketBtn from '@/components/BasketBtn'
 export default {
   components: {
-    // PanelHeader,
-    // PanelFooter,
     MlLoading,
     ModalConfirmRemoveCertificate,
     burgerLayout,
@@ -98,8 +94,6 @@ export default {
       showPanelBurger: state => state.panelBurger.show,
       config: state => state.app.config,
       offsetBottom: state => state.app.offsetBottom
-      // showBtnBasket: state => state.app.showBtnBasket,
-      // showBtnBurger: state => state.app.showBtnBurger
     }),
     /**Смещение для кнопки корзины если страницы ввода контактов, т.к. кнопку бургера скрываем */
     isSendingPage() {
@@ -142,21 +136,9 @@ export default {
     },
     isPreview() {
       return this.$route.path === '/preview-mobile'
-    },
-    ...mapState({
-      // component: state => state.panel.page,
-      loading: state => state.app.loading
-    })
-    // isShowFooterHeader() {
-    //   // if (this.component === BALANCE_PAGE) return false
-    //   return true
-    //   // return this.component === PREVIEW_PAGE || this.component === BALANCE_PAGE
-    // }
+    }
   },
   watch: {
-    component(value) {
-      if (value !== START_PAGE) this[basketTypes.SET_CURRENT_CERTIFICATE](null)
-    },
     showPanelBurger(newValue) {
       window?.xprops?.onHideClose(newValue)
     }
@@ -167,22 +149,13 @@ export default {
       panelTypes.TOGGLE_PANEL
     ]),
     ...mapActions('certificate', [certificateTypes.GET_CERTIFICATE_OPTIONS]),
-    ...mapMutations('basket', [basketTypes.SET_CURRENT_CERTIFICATE]),
     ...mapMutations('panelBurger', [panelBurgerTypes.TOGGLE_PANEL_BURGER]),
-    ...mapState({
-      showPanel: state => state.panel.show
-    }),
-    togglePanel() {
-      this[panelTypes.TOGGLE_PANEL](!this.showPanel)
-    },
     togglePanelBurger() {
       this[panelBurgerTypes.TOGGLE_PANEL_BURGER]()
     }
   },
   mounted() {
     this[certificateTypes.GET_CERTIFICATE_OPTIONS]()
-
-    // this[panelTypes.CURRENT_PAGE_SET](START_PAGE)
   }
 }
 </script>

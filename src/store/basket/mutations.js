@@ -1,6 +1,6 @@
 import types from './types'
 import { v4 as uuid } from 'uuid'
-import { cloneDeep } from 'lodash'
+
 export default {
   /**
    * Добавляет сертификат в корзину
@@ -35,7 +35,6 @@ export default {
    * @param {Object} item - объект измененного сертификата
    */
   [types.UPDATE_CERTIFICATE](state, item) {
-    console.log(item)
     if (item.count === 0) {
       state.modalConfirmRemove.show = true
       state.modalConfirmRemove.item = item
@@ -79,7 +78,11 @@ export default {
   [types.SET_BASKET](state, basket) {
     state.basket = basket
   },
-  [types.SET_CURRENT_CERTIFICATE](state, basketItemId) {
-    state.currentCertificate = basketItemId
+  [types.SET_CURRENT_CERTIFICATE](state, basketItem) {
+    state.currentCertificate = basketItem
+  },
+  [types.CALL_CONFIRM_MODAL](state, basketItem) {
+    state.modalConfirmRemove.show = true
+    state.modalConfirmRemove.item = basketItem
   }
 }

@@ -13,7 +13,10 @@
         </div>
         <div class="content">
           <div class="first ml-title-14-20 ml-text-grey1">
-            {{ shortText(item.congratulation) }}
+            <span v-if="item.congratulation">
+              {{ shortText(item.congratulation) }}
+            </span>
+            <span v-else>Без поздравления</span>
           </div>
           <div class="second">
             <MlNumeric v-model="item.count" @input="changeCount" />
@@ -46,10 +49,6 @@ export default {
     item: {
       type: Object,
       require: true
-    },
-    index: {
-      type: Number,
-      require: true
     }
   },
   components: {
@@ -66,8 +65,7 @@ export default {
       this[basketTypes.UPDATE_CERTIFICATE](this.item)
     },
     edit() {
-      this[basketTypes.SET_CURRENT_CERTIFICATE](this.index)
-      // this.changePanelPage(START_PAGE)
+      this[basketTypes.SET_CURRENT_CERTIFICATE](this.item)
       this.$router.push('/')
     },
     shortText(str) {

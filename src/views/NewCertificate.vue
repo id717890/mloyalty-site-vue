@@ -59,12 +59,8 @@
             >
           </div>
         </div>
-        <div class="col-12 mb-5" v-if="isUpdate && currentCerificate">
-          <MlNumeric2
-            ref="numeric"
-            v-model="currentCerificate.count"
-            @input="changeCount"
-          />
+        <div class="col-12 mb-5" v-if="isUpdate && currentCertificate">
+          <MlNumeric2 v-model="form.count" @input="changeCount" />
         </div>
       </div>
     </div>
@@ -91,6 +87,7 @@ import designCarousel from '@/components/Panel/DesignCarousel'
 import par from '@/components/Panel/Par'
 import MlTextarea from '@/components/UI/MlTextarea'
 import MlNumeric2 from '@/components/UI/MlNumeric2'
+import MlNumeric from '@/components/UI/MlNumeric'
 import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
 import MixinObserveElement from '@/helpers/mixins/observeElement'
 import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
@@ -111,34 +108,23 @@ export default {
     selectedPar: null,
     customPar: null,
     form: {
+      id: null,
       certificate: null,
-      congratulation: null
+      congratulation: null,
+      count: null
     }
   }),
-  watch: {
-    currentCerificate(value) {
-      if (!value) {
-        this.$router.push('/basket')
-      }
-    }
-  },
   computed: {
     ...mapState({
-      options: state => state.certificate.options
+      options: state => state.certificate.options,
+      currentCertificate: state => state.basket.currentCertificate
     }),
-    ...mapGetters([
-      'verificationCode/isVerified',
-      'basket/allPositions',
-      'basket/currentCertificate'
-    ]),
+    ...mapGetters(['verificationCode/isVerified', 'basket/allPositions']),
     observedElement() {
       return this.$refs.controlls
     },
     isUpdate() {
-      return this['basket/currentCertificate'] ? true : false
-    },
-    currentCerificate() {
-      return this['basket/currentCertificate']
+      return this.currentCertificate ? true : false
     },
     isAllowContinue() {
       const price = this.customPar ?? this.selectedPar
@@ -147,17 +133,6 @@ export default {
     titleNextBtn() {
       const count = this['basket/allPositions']?.count
       return count > 0 ? 'Добавить в корзину' : 'Продолжить'
-    },
-    designs() {
-      let result = []
-      let options = cloneDeep(this.options.certificates)
-      let current = cloneDeep(this.form.certificate)
-      if (current) {
-        result = [current, ...options.filter(item => item.id !== current.id)]
-      } else {
-        result = options
-      }
-      return result
     }
   },
   created() {
@@ -170,41 +145,43 @@ export default {
     if (this.isUpdate) {
       this.loadCertificateFromStore()
     }
-    // window.addEventListener('scroll', this.handleScroll)
-    this.handleScroll()
   },
   methods: {
     ...mapMutations('basket', [
       basketTypes.ADD_CERTIFICATE,
-      basketTypes.UPDATE_CERTIFICATE
+      basketTypes.UPDATE_CERTIFICATE,
+      basketTypes.CALL_CONFIRM_MODAL
     ]),
+    makeBasketItem() {
+      let item = this.form
+      item.price = this.customPar ?? this.selectedPar ?? null
+      return item
+    },
     openPreview() {
       this.$router.push('/preview-mobile')
-      // this.changePanelPage(PREVIEW_PAGE)
     },
-    // ...mapMutations('certificate', [certificateTypes.STORE_CURRENT_CERIFICATE]),
     save() {
-      let certificate = this.form
-      certificate.price = this.customPar ?? this.selectedPar ?? null
-      certificate.count = this.currentCerificate.count
-      this[basketTypes.UPDATE_CERTIFICATE](certificate)
+      let data = this.makeBasketItem()
+      this[basketTypes.UPDATE_CERTIFICATE](data)
       this.alert = true
       setTimeout(() => {
         this.$router.push('/basket')
       }, 1500)
     },
-    changeCount() {
-      this[basketTypes.UPDATE_CERTIFICATE](this['basket/currentCertificate'])
+    changeCount(newValue) {
+      this.form.count = newValue
+      const data = this.makeBasketItem()
+      this[basketTypes.UPDATE_CERTIFICATE](data)
     },
     removeCertificate() {
-      let certificate = this.currentCerificate
-      certificate.count = 0
-      this[basketTypes.UPDATE_CERTIFICATE](certificate)
+      this[basketTypes.CALL_CONFIRM_MODAL](this.currentCertificate)
     },
     loadCertificateFromStore() {
-      this.form.congratulation = this.currentCerificate.congratulation
-      this.form.certificate = this.currentCerificate.certificate
-      const price = this.currentCerificate.price
+      this.form.id = this.currentCertificate.id
+      this.form.congratulation = this.currentCertificate.congratulation
+      this.form.certificate = this.currentCertificate.certificate
+      this.form.count = this.currentCertificate.count
+      const price = this.currentCertificate.price
       if (price) {
         if (this.options.pars.includes(price)) {
           this.selectedPar = price
@@ -230,14 +207,10 @@ export default {
       this.storeCertificate()
       if (this['verificationCode/isVerified']) {
         this.$router.push('/confirming')
-        // this.changePanelPage(CONFIRMING_PAGE)
       } else {
         this.$router.push('/sending')
-        // this.changePanelPage(SENDING_PAGE)
       }
-      // this[panelTypes.CURRENT_PAGE_SET](SENDING_PAGE)
-    },
-    beforeDestroy() {}
+    }
   }
 }
 </script>

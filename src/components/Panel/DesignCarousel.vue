@@ -67,9 +67,9 @@ export default {
   }),
   methods: {
     async init() {
-      if (this.currentCerificate) {
+      if (this.currentCertificate) {
         const findCertificate = this.options?.certificates.find(
-          x => x.id === this.currentCerificate.certificate.id
+          x => x.id === this.currentCertificate.certificate.id
         )
         if (findCertificate) {
           const index = this.options.certificates.indexOf(findCertificate)
@@ -127,12 +127,9 @@ export default {
   },
   computed: {
     ...mapState({
-      options: state => state.certificate.options
+      options: state => state.certificate.options,
+      currentCertificate: state => state.basket.currentCertificate
     }),
-    ...mapGetters(['basket/currentCertificate']),
-    currentCerificate() {
-      return this['basket/currentCertificate']
-    },
     swiper() {
       return this.$refs['swiper-cert'].$swiper
     },
