@@ -60,7 +60,7 @@
           </div>
         </div>
         <div class="col-12 mb-5" v-if="isUpdate && currentCertificate">
-          <MlNumeric2 v-model="form.count" @input="changeCount" />
+          <MlNumeric2 max="10" v-model="form.count" @input="changeCount" />
         </div>
       </div>
     </div>

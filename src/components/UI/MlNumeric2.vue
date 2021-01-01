@@ -33,6 +33,8 @@ export default {
       this.$emit('input', Number(v.target.value))
     },
     increment() {
+      const max = this.$attrs?.max
+      if (max && this.value >= max) return
       const n = this.value + 1
       this.$emit('input', n)
       this.$forceUpdate()

@@ -73,15 +73,17 @@ export default {
         )
         if (findCertificate) {
           const index = this.options.certificates.indexOf(findCertificate)
-          console.log('pos ', index)
-          this.swiper.slideTo(index, 500, false)
+          if (index === 0) {
+            this.swiper.slideTo(index + this.countCertificates, 500, false)
+          } else {
+            this.swiper.slideTo(index, 500, false)
+          }
           this.$emit('change-certificate', findCertificate)
         }
       } else {
         this.$emit('change-certificate', this.options.certificates[0])
       }
       setTimeout(() => {
-        console.log('init + loading')
         this.offsetSlide(false)
       }, 800)
     },

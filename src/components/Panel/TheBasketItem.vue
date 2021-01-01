@@ -16,10 +16,10 @@
             <span v-if="item.congratulation">
               {{ shortText(item.congratulation) }}
             </span>
-            <span v-else>Без поздравления</span>
+            <span v-else class="font-italic">Без поздравления</span>
           </div>
           <div class="second">
-            <MlNumeric v-model="item.count" @input="changeCount" />
+            <MlNumeric v-model="item.count" max="10" @input="changeCount" />
           </div>
         </div>
         <div class="d-flex align-center">
