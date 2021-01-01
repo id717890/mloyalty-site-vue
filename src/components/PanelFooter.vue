@@ -45,20 +45,7 @@ export default {
     ...mapGetters('basket', ['allPositions'])
   },
   methods: {
-    ...mapActions('basket', [
-      basketTypes.INIT_EMPTY_BASKET,
-      basketTypes.INIT_TEST_BASKET
-    ]),
     openShopCart() {
-      // if (this.currentPage !== BASKET_PAGE) {
-      //   if (this.currentPage === SENDING_PAGE) {
-      //     this[basketTypes.INIT_TEST_BASKET]()
-      //   } else {
-      //     this[basketTypes.INIT_EMPTY_BASKET]()
-      //   }
-      // }
-
-      // this.changePanelPage(BASKET_PAGE)
       this.$router.push('/basket')
     }
   }

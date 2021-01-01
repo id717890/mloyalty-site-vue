@@ -6,22 +6,17 @@
           <v-img
             :aspect-ratio="16 / 11"
             class="ml-img-rounded"
-            :src="certificate.certificate.img"
+            :src="item.certificate.img"
           >
-            <div class="ml-basket-price-label">{{ certificate.price }}₽</div>
+            <div class="ml-basket-price-label">{{ item.price }}₽</div>
           </v-img>
         </div>
         <div class="content">
           <div class="first ml-title-14-20 ml-text-grey1">
-            {{ shortText(certificate.congratulation) }}
+            {{ shortText(item.congratulation) }}
           </div>
           <div class="second">
-            <MlNumeric
-              ref="numeric"
-              v-model="certificate.count"
-              @input="change"
-            >
-            </MlNumeric>
+            <MlNumeric v-model="item.count" @input="changeCount" />
           </div>
         </div>
         <div class="d-flex align-center">
@@ -48,7 +43,7 @@ import { START_PAGE } from '@/helpers/const/widgetPage'
 export default {
   name: 'TheBasketItem',
   props: {
-    certificate: {
+    item: {
       type: Object,
       require: true
     },
@@ -67,8 +62,8 @@ export default {
       basketTypes.UPDATE_CERTIFICATE,
       basketTypes.SET_CURRENT_CERTIFICATE
     ]),
-    change() {
-      this[basketTypes.UPDATE_CERTIFICATE](this.certificate)
+    changeCount() {
+      this[basketTypes.UPDATE_CERTIFICATE](this.item)
     },
     edit() {
       this[basketTypes.SET_CURRENT_CERTIFICATE](this.index)

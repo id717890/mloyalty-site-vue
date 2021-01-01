@@ -1,87 +1,85 @@
 import types from './types'
-
+import { v4 as uuid } from 'uuid'
+import { cloneDeep } from 'lodash'
 export default {
-  [types.REMOVE_CERTIFICATE](state) {
-    const certificate = state.modalConfirmRemove.certificate
-    if (certificate) {
-      const find = state.basket.find(
+  /**
+   * Добавляет сертификат в корзину
+   * @param {Object} state
+   * @param {Object} item - добавляемый объект корзины
+   */
+  [types.ADD_CERTIFICATE](state, item) {
+    if (item) {
+      item.id = uuid()
+    }
+    if (!state.basket) {
+      state.basket = [item]
+    } else {
+      const findTheSame = state.basket.find(
         cert =>
-          cert.certificate.id === certificate.certificate.id &&
-          cert.price === certificate.price &&
-          cert.congratulation === certificate.congratulation
+          cert.certificate.id === item.certificate.id &&
+          cert.price === item.price &&
+          cert.congratulation === item.congratulation
       )
+      if (findTheSame) {
+        item.count += findTheSame.count
+        state.basket.splice(state.basket.indexOf(findTheSame), 1, item)
+        // state.basket.push(item)
+      } else {
+        state.basket.push(item)
+      }
+    }
+  },
+  /**
+   * Изменение сертификата корзины
+   * @param {Object} state
+   * @param {Object} item - объект измененного сертификата
+   */
+  [types.UPDATE_CERTIFICATE](state, item) {
+    console.log(item)
+    if (item.count === 0) {
+      state.modalConfirmRemove.show = true
+      state.modalConfirmRemove.item = item
+    } else {
+      let find = state.basket.find(x => x.id === item.id)
+      if (find) {
+        state.basket.splice(state.basket.indexOf(find), 1, item)
+      }
+    }
+  },
+  /**
+   * Удаление сертификата из корзины
+   * @param {Object} state
+   */
+  [types.REMOVE_CERTIFICATE](state) {
+    const basketItem = state.modalConfirmRemove.item
+    if (basketItem) {
+      const find = state.basket.find(item => item.id === basketItem.id)
       if (find) {
         state.basket.splice(state.basket.indexOf(find), 1)
       }
     }
     state.modalConfirmRemove.show = false
-    state.modalConfirmRemove.certificate = null
+    state.modalConfirmRemove.item = null
     state.currentCertificate = null
   },
+  /**
+   * Отмена удаления сертификата из корзины
+   * @param {Object} state
+   */
   [types.CANCEL_REMOVE_CERTIFICATE](state) {
-    let certificate = state.modalConfirmRemove.certificate
-    certificate.count = 1
-    // state.basket = [
-    //   ...state.basket.filter(
-    //     x => x.certificate.id !== certificate.certificate.id
-    //   ),
-    //   certificate
-    // ]
-    const find = state.basket.find(
-      cert =>
-        cert.certificate.id === certificate.certificate.id &&
-        cert.price === certificate.price &&
-        cert.congratulation === certificate.congratulation
-    )
+    let basketItem = state.modalConfirmRemove.item
+    basketItem.count = 1
+    const find = state.basket.find(item => item.id === basketItem.id)
     if (find) {
-      state.basket.splice(state.basket.indexOf(find), 1, certificate)
+      state.basket.splice(state.basket.indexOf(find), 1, basketItem)
     }
     state.modalConfirmRemove.show = false
-    state.modalConfirmRemove.certificate = null
+    state.modalConfirmRemove.item = null
   },
   [types.SET_BASKET](state, basket) {
     state.basket = basket
   },
-  [types.ADD_CERTIFICATE](state, certificate) {
-    if (!state.basket) {
-      state.basket = [certificate]
-    } else {
-      const findTheSame = state.basket.find(
-        cert =>
-          cert.certificate.id === certificate.certificate.id &&
-          cert.price === certificate.price &&
-          cert.congratulation === certificate.congratulation
-      )
-      if (findTheSame) {
-        certificate.count += findTheSame.count
-        state.basket.splice(state.basket.indexOf(findTheSame), 1)
-        state.basket.push(certificate)
-      } else {
-        state.basket.push(certificate)
-      }
-    }
-  },
-  [types.UPDATE_CERTIFICATE](state, certificate) {
-    if (certificate.count === 0) {
-      state.modalConfirmRemove.show = true
-      state.modalConfirmRemove.certificate = certificate
-    } else {
-      // const find = state.basket.find(
-      //   cert =>
-      //     cert.certificate.id === certificate.certificate.id &&
-      //     cert.price === certificate.price &&
-      //     cert.congratulation === certificate.congratulation
-      // )
-      // if (find) {
-      state.basket.splice(
-        state.basket[state.currentCertificate],
-        1,
-        certificate
-      )
-      // }
-    }
-  },
-  [types.SET_CURRENT_CERTIFICATE](state, certificateIndex) {
-    state.currentCertificate = certificateIndex
+  [types.SET_CURRENT_CERTIFICATE](state, basketItemId) {
+    state.currentCertificate = basketItemId
   }
 }

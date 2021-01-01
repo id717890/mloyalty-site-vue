@@ -1,7 +1,7 @@
 <template>
   <div class="ml-panel-basket-page h100">
     <div
-      class="d-flex flex-column align-center justify-center h100"
+      class="d-flex flex-column align-center justify-center vh100"
       v-if="!basket || !basket.length"
     >
       <img src="~@/assets/img/empty-cart.png" alt="" class="empty-cart-img" />
@@ -26,7 +26,7 @@
             :ref="'the-basket-item-' + itemIndex"
             :key="itemIndex"
             :index="itemIndex"
-            :certificate="item"
+            :item="item"
           />
         </template>
 

@@ -4,28 +4,23 @@ const testOptions = {
   certificates: [
     {
       id: 1,
-      img: require('@/assets/img/example/design1.png'),
-      price: 1000
+      img: require('@/assets/img/example/design1.png')
     },
     {
       id: 2,
-      img: require('@/assets/img/example/design2.png'),
-      price: 2000
+      img: require('@/assets/img/example/design2.png')
     },
     {
       id: 3,
-      img: require('@/assets/img/example/design3.png'),
-      price: 3000
+      img: require('@/assets/img/example/design3.png')
     },
     {
       id: 4,
-      img: require('@/assets/img/example/design4.png'),
-      price: 4000
+      img: require('@/assets/img/example/design4.png')
     },
     {
       id: 5,
-      img: require('@/assets/img/example/design5.png'),
-      price: 5000
+      img: require('@/assets/img/example/design5.png')
     }
   ],
   pars: [500, 1000, 3000, 5000, 10000]
