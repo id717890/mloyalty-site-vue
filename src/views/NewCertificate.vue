@@ -145,6 +145,7 @@ export default {
     if (this.isUpdate) {
       this.loadCertificateFromStore()
     }
+    this.handleScroll()
   },
   methods: {
     ...mapMutations('basket', [
