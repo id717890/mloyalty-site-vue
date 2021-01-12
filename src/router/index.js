@@ -1,5 +1,3 @@
-// import Home from '../views/Home.vue'
-// import MainPage from '../views/MainPage.vue'
 import Template from '../views/Template.vue'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -10,63 +8,8 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    // name: 'Home',
-    component: () => import('../views/NewCertificate.vue'),
-    // components: {
-    //   default: MainPage,
-    //   main: Home
-    // },
-    children: [
-      // {
-      //   path: '',
-      //   name: 'Template',
-      //   components: {
-      //     main: () =>
-      //       import(/* webpackChunkName: "about" */ '../views/Home.vue')
-      //   },
-      //   meta: {
-      //     title: 'Функциональные виджеты'
-      //   }
-      // },
-      {
-        path: 'orders',
-        name: 'Orders',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        components: {
-          main: () =>
-            import(/* webpackChunkName: "about" */ '../views/Order.vue')
-        },
-        meta: {
-          title: 'MLoyalty - Заказы'
-        }
-      },
-      {
-        path: 'contact',
-        name: 'Contact',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        components: {
-          main: () =>
-            import(/* webpackChunkName: "about" */ '../views/Contact.vue')
-        },
-        meta: {
-          title: 'MLoyalty - Контакты'
-        }
-      }
-      // {
-      //   path: 'preview',
-      //   name: 'Preview',
-      //   components: {
-      //     main: () => import('../views/Preview.vue')
-      //   },
-      //   meta: {
-      //     title: 'MLoyalty - Просмотр сертификата'
-      //   }
-      // }
-    ]
+    name: 'NewCertificate',
+    component: () => import('../views/NewCertificate.vue')
   },
   {
     path: '/sending',
@@ -99,14 +42,6 @@ const routes = [
     component: Template,
     meta: {
       title: 'MLoyalty - Пример страницы'
-    }
-  },
-  {
-    path: '/preview',
-    name: 'Preview',
-    component: () => import('../views/Preview.vue'),
-    meta: {
-      title: 'Получение подарочного сертификата'
     }
   }
 ]
