@@ -1,11 +1,11 @@
 <template>
   <div v-if="options">
-    <div class="loading-designs" v-if="loading">
-      <v-progress-circular
+    <div class="loading-designs" :class="{ 'opacity-none': loading }">
+      <!-- <v-progress-circular
         indeterminate
         size="30"
         color="primary"
-      ></v-progress-circular>
+      ></v-progress-circular> -->
     </div>
     <swiper
       @slideChange="slideChange"
@@ -29,6 +29,20 @@
 </template>
 
 <script>
+const swiperOption = {
+  // allowTouchMove: false,
+  autoHeight: true,
+  slidesPerView: 'auto',
+  slidesPerGroup: 1,
+  loop: true,
+  // centeredSlides: true,
+  spaceBetween: 8,
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true
+  }
+}
+
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 
 // import style (>= Swiper 6.x)
@@ -45,38 +59,34 @@ SwiperClass.use([Pagination])
 
 import { mapGetters, mapState } from 'vuex'
 import { set } from 'date-fns'
+import { tr } from 'date-fns/locale'
 export default {
   components: {
     Swiper,
     SwiperSlide
   },
   data: () => ({
-    loading: true,
-    swiperOption: {
-      autoHeight: true,
-      slidesPerView: 'auto',
-      slidesPerGroup: 1,
-      loop: true,
-      // centeredSlides: true,
-      spaceBetween: 8,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true
-      }
-    }
+    loading: true
   }),
   methods: {
+    // handleSwiperReadied() {
+    //   // console.log('ready')
+    //   // setTimeout(() => {
+    //   //   this.offsetSlide(false)
+    //   // })
+    // },
     async init() {
       if (this.currentCertificate) {
         const findCertificate = this.options?.certificates.find(
           x => x.id === this.currentCertificate.certificate.id
         )
+        const swiper = this.$refs['swiper-cert'].$swiper
         if (findCertificate) {
           const index = this.options.certificates.indexOf(findCertificate)
           if (index === 0) {
-            this.swiper.slideTo(index + this.countCertificates, 500, false)
+            swiper.slideTo(index + this.countCertificates, 500, false)
           } else {
-            this.swiper.slideTo(index, 500, false)
+            swiper.slideTo(index, 500, false)
           }
           this.$emit('change-certificate', findCertificate)
         }
@@ -85,7 +95,7 @@ export default {
       }
       setTimeout(() => {
         this.offsetSlide(false)
-      }, 800)
+      }, 250)
     },
     slideChange(item) {
       console.log('slideChange')
@@ -104,24 +114,40 @@ export default {
     },
     /** Смещение слайдера как в дизайне */
     offsetSlide(isLoading = null) {
+      // this.loading = false
+      // return
+      // let item = this.$refs['swiper-cert'].$swiper
       let item = this.$refs['swiper-cert'].$swiper
-      console.log('offsetSlide OUT', item)
-      if (item) {
-        console.log('offsetSlide IN', item)
-        let el = document.getElementsByClassName('swiper-wrapper')[0]
-        let translateX = item.translate
-        const offset = translateX + 35
-        this.$nextTick(() => {
-          console.log('move ', translateX, offset)
-          setTimeout(() => {
-            el.style.transform = `translate3d(${offset}px, 0px, 0px)`
-          })
-          if (isLoading !== null) {
-            this.loading = isLoading
-          }
-        })
+      // console.log('offsetSlide OUT', item)
+      // if (item) {
+      // console.log('offsetSlide IN', item)
+      console.log('offsetSlide IN')
+      // let el = document.getElementsByClassName('swiper-wrapper')[0]
+      let translateX = item.translate
+      const offset = translateX + 35
+      // this.$nextTick(() => {
+      console.log('move ', translateX, offset)
+      setTimeout(() => {
+        console.log('get ', item.getTranslate())
+        // this.swiper.setTranslate(`translate3d(${offset}px, 0px, 0px)`)
+        // el.style.transform = `translate3d(${offset}px, 0px, 0px)`
+        item.setTranslate(offset)
+        // this.swiper.translateTo(offset, 110, false, true)
+        console.log('get ', item.getTranslate())
+        // setTimeout(() => {
+        //   if (isLoading !== null) {
+        //     this.loading = isLoading
+        //   }
+        // })
+      }, 10)
+      // setTimeout(() => {
+      if (isLoading !== null) {
+        this.loading = isLoading
       }
-      return Promise.resolve()
+      // }, 250)
+      // })
+      // }
+      // return Promise.resolve()
     }
   },
   mounted() {
@@ -130,11 +156,21 @@ export default {
   computed: {
     ...mapState({
       options: state => state.certificate.options,
-      currentCertificate: state => state.basket.currentCertificate
+      currentCertificate: state => state.basket.currentCertificate,
+      isMobile: state => state.app.isMobile
     }),
-    swiper() {
-      return this.$refs['swiper-cert'].$swiper
+    swiperOption() {
+      const options = swiperOption
+      if (this.isMobile === true) {
+        options.allowTouchMove = true
+      } else {
+        options.allowTouchMove = false
+      }
+      return options
     },
+    // swiper() {
+    //   return this.$refs['swiper-cert'].$swiper
+    // },
     countCertificates() {
       const count = this.options.certificates.length
       return count ? count : 0

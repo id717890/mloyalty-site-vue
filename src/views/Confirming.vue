@@ -155,6 +155,7 @@ export default {
     if (!this['verificationCode/isVerified']) {
       this.$router.push('/sending')
     }
+    this.handleScroll()
   }
 }
 </script>

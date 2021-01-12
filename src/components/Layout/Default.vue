@@ -14,38 +14,29 @@
                 'mloyalty-no-padding-top-bottom': isBalance || isPreview
               }"
             >
-              <transition name="panel-fade" mode="out-in">
-                <div v-if="loading" class="h100 d-flex justify-center">
-                  <div
-                    class="pb flex-grow-1 d-flex justify-center align-center"
-                  >
-                    <MlLoading />
-                  </div>
+              <!-- <transition name="panel-fade" mode="out-in"> -->
+              <div v-if="loading" class="h100 d-flex justify-center">
+                <div class="pb flex-grow-1 d-flex justify-center align-center">
+                  <MlLoading />
                 </div>
-                <router-view v-else></router-view>
-                <!-- <component v-else :is="component"></component> -->
-              </transition>
+              </div>
+              <router-view v-else></router-view>
+              <!-- <component v-else :is="component"></component> -->
+              <!-- </transition> -->
             </div>
             <!-- <panel-footer v-if="isShowFooterHeader && !isPreview" /> -->
             <!-- Кнопка бургера -->
-            <v-btn
+            <burger-btn
               v-if="showBtnBurger"
-              @click.stop="togglePanelBurger"
-              :style="{ bottom: paddingBottomForBasketAndBurger }"
-              class="mloyalty-circle-burger"
-              fab
-              width="48"
-              height="48"
-              small
-              elevation="0"
-              color="#F0F0F0"
               ref="burger-btn"
-            >
-              <img src="@/assets/img/default/burger.png" alt="" />
-            </v-btn>
+              :style="{ bottom: paddingBottomForBasketAndBurger }"
+            />
             <basket-btn
+              ref="basket-btn"
               v-if="showBtnBasket"
-              :class="{ 'right-for-sending': isSendingPage }"
+              :class="{
+                'right-for-sending': isSendingPage
+              }"
               :style="{
                 bottom: paddingBottomForBasketAndBurger
               }"
@@ -78,15 +69,19 @@ import basketTypes from '@/store/basket/types'
 import MlLoading from '@/components/UI/MlLoading'
 import ModalConfirmRemoveCertificate from '@/components/Panel/ModalConfirm'
 import burgerLayout from '@/components/Burger/_Layout'
-import panelBurgerTypes from '@/store/panelBurger/types'
 import BasketBtn from '@/components/BasketBtn'
+import BurgerBtn from '@/components/BurgerBtn'
 export default {
   components: {
     MlLoading,
     ModalConfirmRemoveCertificate,
     burgerLayout,
-    BasketBtn
+    BasketBtn,
+    BurgerBtn
   },
+  data: () => ({
+    btnInit: false
+  }),
   computed: {
     ...mapState({
       loading: state => state.app.loading,
@@ -99,6 +94,9 @@ export default {
     isSendingPage() {
       return this.$route.path === '/sending'
     },
+    isHomePage() {
+      return this.$route.path === '/'
+    },
     paddingBottomForBasketAndBurger() {
       const defaultValue = 18
       // let offset = defaultValue
@@ -108,6 +106,7 @@ export default {
       // if (this.$route.path === '/' || this.$route.path === '/sending')
       //   value = 94
       // if (this.$route.path === '/confirming') value = 125
+      this.changeOpacityBtns()
       return `${offset}px`
     },
     showBtnBasket() {
@@ -149,9 +148,24 @@ export default {
       panelTypes.TOGGLE_PANEL
     ]),
     ...mapActions('certificate', [certificateTypes.GET_CERTIFICATE_OPTIONS]),
-    ...mapMutations('panelBurger', [panelBurgerTypes.TOGGLE_PANEL_BURGER]),
-    togglePanelBurger() {
-      this[panelBurgerTypes.TOGGLE_PANEL_BURGER]()
+
+    changeOpacityBtns() {
+      // if (this.$route.path === '/' && this.btnInit === false) {
+      setTimeout(() => {
+        const basket = this.$refs['basket-btn']?.$el?.style
+        const burger = this.$refs['burger-btn']?.$el?.style
+        if (burger) {
+          this.$refs['burger-btn'].$el.style.opacity = 1
+        }
+        if (basket) {
+          this.$refs['basket-btn'].$el.style.opacity = 1
+        }
+        // console.log(this.$refs['burger-btn'].$el.style)
+        // this.$refs['burger-btn'].$el.classList.remove('opactity-none')
+        // this.$refs['basket-btn'].$el.classList.remove('opactity-none')
+        // this.btnInit = true
+      }, 1000)
+      // }
     }
   },
   mounted() {

@@ -4,5 +4,6 @@ export default {
     show: false,
     item: null
   },
-  currentCertificate: null
+  currentCertificate: null,
+  preview: null
 }

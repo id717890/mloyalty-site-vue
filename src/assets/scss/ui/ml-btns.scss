@@ -63,6 +63,11 @@
   position: fixed;
   // bottom: 94px;
   right: 32px;
+  opacity: 0;
+}
+
+.opactity-none {
+  opacity: 0;
 }
 
 .mloyalty-circle-basket.right-for-sending {
@@ -73,6 +78,7 @@
   position: fixed;
   // bottom: 94px;
   right: 92px;
+  opacity: 0;
 
   .shop-cart-count {
     display: inline-block;

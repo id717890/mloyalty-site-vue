@@ -183,6 +183,24 @@
   }
 }
 
+.ml-basket-price-label2 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24.4897px;
+  line-height: 38px;
+  letter-spacing: -0.03em;
+  color: #000000;
+
+  align-items: center;
+  padding: 0px 4px;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(40px);
+  border-radius: 4px;
+  bottom: 8px;
+  right: 8px;
+}
+
 .wrapper-alert {
   z-index: 10;
   position: sticky;

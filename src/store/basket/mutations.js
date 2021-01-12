@@ -2,6 +2,9 @@ import types from './types'
 import { v4 as uuid } from 'uuid'
 
 export default {
+  [types.SET_PREVIEW](state, item) {
+    state.preview = item
+  },
   /**
    * Добавляет сертификат в корзину
    * @param {Object} state

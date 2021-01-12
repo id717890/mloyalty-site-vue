@@ -42,7 +42,7 @@
             >
               <img src="@/assets/img/example/riv-gosh.png" alt="" />
               <div class="ml-title1-24-32-600 mb-2">Сертификат</div>
-              <div class="ml-title1-24-32-600 mb-2">на 3000 ₽</div>
+              <div class="ml-title1-24-32-600 mb-2">на {{ price }} ₽</div>
               <div class="ml-title1-24-32-600 mb-2 m-title-hidden">
                 «РивГош»
               </div>
@@ -50,19 +50,27 @@
                 Действует до 29.04.2020
               </div>
               <div class="ml-text-16-24 ml-text-grey1 mt-6 text-left">
-                С днем рождения! Желаю крепкого здоровья, удачи, благополучия,
+                <!-- С днем рождения! Желаю крепкого здоровья, удачи, благополучия,
                 добра, радости, любви, счастья, хорошего настроения, улыбок,
                 ярких впечатлений. Пусть тепло и уют всегда наполняют твой дом,
                 пусть солнечный свет согревает в любую погоду, при одной мысли о
-                них.
+                них. -->
+                {{ congratulation }}
               </div>
             </div>
             <div class="col-12 d-flex flex-column align-items-center">
-              <img
+              <!-- <img
                 src="@/assets/img/example/riv-gosh-card.png"
                 alt=""
                 class="mb-8 mloyalty-certificate-image"
-              />
+              /> -->
+              <v-img
+                :aspect-ratio="16 / 11"
+                class="ml-img-rounded mb-8 mloyalty-certificate-image"
+                :src="image"
+              >
+                <div class="ml-basket-price-label2">{{ price }}₽</div>
+              </v-img>
               <img
                 src="@/assets/img/example/riv-gosh-bar-code.png"
                 class="mb-2"
@@ -159,12 +167,27 @@
 import SwipeButton from '@/components/UI/SwipeButton'
 import faq from '@/components/Burger/Pages/FAQ'
 import certificateFooter from '@/components/CertificateFooter'
+import { mapState } from 'vuex'
 
 export default {
   components: { SwipeButton, faq, certificateFooter },
   data: () => ({
     show: false
   }),
+  computed: {
+    ...mapState({
+      preview: state => state.basket.preview
+    }),
+    price() {
+      return this.preview?.price ?? 0
+    },
+    congratulation() {
+      return this.preview?.congratulation
+    },
+    image() {
+      return this.preview?.certificate?.img
+    }
+  },
   methods: {
     goBack() {
       this.$router.push('/')

@@ -151,7 +151,8 @@ export default {
     ...mapMutations('basket', [
       basketTypes.ADD_CERTIFICATE,
       basketTypes.UPDATE_CERTIFICATE,
-      basketTypes.CALL_CONFIRM_MODAL
+      basketTypes.CALL_CONFIRM_MODAL,
+      basketTypes.SET_PREVIEW
     ]),
     makeBasketItem() {
       let item = this.form
@@ -159,6 +160,12 @@ export default {
       return item
     },
     openPreview() {
+      const item = {
+        certificate: this.form?.certificate,
+        price: this.customPar ?? this.selectedPar,
+        congratulation: this.form?.congratulation
+      }
+      this[basketTypes.SET_PREVIEW](item)
       this.$router.push('/preview-mobile')
     },
     save() {

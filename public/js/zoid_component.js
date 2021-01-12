@@ -5,8 +5,8 @@ window.MloyaltyWidget = zoid.create({
 
   // The url that will be loaded in the iframe or popup, when someone includes my component on their page
 
-  // url: 'http://localhost:8081/',
-  url: 'https://vidget.lctest.ru/',
+  url: 'http://localhost:8081/',
+  // url: 'https://vidget.lctest.ru/',
 
   dimensions: {
     width: '100%',

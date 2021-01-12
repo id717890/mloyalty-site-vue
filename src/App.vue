@@ -27,8 +27,8 @@ export default {
     const isMobile = window?.xprops?.isMobile
     const code = window?.xprops?.code
     const counter = window?.xprops?.counter
+    console.log('IS MOBILE', isMobile)
     if (isMobile) {
-      console.log('IS MOBILE', window.xprops.isMobile)
       this[appTypes.SET_TYPE_BROWSER](isMobile)
     }
     if (code) {
