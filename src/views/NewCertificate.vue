@@ -47,9 +47,15 @@
             class="d-flex flex-row align-center justify-content-between pt-3"
           >
             <a href="#" @click.prevent="openPreview">
-              <img src="~@/assets/img/eye.png" alt="" />
-              <span class="ml-text-14-20-500 ml-2">Предпросмотр</span>
+              <img src="~@/assets/img/eye.png" v-if="!isAllowContinue" alt="" />
+              <img src="~@/assets/img/eye-grey.svg" v-else alt="" />
+              <span
+                class="ml-text-14-20-500 ml-2 "
+                :class="{ 'ml-text-grey2': isAllowContinue }"
+                >Предпросмотр</span
+              >
             </a>
+
             <a
               href="#"
               v-if="isUpdate"
@@ -160,6 +166,7 @@ export default {
       return item
     },
     openPreview() {
+      if (this.isAllowContinue) return
       const item = {
         certificate: this.form?.certificate,
         price: this.customPar ?? this.selectedPar,

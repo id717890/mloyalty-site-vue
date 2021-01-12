@@ -40,6 +40,10 @@ const swiperOption = {
   pagination: {
     el: '.swiper-pagination',
     clickable: true
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev'
   }
 }
 
@@ -168,9 +172,9 @@ export default {
       }
       return options
     },
-    // swiper() {
-    //   return this.$refs['swiper-cert'].$swiper
-    // },
+    swiper() {
+      return this.$refs['swiper-cert'].$swiper
+    },
     countCertificates() {
       const count = this.options.certificates.length
       return count ? count : 0
