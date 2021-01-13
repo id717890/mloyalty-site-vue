@@ -1,12 +1,12 @@
 <template>
   <div v-if="options">
-    <div class="loading-designs" :class="{ 'opacity-none': loading }">
-      <!-- <v-progress-circular
+    <!-- <div class="loading-designs" :class="{ 'opacity-none': loading }">
+      <v-progress-circular
         indeterminate
         size="30"
         color="primary"
-      ></v-progress-circular> -->
-    </div>
+      ></v-progress-circular>
+    </div> -->
     <swiper
       @slideChange="slideChange"
       class="mloyalty-swiper swiper"
@@ -30,10 +30,16 @@
 
 <script>
 const swiperOption = {
-  // allowTouchMove: false,
+  // touchStartPreventDefault: false,
+  // grabCursor: true,
+  // touchReleaseOnEdges: true,
+  followFinger: false,
+  allowTouchMove: true,
+  updateOnWindowResize: false,
+  slidesOffsetBefore: 35,
   autoHeight: true,
   slidesPerView: 'auto',
-  slidesPerGroup: 1,
+  // slidesPerGroup: 1,
   loop: true,
   // centeredSlides: true,
   spaceBetween: 8,
@@ -73,16 +79,10 @@ export default {
     loading: true
   }),
   methods: {
-    // handleSwiperReadied() {
-    //   // console.log('ready')
-    //   // setTimeout(() => {
-    //   //   this.offsetSlide(false)
-    //   // })
-    // },
-    async init() {
-      if (this.currentCertificate) {
+    init() {
+      const func = id => {
         const findCertificate = this.options?.certificates.find(
-          x => x.id === this.currentCertificate.certificate.id
+          x => x.id === id
         )
         const swiper = this.$refs['swiper-cert'].$swiper
         if (findCertificate) {
@@ -94,6 +94,24 @@ export default {
           }
           this.$emit('change-certificate', findCertificate)
         }
+      }
+      if (this.currentCertificate) {
+        func(this.currentCertificate?.certificate?.id)
+        // const findCertificate = this.options?.certificates.find(
+        //   x => x.id === this.currentCertificate.certificate.id
+        // )
+        // const swiper = this.$refs['swiper-cert'].$swiper
+        // if (findCertificate) {
+        //   const index = this.options.certificates.indexOf(findCertificate)
+        //   if (index === 0) {
+        //     swiper.slideTo(index + this.countCertificates, 500, false)
+        //   } else {
+        //     swiper.slideTo(index, 500, false)
+        //   }
+        //   this.$emit('change-certificate', findCertificate)
+        // }
+      } else if (this.preview) {
+        func(this.preview?.certificate?.id)
       } else {
         this.$emit('change-certificate', this.options.certificates[0])
       }
@@ -118,6 +136,7 @@ export default {
     },
     /** Смещение слайдера как в дизайне */
     offsetSlide(isLoading = null) {
+      return
       // this.loading = false
       // return
       // let item = this.$refs['swiper-cert'].$swiper
@@ -143,7 +162,7 @@ export default {
         //     this.loading = isLoading
         //   }
         // })
-      }, 10)
+      }, 35)
       // setTimeout(() => {
       if (isLoading !== null) {
         this.loading = isLoading
@@ -161,16 +180,17 @@ export default {
     ...mapState({
       options: state => state.certificate.options,
       currentCertificate: state => state.basket.currentCertificate,
-      isMobile: state => state.app.isMobile
+      isMobile: state => state.app.isMobile,
+      preview: state => state.basket.preview
     }),
     swiperOption() {
-      const options = swiperOption
-      if (this.isMobile === true) {
-        options.allowTouchMove = true
-      } else {
-        options.allowTouchMove = false
-      }
-      return options
+      // const options = swiperOption
+      // if (this.isMobile === true) {
+      //   options.allowTouchMove = true
+      // } else {
+      //   options.allowTouchMove = false
+      // }
+      return swiperOption
     },
     swiper() {
       return this.$refs['swiper-cert'].$swiper

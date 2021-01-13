@@ -55,6 +55,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   //При перехоадах сбрасываем отсутп от низ для кнопок бургера и корзины
   store.commit('app/SET_BOTTOM_OFFSET', 0)
+  store.commit('app/SET_OPACITY', 1)
 
   if (to?.path === '/preview-mobile') {
     window?.xprops?.onHideClose(true)

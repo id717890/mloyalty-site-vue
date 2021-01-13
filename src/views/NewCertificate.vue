@@ -98,6 +98,7 @@ import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
 import MixinObserveElement from '@/helpers/mixins/observeElement'
 import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
 import certificateTypes from '@/store/certificate/types'
+import appTypes from '@/store/app/types'
 import basketTypes from '@/store/basket/types'
 import { debounce, cloneDeep } from 'lodash'
 
@@ -123,7 +124,8 @@ export default {
   computed: {
     ...mapState({
       options: state => state.certificate.options,
-      currentCertificate: state => state.basket.currentCertificate
+      currentCertificate: state => state.basket.currentCertificate,
+      preview: state => state.basket.preview
     }),
     ...mapGetters(['verificationCode/isVerified', 'basket/allPositions']),
     observedElement() {
@@ -131,6 +133,9 @@ export default {
     },
     isUpdate() {
       return this.currentCertificate ? true : false
+    },
+    isPreview() {
+      return this.preview ? true : false
     },
     isAllowContinue() {
       const price = this.customPar ?? this.selectedPar
@@ -148,7 +153,7 @@ export default {
     }
   },
   mounted() {
-    if (this.isUpdate) {
+    if (this.isUpdate || this.isPreview) {
       this.loadCertificateFromStore()
     }
     this.handleScroll()
@@ -160,6 +165,7 @@ export default {
       basketTypes.CALL_CONFIRM_MODAL,
       basketTypes.SET_PREVIEW
     ]),
+    ...mapMutations('app', [appTypes.SET_OPACITY]),
     makeBasketItem() {
       let item = this.form
       item.price = this.customPar ?? this.selectedPar ?? null
@@ -173,7 +179,10 @@ export default {
         congratulation: this.form?.congratulation
       }
       this[basketTypes.SET_PREVIEW](item)
-      this.$router.push('/preview-mobile')
+      this[appTypes.SET_OPACITY](0)
+      setTimeout(() => {
+        this.$router.push('/preview-mobile')
+      }, 250)
     },
     save() {
       let data = this.makeBasketItem()
@@ -192,11 +201,20 @@ export default {
       this[basketTypes.CALL_CONFIRM_MODAL](this.currentCertificate)
     },
     loadCertificateFromStore() {
-      this.form.id = this.currentCertificate.id
-      this.form.congratulation = this.currentCertificate.congratulation
-      this.form.certificate = this.currentCertificate.certificate
-      this.form.count = this.currentCertificate.count
-      const price = this.currentCertificate.price
+      console.log('load')
+      let price = 0
+      if (this.currentCertificate) {
+        this.form.id = this.currentCertificate.id
+        this.form.congratulation = this.currentCertificate?.congratulation
+        this.form.certificate = this.currentCertificate?.certificate
+        this.form.count = this.currentCertificate?.count
+        price = this.currentCertificate?.price
+      }
+      if (this.preview) {
+        this.form.congratulation = this.preview?.congratulation
+        this.form.certificate = this.preview?.certificate
+        price = this.preview?.price
+      }
       if (price) {
         if (this.options.pars.includes(price)) {
           this.selectedPar = price
@@ -220,11 +238,14 @@ export default {
     },
     nextPage() {
       this.storeCertificate()
-      if (this['verificationCode/isVerified']) {
-        this.$router.push('/confirming')
-      } else {
-        this.$router.push('/sending')
-      }
+      this[appTypes.SET_OPACITY](0)
+      setTimeout(() => {
+        if (this['verificationCode/isVerified']) {
+          this.$router.push('/confirming')
+        } else {
+          this.$router.push('/sending')
+        }
+      }, 250)
     }
   }
 }

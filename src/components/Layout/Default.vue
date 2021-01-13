@@ -88,7 +88,8 @@ export default {
       modalConfirmRemove: state => state.basket.modalConfirmRemove.show,
       showPanelBurger: state => state.panelBurger.show,
       config: state => state.app.config,
-      offsetBottom: state => state.app.offsetBottom
+      offsetBottom: state => state.app.offsetBottom,
+      opacity: state => state.app.opacity
     }),
     /**Смещение для кнопки корзины если страницы ввода контактов, т.к. кнопку бургера скрываем */
     isSendingPage() {
@@ -140,6 +141,13 @@ export default {
   watch: {
     showPanelBurger(newValue) {
       window?.xprops?.onHideClose(newValue)
+    },
+    opacity(newValue) {
+      console.log('OPACITY CHANGE', newValue)
+      if (newValue === 0) {
+        this.$refs['burger-btn'].$el.style.opacity = 0
+        this.$refs['basket-btn'].$el.style.opacity = 0
+      }
     }
   },
   methods: {

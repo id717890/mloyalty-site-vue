@@ -1,6 +1,9 @@
 import types from './types'
 
 export default {
+  [types.SET_OPACITY]: (state, value) => {
+    state.opacity = value
+  },
   [types.SET_BOTTOM_OFFSET]: (state, value) => {
     state.offsetBottom = value
   },
