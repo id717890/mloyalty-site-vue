@@ -1,11 +1,13 @@
 window.MloyaltyWidget = zoid.create({
   // The html tag used to render my component
 
-  tag: 'mloyalty-widget',
+  tag: 'mloyalty-side-panel-widget-content',
 
   // The url that will be loaded in the iframe or popup, when someone includes my component on their page
 
-  url: 'http://localhost:8081/',
+  url: ({ props }) => props.url || 'http://localhost:8081/',
+  // url: ({ props }) => props.url || 'https://vidget.lctest.ru/',
+  // url: 'http://localhost:8081/',
   // url: 'https://vidget.lctest.ru/',
 
   dimensions: {
@@ -18,13 +20,17 @@ window.MloyaltyWidget = zoid.create({
       type: 'string',
       required: true
     },
-    isMobile: {
-      type: 'boolean',
+    url: {
+      type: 'string',
       required: false
-    },
-    onHideClose: {
-      type: 'function',
-      required: true
     }
+    // isMobile: {
+    //   type: 'boolean',
+    //   required: false
+    // },
+    // onHideClose: {
+    //   type: 'function',
+    //   required: true
+    // }
   }
 })

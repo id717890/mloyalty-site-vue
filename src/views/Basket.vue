@@ -118,6 +118,7 @@ export default {
     },
     addCertificate() {
       this[basketTypes.SET_CURRENT_CERTIFICATE](null)
+      this.$store.commit('basket/SET_PREVIEW', null)
       this.$router.push('/')
     }
   }

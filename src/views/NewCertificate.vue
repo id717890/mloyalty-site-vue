@@ -188,6 +188,7 @@ export default {
       let data = this.makeBasketItem()
       this[basketTypes.UPDATE_CERTIFICATE](data)
       this.alert = true
+      this[basketTypes.SET_PREVIEW](null)
       setTimeout(() => {
         this.$router.push('/basket')
       }, 1500)
@@ -238,7 +239,9 @@ export default {
     },
     nextPage() {
       this.storeCertificate()
+      this[basketTypes.SET_PREVIEW](null)
       this[appTypes.SET_OPACITY](0)
+
       setTimeout(() => {
         if (this['verificationCode/isVerified']) {
           this.$router.push('/confirming')

@@ -19,6 +19,7 @@
 export default {
   methods: {
     newCertificate() {
+      this.$store.commit('basket/SET_PREVIEW', null)
       this.$router.push('/')
     }
   }
