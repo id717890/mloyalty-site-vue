@@ -50,6 +50,7 @@
         app
         stateless
         temporary
+        touchless
         right
       >
         <v-btn
@@ -82,6 +83,7 @@
         app
         stateless
         temporary
+        touchless
         right
       >
         <v-btn
@@ -203,7 +205,7 @@ export default {
     }
   },
   mounted() {
-    this[panelTypes.TOGGLE_PANEL](false)
+    this[panelTypes.TOGGLE_PANEL](true)
     console.log(this.isMobile())
     this.initWidget()
     // setTimeout(() => {

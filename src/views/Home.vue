@@ -41,6 +41,12 @@
                   >
                     Купить
                   </a>
+                  <a
+                    href="#"
+                    data-mloyalty-side-panel-trigger="mloyalty-side-panel-widget"
+                    data-mloyalty-code="111"
+                    >Виджет 111</a
+                  >
                 </div>
                 <div class="col-lg-4 col-sm-12 px-1">
                   <router-link

@@ -6,23 +6,23 @@
 export default {
   methods: {
     initMarquiz(w, d, s, o) {
-      if (!window.__marquiz) window.__marquiz = []
-      window.marquiz = function() {
-        window.Marquiz
-          ? Marquiz.add(arguments)
-          : window.__marquiz.push(arguments)
-      }
-      var j = d.createElement(s)
-      j.async = true
-      j.src = '//script.marquiz.ru/v2.js'
-      j.onload = function() {
-        if (document.readyState !== 'loading') Marquiz.init(o)
-        else
-          document.addEventListener('DOMContentLoaded', function() {
-            Marquiz.init(o)
-          })
-      }
-      d.head.insertBefore(j, d.head.firstElementChild)
+      // if (!window.__marquiz) window.__marquiz = []
+      // window.marquiz = function() {
+      //   window.Marquiz
+      //     ? Marquiz.add(arguments)
+      //     : window.__marquiz.push(arguments)
+      // }
+      // var j = d.createElement(s)
+      // j.async = true
+      // j.src = '//script.marquiz.ru/v2.js'
+      // j.onload = function() {
+      //   if (document.readyState !== 'loading') Marquiz.init(o)
+      //   else
+      //     document.addEventListener('DOMContentLoaded', function() {
+      //       Marquiz.init(o)
+      //     })
+      // }
+      // d.head.insertBefore(j, d.head.firstElementChild)
     }
   },
   mounted() {
