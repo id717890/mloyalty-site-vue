@@ -132,6 +132,7 @@ export default {
   data() {
     return {
       counter: 1,
+      code: 'test-code',
       isShowMobileCloseBtn: true,
       drawer: false,
       items: [
@@ -175,26 +176,30 @@ export default {
     },
     initWidget() {
       this.$refs['widget-wrapper'].innerHTML = null
-
+      window.code = 'wincode'
+      console.log(window.code)
       MloyaltyWidget({
-        counter: this.counter,
-        code: 'test-code',
-        isMobile: this.isMobile(),
-        onHideClose: value => {
-          this.$set(this, 'isShowMobileCloseBtn', !value)
-        },
-        testFunc: callback => {
-          const handler = () => callback()
-          window.addEventListener('hashchange', handler)
-          return {
-            cancel: () => window.removeEventListener('hashchange', handler)
-          }
-        }
+        // counter: this.counter,
+        code: window.code
+        // isMobile: this.isMobile(),
+        // onHideClose: value => {
+        //   this.$set(this, 'isShowMobileCloseBtn', !value)
+        // },
+        // testFunc: callback => {
+        //   const handler = () => callback()
+        //   window.addEventListener('hashchange', handler)
+        //   return {
+        //     cancel: () => window.removeEventListener('hashchange', handler)
+        //   }
+        // }
       }).render('#widget-wrapper')
 
-      // setTimeout(() => {
-      //   iii.then(x => console.log('XXX', x))
-      // }, 3000)
+      setTimeout(() => {
+        console.log('PROPS CHANGE')
+        window.code = 'new-wincode'
+        // MloyaltyWidget.updateProps({ code: '12345' })
+        console.log(window.code)
+      }, 2000)
     }
   },
   watch: {
@@ -205,8 +210,8 @@ export default {
     }
   },
   mounted() {
-    this[panelTypes.TOGGLE_PANEL](true)
-    console.log(this.isMobile())
+    // this[panelTypes.TOGGLE_PANEL](true)
+    // console.log(this.isMobile())
     this.initWidget()
     // setTimeout(() => {
     //   let newVal = this.counter + 1

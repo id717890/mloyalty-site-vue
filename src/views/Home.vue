@@ -41,12 +41,29 @@
                   >
                     Купить
                   </a>
-                  <a
+                  <!-- <a href="#" @click.prevent="updateProps">props</a> -->
+                  <!-- <button
+                    type="button"
+                    class="ml-silver-btn w100"
+                    style="font-size: 14px;"
+                    @click="openSidePanel"
+                  >
+                    Купить
+                  </button>
+                  <button
+                    type="button"
+                    class="ml-silver-btn w100"
+                    style="font-size: 14px;"
+                    @click="openSidePanel2"
+                  >
+                    Купить2
+                  </button> -->
+                  <!-- <a
                     href="#"
                     data-mloyalty-side-panel-trigger="mloyalty-side-panel-widget"
                     data-mloyalty-code="111"
                     >Виджет 111</a
-                  >
+                  > -->
                 </div>
                 <div class="col-lg-4 col-sm-12 px-1">
                   <router-link
@@ -114,6 +131,17 @@ export default {
       panelTypes.TOGGLE_PANEL_BALANCE
     ]),
     ...mapMutations('verificationCode', [verificationTypes.SET_TEST_CODE]),
+    updateProps() {
+      widgetZoidComponent.updateProps({ code: 12345 })
+    },
+    openSidePanel() {
+      MloyaltyWidget.open('333')
+      // MloyaltySidePanel.show('mloyalty-side-panel-widget')
+    },
+    openSidePanel2() {
+      MloyaltyWidget.open('12345')
+      // MloyaltySidePanel.show('mloyalty-side-panel-widget')
+    },
     togglePanelBalance() {
       console.log(this.showPanelBalance)
       this[panelTypes.TOGGLE_PANEL_BALANCE](!this.showPanelBalance)

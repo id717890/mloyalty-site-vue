@@ -6,23 +6,46 @@
 export default {
   methods: {
     initMarquiz(w, d, s, o) {
-      // if (!window.__marquiz) window.__marquiz = []
-      // window.marquiz = function() {
-      //   window.Marquiz
-      //     ? Marquiz.add(arguments)
-      //     : window.__marquiz.push(arguments)
-      // }
-      // var j = d.createElement(s)
-      // j.async = true
-      // j.src = '//script.marquiz.ru/v2.js'
-      // j.onload = function() {
-      //   if (document.readyState !== 'loading') Marquiz.init(o)
-      //   else
-      //     document.addEventListener('DOMContentLoaded', function() {
-      //       Marquiz.init(o)
-      //     })
-      // }
-      // d.head.insertBefore(j, d.head.firstElementChild)
+      if (!window.__marquiz) window.__marquiz = []
+      window.marquiz = function() {
+        window.Marquiz
+          ? Marquiz.add(arguments)
+          : window.__marquiz.push(arguments)
+      }
+      var j = d.createElement(s)
+      j.async = true
+      j.src = '//script.marquiz.ru/v2.js'
+      j.onload = function() {
+        if (document.readyState !== 'loading') Marquiz.init(o)
+        else
+          document.addEventListener('DOMContentLoaded', function() {
+            Marquiz.init(o)
+          })
+      }
+      d.head.insertBefore(j, d.head.firstElementChild)
+    },
+    initPanel() {
+      ;(function(w, i, d, g, e, t) {
+        t = i.createElement(d)
+        t.async = 1
+        t.src = g
+        t.onload = function() {
+          if (document.readyState !== 'loading') {
+            MloyaltyWidget.init(e)
+          } else {
+            document.addEventListener('DOMContentLoaded', function() {
+              MloyaltyWidget.init(e)
+            })
+          }
+        }
+        i.head.insertBefore(t, i.head.firstElementChild)
+      })(
+        window,
+        document,
+        'script',
+        'https://mloyalty-widget.s3-eu-west-1.amazonaws.com/0.3.0/mloyalty-widget.bundle.min.js',
+        { code: '*' }
+      )
     }
   },
   mounted() {
@@ -37,10 +60,7 @@ export default {
       openOnExit: false,
       disableOnMobile: false
     })
-    setTimeout(() => {
-      console.log('ROUTE PARAMS', this.$route.params)
-      console.log('ROUTE QUERY', this.$route.query)
-    }, 3000)
+    // this.initPanel()
   }
 }
 </script>

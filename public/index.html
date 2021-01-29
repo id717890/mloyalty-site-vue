@@ -24,31 +24,7 @@
     />
     <script src="/js/zoid.js"></script>
     <script src="/js/zoid_component.js"></script>
-    <!-- Mloyalty Widget -->
-    <script>
-      ;(function(w, i, d, g, e, t) {
-        t = i.createElement(d)
-        t.async = 1
-        t.src = g
-        t.onload = function() {
-          if (document.readyState !== 'loading') {
-            MloyaltyWidget.init(e)
-          } else {
-            document.addEventListener('DOMContentLoaded', function() {
-              MloyaltyWidget.init(e)
-            })
-          }
-        }
-        i.head.insertBefore(t, i.head.firstElementChild)
-      })(
-        window,
-        document,
-        'script',
-        'https://mloyalty-widget.s3-eu-west-1.amazonaws.com/0.2.0/mloyalty-widget.bundle.min.js',
-        { code: '*' }
-      )
-    </script>
-    <!-- Mloyalty Widget end -->
+
     <title></title>
   </head>
   <body>
@@ -63,4 +39,29 @@
 
     <!-- built files will be auto injected -->
   </body>
+  <!-- Mloyalty Widget -->
+  <script>
+    // ;(function(w, i, d, g, e, t) {
+    //   t = i.createElement(d)
+    //   t.async = 1
+    //   t.src = g
+    //   t.onload = function() {
+    //     if (document.readyState !== 'loading') {
+    //       MloyaltyWidget.init(e)
+    //     } else {
+    //       document.addEventListener('DOMContentLoaded', function() {
+    //         MloyaltyWidget.init(e)
+    //       })
+    //     }
+    //   }
+    //   i.head.insertBefore(t, i.head.firstElementChild)
+    // })(
+    //   window,
+    //   document,
+    //   'script',
+    //   'https://mloyalty-widget.s3-eu-west-1.amazonaws.com/0.2.0/mloyalty-widget.bundle.min.js',
+    //   { code: '*' }
+    // )
+  </script>
+  <!-- Mloyalty Widget end -->
 </html>
