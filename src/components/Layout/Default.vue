@@ -140,7 +140,7 @@ export default {
   },
   watch: {
     showPanelBurger(newValue) {
-      window?.xprops?.onHideClose(newValue)
+      // window?.xprops?.onHideClose(newValue)
     },
     opacity(newValue) {
       console.log('OPACITY CHANGE', newValue)

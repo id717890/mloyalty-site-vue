@@ -14,7 +14,9 @@
       @input="$emit('input', $event.target.value)"
     >
     </textarea>
-    <p class="text-right ml-textarea-length mb-0">{{ length }}</p>
+    <p v-if="showLimits" class="text-right ml-textarea-length mb-0">
+      {{ length }}
+    </p>
   </div>
 </template>
 
@@ -45,6 +47,10 @@ export default {
     maxlength: {
       type: Number,
       default: 360
+    },
+    showLimits: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {

@@ -58,9 +58,9 @@ router.beforeEach((to, from, next) => {
   store.commit('app/SET_OPACITY', 1)
 
   if (to?.path === '/preview-mobile') {
-    window?.xprops?.onHideClose(true)
+    // window?.xprops?.onHideClose(true)
   } else {
-    window?.xprops?.onHideClose(false)
+    // window?.xprops?.onHideClose(false)
   }
   // This goes through the matched routes from last to first, finding the closest route with a title.
   // eg. if we have /some/deep/nested/route and /some, /deep, and /nested have titles, nested's will be chosen.

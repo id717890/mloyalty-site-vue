@@ -84,6 +84,7 @@
       <a href="#" @click.prevent="next" class="ml-black-btn">
         Оплатить {{ allPositions.price }} ₽
       </a>
+      <v-btn class="ml-black-btn">a</v-btn>
       <p class="text4 mt-3 mb-0">
         Нажимая кнопку "Оплатить", я соглашаюсь с Правилами использования
         подарочных карт и сертификатов и Офертой.
@@ -93,6 +94,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import { SUCCESS_PAGE } from '@/helpers/const/widgetPage'
 import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
 import MixinObserveElement from '@/helpers/mixins/observeElement'
@@ -148,14 +150,26 @@ export default {
         phone: null,
         sendingMethod: null
       })
+    },
+    makePayment() {
+      const data = {
+        amount: 10, // Сумма платежа
+        description: 'Оплата заказа № 1' // Описание платежа
+      }
+      axios
+        .post('https://widget.mltest.site/yookassa/api/payment/', data)
+        .then(x => {
+          console.log(x)
+        })
     }
   },
   mounted() {
     console.log(this['verificationCode/isVerified'])
-    if (!this['verificationCode/isVerified']) {
-      this.$router.push('/sending')
-    }
+    // if (!this['verificationCode/isVerified']) {
+    // this.$router.push('/sending')
+    // }
     this.handleScroll()
+    this.makePayment()
   }
 }
 </script>

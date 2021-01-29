@@ -24,22 +24,25 @@ export default {
     ...mapMutations('app', [appTypes.SET_TYPE_BROWSER, appTypes.SET_APP_CODE])
   },
   mounted() {
-    const isMobile = window?.xprops?.isMobile
+    // const isMobile = window?.xprops?.isMobile
     const code = window?.xprops?.code
-    const counter = window?.xprops?.counter
-    console.log('IS MOBILE', isMobile)
-    if (isMobile) {
-      this[appTypes.SET_TYPE_BROWSER](isMobile)
-    }
+    window?.xprops?.onProps(newProps => {
+      console.log('onProps event', newProps)
+    })
+    // const counter = window?.xprops?.counter
+    // console.log('IS MOBILE', isMobile)
+    // if (isMobile) {
+    //   this[appTypes.SET_TYPE_BROWSER](isMobile)
+    // }
     if (code) {
       console.log('APP CODE', code)
       this[appTypes.SET_APP_CODE](code)
     }
-    console.log('INIT COUNTER ', counter)
-    setTimeout(() => {
-      console.log('ROUTE PARAMS', this.$route.params)
-      console.log('ROUTE QUERY', this.$route.query)
-    }, 3000)
+    // console.log('INIT COUNTER ', counter)
+    // setTimeout(() => {
+    //   console.log('ROUTE PARAMS', this.$route.params)
+    //   console.log('ROUTE QUERY', this.$route.query)
+    // }, 3000)
 
     // setInterval(() => {
     //   // console.log('WIDGET window.xprops', window?.xprops?.onProps)

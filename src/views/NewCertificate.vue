@@ -38,7 +38,6 @@
         <div class="col-12 pt-0">
           <div class="section">3. Поздравление</div>
           <MlTextarea
-            :rows="3"
             v-model="form.congratulation"
             placeholder="Не забудьте написать несколько приятных слов получателю сертификата"
           />
