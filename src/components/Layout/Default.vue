@@ -115,7 +115,8 @@ export default {
       if (
         this.$route.path === '/basket' ||
         this.$route.path === '/success' ||
-        this.$route.path === '/preview-mobile'
+        this.$route.path === '/preview-mobile' ||
+        this.$route.path.includes('yookassa')
       )
         isShow = false
       return isShow
@@ -126,7 +127,8 @@ export default {
         this.$route.path === '/basket' ||
         this.$route.path === '/success' ||
         this.$route.path === '/sending' ||
-        this.$route.path === '/preview-mobile'
+        this.$route.path === '/preview-mobile' ||
+        this.$route.path.includes('yookassa')
       )
         isShow = false
       return isShow

@@ -84,7 +84,6 @@
       <a href="#" @click.prevent="next" class="ml-black-btn">
         Оплатить {{ allPositions.price }} ₽
       </a>
-      <v-btn class="ml-black-btn">a</v-btn>
       <p class="text4 mt-3 mb-0">
         Нажимая кнопку "Оплатить", я соглашаюсь с Правилами использования
         подарочных карт и сертификатов и Офертой.
@@ -107,6 +106,7 @@ import {
 } from '@/helpers/const/sendingMethod'
 import basketTypes from '@/store/basket/types'
 import verificationTypes from '@/store/verificationCode/types'
+import yookassaTypes from '@/store/yookassa/types'
 
 export default {
   components: {},
@@ -141,6 +141,7 @@ export default {
   methods: {
     ...mapMutations('basket', [basketTypes.SET_BASKET]),
     ...mapMutations('verificationCode', [verificationTypes.SET_CONTACTS]),
+    ...mapMutations('yookassa', [yookassaTypes.SET_YOOKASSA_PAYMENT]),
     next() {
       // this.changePanelPage(SUCCESS_PAGE)
       this.$router.push('/success')
@@ -159,7 +160,8 @@ export default {
       axios
         .post('https://widget.mltest.site/yookassa/api/payment/', data)
         .then(x => {
-          console.log(x)
+          this[yookassaTypes.SET_YOOKASSA_PAYMENT](x.data)
+          this.$router.push('/yookassa')
         })
     }
   },

@@ -1,6 +1,6 @@
 export default {
   loading: false,
-  code: null,
+  code: '*',
   config: {
     panelWidth: 448
   },

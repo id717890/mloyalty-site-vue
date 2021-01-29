@@ -37,6 +37,17 @@ const routes = [
     component: () => import('../views/PreviewMobile.vue')
   },
   {
+    path: '/yookassa',
+    name: 'PaymentYookassa',
+    component: () => import('../views/Yookassa/PaymentForm.vue')
+  },
+  {
+    path: '/yookassa-completion-payment',
+    name: 'CompletionPaymentYookassa',
+    component: () => import('../views/Yookassa/PaymentCompletion.vue')
+  },
+
+  {
     path: '/example',
     name: 'Example',
     component: Template,
