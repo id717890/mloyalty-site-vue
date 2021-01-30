@@ -38,8 +38,8 @@
 // start component
 const widget = zoid.create({
   tag: 'mloyalty-side-panel-widget-content',
-  url: ({ props }) => props.url || 'https://vidget.lctest.ru/',
-  // url: ({ props }) => props.url || 'http://localhost:8081/',
+  // url: ({ props }) => props.url || 'https://vidget.lctest.ru/',
+  url: ({ props }) => props.url || 'http://localhost:8081/',
   dimensions: {
     width: '100%',
     height: '100%'

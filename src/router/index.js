@@ -1,4 +1,3 @@
-import Template from '../views/Template.vue'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '@/store'
@@ -45,15 +44,6 @@ const routes = [
     path: '/yookassa-completion-payment',
     name: 'CompletionPaymentYookassa',
     component: () => import('../views/Yookassa/PaymentCompletion.vue')
-  },
-
-  {
-    path: '/example',
-    name: 'Example',
-    component: Template,
-    meta: {
-      title: 'MLoyalty - Пример страницы'
-    }
   }
 ]
 
