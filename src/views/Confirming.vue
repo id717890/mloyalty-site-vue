@@ -81,9 +81,19 @@
       </div>
     </div>
     <div class="controlls" ref="controlls">
-      <a href="#" @click.prevent="next" class="ml-black-btn">
+      <button
+        :disabled="loadingPayment"
+        @click.prevent="pay"
+        class="ml-black-btn w100"
+      >
         Оплатить {{ allPositions.price }} ₽
-      </a>
+        <v-progress-circular
+          v-if="loadingPayment"
+          indeterminate
+          width="2"
+          size="20"
+        ></v-progress-circular>
+      </button>
       <p class="text4 mt-3 mb-0">
         Нажимая кнопку "Оплатить", я соглашаюсь с Правилами использования
         подарочных карт и сертификатов и Офертой.
@@ -94,7 +104,7 @@
 
 <script>
 import axios from 'axios'
-import { SUCCESS_PAGE } from '@/helpers/const/widgetPage'
+// import { SUCCESS_PAGE } from '@/helpers/const/widgetPage'
 import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
 import MixinObserveElement from '@/helpers/mixins/observeElement'
 import { mapGetters, mapMutations, mapState } from 'vuex'
@@ -104,15 +114,16 @@ import {
   SENDING_METHOD_VIBER,
   SENDING_METHOD_SMS
 } from '@/helpers/const/sendingMethod'
-import basketTypes from '@/store/basket/types'
-import verificationTypes from '@/store/verificationCode/types'
+// import basketTypes from '@/store/basket/types'
+// import verificationTypes from '@/store/verificationCode/types'
 import yookassaTypes from '@/store/yookassa/types'
 
 export default {
   components: {},
   mixins: [MixinChangePanelPage, MixinObserveElement],
   data: () => ({
-    loyaltyCard: null
+    loyaltyCard: null,
+    loadingPayment: false
   }),
   computed: {
     ...mapGetters(['verificationCode/isVerified', 'basket/allPositions']),
@@ -139,39 +150,51 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('basket', [basketTypes.SET_BASKET]),
-    ...mapMutations('verificationCode', [verificationTypes.SET_CONTACTS]),
+    // ...mapMutations('basket', [basketTypes.SET_BASKET]),
+    // ...mapMutations('verificationCode', [verificationTypes.SET_CONTACTS]),
     ...mapMutations('yookassa', [yookassaTypes.SET_YOOKASSA_PAYMENT]),
-    next() {
+    pay() {
+      this.makePayment()
       // this.changePanelPage(SUCCESS_PAGE)
-      this.$router.push('/success')
-      this[basketTypes.SET_BASKET](null)
-      this[verificationTypes.SET_CONTACTS]({
-        email: null,
-        phone: null,
-        sendingMethod: null
-      })
+      // this.$router.push('/payment-result')
+      // this[basketTypes.SET_BASKET](null)
+      // this[verificationTypes.SET_CONTACTS]({
+      //   email: null,
+      //   phone: null,
+      //   sendingMethod: null
+      // })
     },
     makePayment() {
-      const data = {
-        amount: 10, // Сумма платежа
-        description: 'Оплата заказа № 1' // Описание платежа
+      const price = this.allPositions?.price
+      // const price = 123
+      if (price && price > 0) {
+        const data = {
+          amount: price, // Сумма платежа
+          description: 'Оплата заказа № 1' // Описание платежа
+        }
+        this.loadingPayment = true
+        axios
+          .post('https://widget.mltest.site/yookassa/api/payment/', data)
+          .then(x => {
+            this[yookassaTypes.SET_YOOKASSA_PAYMENT](x.data)
+            this.$router.push('/yookassa')
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      } else {
+        alert('Ошибка опеределения суммы оплаты')
       }
-      axios
-        .post('https://widget.mltest.site/yookassa/api/payment/', data)
-        .then(x => {
-          this[yookassaTypes.SET_YOOKASSA_PAYMENT](x.data)
-          this.$router.push('/yookassa')
-        })
     }
   },
   mounted() {
-    console.log(this['verificationCode/isVerified'])
-    // if (!this['verificationCode/isVerified']) {
-    // this.$router.push('/sending')
-    // }
+    // console.log(this['verificationCode/isVerified'])
+    if (!this['verificationCode/isVerified']) {
+      this.$router.push('/sending')
+    }
+    this.loadingPayment = false
     this.handleScroll()
-    this.makePayment()
+    // this.makePayment()
   }
 }
 </script>

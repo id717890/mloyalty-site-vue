@@ -134,3 +134,7 @@ input::-webkit-inner-spin-button {
 input[type='number'] {
   -moz-appearance: textfield;
 }
+
+.ml-back-btn-opacity {
+  transition: opacity 1s ease-in-out;
+}

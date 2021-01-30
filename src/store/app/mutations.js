@@ -18,6 +18,7 @@ export default {
   },
   [types.SET_APP_CODE]: (state, code) => {
     state.code = code
+    console.log('SET_APP_CODE', code)
   },
   [types.SET_BTN_VISIBLE]: (state, { isShowBurger, isShowBasket }) => {
     if (isShowBasket === true || isShowBasket === false) {

@@ -114,7 +114,7 @@ export default {
       let isShow = true
       if (
         this.$route.path === '/basket' ||
-        this.$route.path === '/success' ||
+        this.$route.path === '/payment-result' ||
         this.$route.path === '/preview-mobile' ||
         this.$route.path.includes('yookassa')
       )
@@ -125,7 +125,7 @@ export default {
       let isShow = true
       if (
         this.$route.path === '/basket' ||
-        this.$route.path === '/success' ||
+        this.$route.path === '/payment-result' ||
         this.$route.path === '/sending' ||
         this.$route.path === '/preview-mobile' ||
         this.$route.path.includes('yookassa')

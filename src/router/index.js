@@ -22,9 +22,9 @@ const routes = [
     component: () => import('../views/Confirming.vue')
   },
   {
-    path: '/success',
-    name: 'Success',
-    component: () => import('../views/Success.vue')
+    path: '/payment-result',
+    name: 'PaymentResult',
+    component: () => import('../views/Yookassa/PaymentResult.vue')
   },
   {
     path: '/basket',

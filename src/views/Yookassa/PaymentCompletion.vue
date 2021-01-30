@@ -1,6 +1,6 @@
 <template>
   <div class="h100 d-flex align-items-center">
-    <MlLoading />
+    <MlLoading text="Обработка платежа" />
   </div>
 </template>
 
@@ -8,12 +8,8 @@
 import axios from 'axios'
 import MlLoading from '@/components/UI/MlLoading'
 import yookassaTypes from '@/store/yookassa/types'
+import appTypes from '@/store/app/types'
 import { mapMutations } from 'vuex'
-
-const PAYMENT_SUCCEEDED = 'succeeded'
-const PAYMENT_PENDING = 'pending'
-const PAYMENT_WAITING_FOR_CAPTURE = 'waiting_for_capture'
-const PAYMENT_CANCELED = 'canceled'
 
 export default {
   components: {
@@ -21,9 +17,12 @@ export default {
   },
   methods: {
     ...mapMutations('yookassa', [yookassaTypes.SET_YOOKASSA_PAYMENT]),
+    ...mapMutations('app', [appTypes.SET_APP_CODE]),
     readAppCode() {
       const { code } = this.$route.query
-      console.log(code)
+      if (code) {
+        this[appTypes.SET_APP_CODE](code)
+      }
     },
     getPaymentStatus() {
       const { payment_id } = this.$route.query
@@ -35,24 +34,16 @@ export default {
         axios
           .get('https://widget.mltest.site/yookassa/api/payment/', {
             params: {
-              payment_id: payment_id
+              id: payment_id
             }
           })
           .then(response => {
             if (response.status === 200) {
-              this[yookassaTypes.SET_YOOKASSA_PAYMENT](response.data)
-              const paymentStatus = response?.data?.status
-
-              alert(paymentStatus)
-
-              // switch(paymentStatus) {
-              //   case PAYMENT_PENDING:
-              //     alert()
-              //   break;
-
-              // }
-              console.log(response.data)
+              let { data } = response
+              // data.status = 'waiting_for_capture'
+              this[yookassaTypes.SET_YOOKASSA_PAYMENT](data)
             }
+            this.$router.push('/payment-result')
           })
       }
     }
