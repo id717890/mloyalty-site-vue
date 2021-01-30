@@ -184,7 +184,7 @@ export default {
         // isMobile: this.isMobile(),
         // onHideClose: value => {
         //   this.$set(this, 'isShowMobileCloseBtn', !value)
-        // },
+        // }
         // testFunc: callback => {
         //   const handler = () => callback()
         //   window.addEventListener('hashchange', handler)
