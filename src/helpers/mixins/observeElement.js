@@ -15,6 +15,7 @@ export default {
     handleScroll() {
       const el = this.observedElement
       if (el) {
+        // console.log('el not null')
         const windowHeight = window.innerHeight // высота видимой области
         const offsetTop = this.$refs.controlls.offsetTop // отсут контрола от верха окна
         const windowScrollY = window.scrollY

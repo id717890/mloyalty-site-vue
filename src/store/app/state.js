@@ -1,11 +1,12 @@
 export default {
   loading: false,
-  code: null,
+  code: '*',
   config: {
     panelWidth: 448
   },
   isMobile: false,
   showBtnBasket: true,
   showBtnBurger: true,
-  offsetBottom: 0
+  offsetBottom: 0,
+  opacity: 0
 }

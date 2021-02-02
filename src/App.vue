@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import AuthService from '@/api/AuthService'
 import { mapMutations, mapState } from 'vuex'
 import Lyaout from './components/Layout/Default'
 import appTypes from '@/store/app/types'
@@ -24,22 +25,25 @@ export default {
     ...mapMutations('app', [appTypes.SET_TYPE_BROWSER, appTypes.SET_APP_CODE])
   },
   mounted() {
-    const isMobile = window?.xprops?.isMobile
+    // const isMobile = window?.xprops?.isMobile
     const code = window?.xprops?.code
-    const counter = window?.xprops?.counter
-    if (isMobile) {
-      console.log('IS MOBILE', window.xprops.isMobile)
-      this[appTypes.SET_TYPE_BROWSER](isMobile)
-    }
+    window?.xprops?.onProps(newProps => {
+      console.log('onProps event', newProps)
+    })
+    // const counter = window?.xprops?.counter
+    // console.log('IS MOBILE', isMobile)
+    // if (isMobile) {
+    //   this[appTypes.SET_TYPE_BROWSER](isMobile)
+    // }
     if (code) {
       console.log('APP CODE', code)
       this[appTypes.SET_APP_CODE](code)
     }
-    console.log('INIT COUNTER ', counter)
-    setTimeout(() => {
-      console.log('ROUTE PARAMS', this.$route.params)
-      console.log('ROUTE QUERY', this.$route.query)
-    }, 3000)
+    // console.log('INIT COUNTER ', counter)
+    // setTimeout(() => {
+    //   console.log('ROUTE PARAMS', this.$route.params)
+    //   console.log('ROUTE QUERY', this.$route.query)
+    // }, 3000)
 
     // setInterval(() => {
     //   // console.log('WIDGET window.xprops', window?.xprops?.onProps)
@@ -47,29 +51,11 @@ export default {
     //   console.log('WIDGET counter', window.xprops.counter)
     //   // Always 0
     // }, 3000)
+    AuthService.authManager()
+
+    setTimeout(() => {
+      AuthService.test()
+    }, 2000)
   }
 }
 </script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>

@@ -1,12 +1,12 @@
 <template>
   <div v-if="options">
-    <div class="loading-designs" v-if="loading">
+    <!-- <div class="loading-designs" :class="{ 'opacity-none': loading }">
       <v-progress-circular
         indeterminate
         size="30"
         color="primary"
       ></v-progress-circular>
-    </div>
+    </div> -->
     <swiper
       @slideChange="slideChange"
       class="mloyalty-swiper swiper"
@@ -29,6 +29,30 @@
 </template>
 
 <script>
+const swiperOption = {
+  // touchStartPreventDefault: false,
+  // grabCursor: true,
+  // touchReleaseOnEdges: true,
+  followFinger: false,
+  allowTouchMove: true,
+  updateOnWindowResize: false,
+  slidesOffsetBefore: 35,
+  autoHeight: true,
+  slidesPerView: 'auto',
+  // slidesPerGroup: 1,
+  loop: true,
+  // centeredSlides: true,
+  spaceBetween: 8,
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev'
+  }
+}
+
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 
 // import style (>= Swiper 6.x)
@@ -45,45 +69,55 @@ SwiperClass.use([Pagination])
 
 import { mapGetters, mapState } from 'vuex'
 import { set } from 'date-fns'
+import { tr } from 'date-fns/locale'
 export default {
   components: {
     Swiper,
     SwiperSlide
   },
   data: () => ({
-    loading: true,
-    swiperOption: {
-      autoHeight: true,
-      slidesPerView: 'auto',
-      slidesPerGroup: 1,
-      loop: true,
-      // centeredSlides: true,
-      spaceBetween: 8,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true
-      }
-    }
+    loading: true
   }),
   methods: {
-    async init() {
-      if (this.currentCerificate) {
+    init() {
+      const func = id => {
         const findCertificate = this.options?.certificates.find(
-          x => x.id === this.currentCerificate.certificate.id
+          x => x.id === id
         )
+        const swiper = this.$refs['swiper-cert'].$swiper
         if (findCertificate) {
           const index = this.options.certificates.indexOf(findCertificate)
-          console.log('pos ', index)
-          this.swiper.slideTo(index, 500, false)
+          if (index === 0) {
+            swiper.slideTo(index + this.countCertificates, 500, false)
+          } else {
+            swiper.slideTo(index, 500, false)
+          }
           this.$emit('change-certificate', findCertificate)
         }
+      }
+      if (this.currentCertificate) {
+        func(this.currentCertificate?.certificate?.id)
+        // const findCertificate = this.options?.certificates.find(
+        //   x => x.id === this.currentCertificate.certificate.id
+        // )
+        // const swiper = this.$refs['swiper-cert'].$swiper
+        // if (findCertificate) {
+        //   const index = this.options.certificates.indexOf(findCertificate)
+        //   if (index === 0) {
+        //     swiper.slideTo(index + this.countCertificates, 500, false)
+        //   } else {
+        //     swiper.slideTo(index, 500, false)
+        //   }
+        //   this.$emit('change-certificate', findCertificate)
+        // }
+      } else if (this.preview) {
+        func(this.preview?.certificate?.id)
       } else {
         this.$emit('change-certificate', this.options.certificates[0])
       }
       setTimeout(() => {
-        console.log('init + loading')
         this.offsetSlide(false)
-      })
+      }, 250)
     },
     slideChange(item) {
       console.log('slideChange')
@@ -102,24 +136,41 @@ export default {
     },
     /** Смещение слайдера как в дизайне */
     offsetSlide(isLoading = null) {
+      return
+      // this.loading = false
+      // return
+      // let item = this.$refs['swiper-cert'].$swiper
       let item = this.$refs['swiper-cert'].$swiper
-      console.log('offsetSlide OUT', item)
-      if (item) {
-        console.log('offsetSlide IN', item)
-        let el = document.getElementsByClassName('swiper-wrapper')[0]
-        let translateX = item.translate
-        const offset = translateX + 35
-        this.$nextTick(() => {
-          console.log('move ', translateX, offset)
-          setTimeout(() => {
-            el.style.transform = `translate3d(${offset}px, 0px, 0px)`
-          }, 100)
-          if (isLoading !== null) {
-            this.loading = isLoading
-          }
-        })
+      // console.log('offsetSlide OUT', item)
+      // if (item) {
+      // console.log('offsetSlide IN', item)
+      console.log('offsetSlide IN')
+      // let el = document.getElementsByClassName('swiper-wrapper')[0]
+      let translateX = item.translate
+      const offset = translateX + 35
+      // this.$nextTick(() => {
+      console.log('move ', translateX, offset)
+      setTimeout(() => {
+        console.log('get ', item.getTranslate())
+        // this.swiper.setTranslate(`translate3d(${offset}px, 0px, 0px)`)
+        // el.style.transform = `translate3d(${offset}px, 0px, 0px)`
+        item.setTranslate(offset)
+        // this.swiper.translateTo(offset, 110, false, true)
+        console.log('get ', item.getTranslate())
+        // setTimeout(() => {
+        //   if (isLoading !== null) {
+        //     this.loading = isLoading
+        //   }
+        // })
+      }, 35)
+      // setTimeout(() => {
+      if (isLoading !== null) {
+        this.loading = isLoading
       }
-      return Promise.resolve()
+      // }, 250)
+      // })
+      // }
+      // return Promise.resolve()
     }
   },
   mounted() {
@@ -127,11 +178,19 @@ export default {
   },
   computed: {
     ...mapState({
-      options: state => state.certificate.options
+      options: state => state.certificate.options,
+      currentCertificate: state => state.basket.currentCertificate,
+      isMobile: state => state.app.isMobile,
+      preview: state => state.basket.preview
     }),
-    ...mapGetters(['basket/currentCertificate']),
-    currentCerificate() {
-      return this['basket/currentCertificate']
+    swiperOption() {
+      // const options = swiperOption
+      // if (this.isMobile === true) {
+      //   options.allowTouchMove = true
+      // } else {
+      //   options.allowTouchMove = false
+      // }
+      return swiperOption
     },
     swiper() {
       return this.$refs['swiper-cert'].$swiper

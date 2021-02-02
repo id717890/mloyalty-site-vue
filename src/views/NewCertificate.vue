@@ -38,7 +38,6 @@
         <div class="col-12 pt-0">
           <div class="section">3. Поздравление</div>
           <MlTextarea
-            :rows="3"
             v-model="form.congratulation"
             placeholder="Не забудьте написать несколько приятных слов получателю сертификата"
           />
@@ -47,9 +46,15 @@
             class="d-flex flex-row align-center justify-content-between pt-3"
           >
             <a href="#" @click.prevent="openPreview">
-              <img src="~@/assets/img/eye.png" alt="" />
-              <span class="ml-text-14-20-500 ml-2">Предпросмотр</span>
+              <img src="~@/assets/img/eye.png" v-if="!isAllowContinue" alt="" />
+              <img src="~@/assets/img/eye-grey.svg" v-else alt="" />
+              <span
+                class="ml-text-14-20-500 ml-2 "
+                :class="{ 'ml-text-grey2': isAllowContinue }"
+                >Предпросмотр</span
+              >
             </a>
+
             <a
               href="#"
               v-if="isUpdate"
@@ -59,12 +64,8 @@
             >
           </div>
         </div>
-        <div class="col-12 mb-5" v-if="isUpdate && currentCerificate">
-          <MlNumeric2
-            ref="numeric"
-            v-model="currentCerificate.count"
-            @input="changeCount"
-          />
+        <div class="col-12 mb-5" v-if="isUpdate && currentCertificate">
+          <MlNumeric2 max="10" v-model="form.count" @input="changeCount" />
         </div>
       </div>
     </div>
@@ -91,10 +92,12 @@ import designCarousel from '@/components/Panel/DesignCarousel'
 import par from '@/components/Panel/Par'
 import MlTextarea from '@/components/UI/MlTextarea'
 import MlNumeric2 from '@/components/UI/MlNumeric2'
+import MlNumeric from '@/components/UI/MlNumeric'
 import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
 import MixinObserveElement from '@/helpers/mixins/observeElement'
 import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
 import certificateTypes from '@/store/certificate/types'
+import appTypes from '@/store/app/types'
 import basketTypes from '@/store/basket/types'
 import { debounce, cloneDeep } from 'lodash'
 
@@ -111,34 +114,27 @@ export default {
     selectedPar: null,
     customPar: null,
     form: {
+      id: null,
       certificate: null,
-      congratulation: null
+      congratulation: null,
+      count: null
     }
   }),
-  watch: {
-    currentCerificate(value) {
-      if (!value) {
-        this.$router.push('/basket')
-      }
-    }
-  },
   computed: {
     ...mapState({
-      options: state => state.certificate.options
+      options: state => state.certificate.options,
+      currentCertificate: state => state.basket.currentCertificate,
+      preview: state => state.basket.preview
     }),
-    ...mapGetters([
-      'verificationCode/isVerified',
-      'basket/allPositions',
-      'basket/currentCertificate'
-    ]),
+    ...mapGetters(['verificationCode/isVerified', 'basket/allPositions']),
     observedElement() {
       return this.$refs.controlls
     },
     isUpdate() {
-      return this['basket/currentCertificate'] ? true : false
+      return this.currentCertificate ? true : false
     },
-    currentCerificate() {
-      return this['basket/currentCertificate']
+    isPreview() {
+      return this.preview ? true : false
     },
     isAllowContinue() {
       const price = this.customPar ?? this.selectedPar
@@ -147,17 +143,6 @@ export default {
     titleNextBtn() {
       const count = this['basket/allPositions']?.count
       return count > 0 ? 'Добавить в корзину' : 'Продолжить'
-    },
-    designs() {
-      let result = []
-      let options = cloneDeep(this.options.certificates)
-      let current = cloneDeep(this.form.certificate)
-      if (current) {
-        result = [current, ...options.filter(item => item.id !== current.id)]
-      } else {
-        result = options
-      }
-      return result
     }
   },
   created() {
@@ -167,44 +152,69 @@ export default {
     }
   },
   mounted() {
-    if (this.isUpdate) {
+    if (this.isUpdate || this.isPreview) {
       this.loadCertificateFromStore()
     }
-    // window.addEventListener('scroll', this.handleScroll)
     this.handleScroll()
   },
   methods: {
     ...mapMutations('basket', [
       basketTypes.ADD_CERTIFICATE,
-      basketTypes.UPDATE_CERTIFICATE
+      basketTypes.UPDATE_CERTIFICATE,
+      basketTypes.CALL_CONFIRM_MODAL,
+      basketTypes.SET_PREVIEW
     ]),
-    openPreview() {
-      this.$router.push('/preview-mobile')
-      // this.changePanelPage(PREVIEW_PAGE)
+    ...mapMutations('app', [appTypes.SET_OPACITY]),
+    makeBasketItem() {
+      let item = this.form
+      item.price = this.customPar ?? this.selectedPar ?? null
+      return item
     },
-    // ...mapMutations('certificate', [certificateTypes.STORE_CURRENT_CERIFICATE]),
+    openPreview() {
+      if (this.isAllowContinue) return
+      const item = {
+        certificate: this.form?.certificate,
+        price: this.customPar ?? this.selectedPar,
+        congratulation: this.form?.congratulation
+      }
+      this[basketTypes.SET_PREVIEW](item)
+      this[appTypes.SET_OPACITY](0)
+      setTimeout(() => {
+        this.$router.push('/preview-mobile')
+      }, 250)
+    },
     save() {
-      let certificate = this.form
-      certificate.price = this.customPar ?? this.selectedPar ?? null
-      certificate.count = this.currentCerificate.count
-      this[basketTypes.UPDATE_CERTIFICATE](certificate)
+      let data = this.makeBasketItem()
+      this[basketTypes.UPDATE_CERTIFICATE](data)
       this.alert = true
+      this[basketTypes.SET_PREVIEW](null)
       setTimeout(() => {
         this.$router.push('/basket')
       }, 1500)
     },
-    changeCount() {
-      this[basketTypes.UPDATE_CERTIFICATE](this['basket/currentCertificate'])
+    changeCount(newValue) {
+      this.form.count = newValue
+      const data = this.makeBasketItem()
+      this[basketTypes.UPDATE_CERTIFICATE](data)
     },
     removeCertificate() {
-      let certificate = this.currentCerificate
-      certificate.count = 0
-      this[basketTypes.UPDATE_CERTIFICATE](certificate)
+      this[basketTypes.CALL_CONFIRM_MODAL](this.currentCertificate)
     },
     loadCertificateFromStore() {
-      this.form.congratulation = this.currentCerificate.congratulation
-      this.form.certificate = this.currentCerificate.certificate
-      const price = this.currentCerificate.price
+      console.log('load')
+      let price = 0
+      if (this.currentCertificate) {
+        this.form.id = this.currentCertificate.id
+        this.form.congratulation = this.currentCertificate?.congratulation
+        this.form.certificate = this.currentCertificate?.certificate
+        this.form.count = this.currentCertificate?.count
+        price = this.currentCertificate?.price
+      }
+      if (this.preview) {
+        this.form.congratulation = this.preview?.congratulation
+        this.form.certificate = this.preview?.certificate
+        price = this.preview?.price
+      }
       if (price) {
         if (this.options.pars.includes(price)) {
           this.selectedPar = price
@@ -228,16 +238,17 @@ export default {
     },
     nextPage() {
       this.storeCertificate()
-      if (this['verificationCode/isVerified']) {
-        this.$router.push('/confirming')
-        // this.changePanelPage(CONFIRMING_PAGE)
-      } else {
-        this.$router.push('/sending')
-        // this.changePanelPage(SENDING_PAGE)
-      }
-      // this[panelTypes.CURRENT_PAGE_SET](SENDING_PAGE)
-    },
-    beforeDestroy() {}
+      this[basketTypes.SET_PREVIEW](null)
+      this[appTypes.SET_OPACITY](0)
+
+      setTimeout(() => {
+        if (this['verificationCode/isVerified']) {
+          this.$router.push('/confirming')
+        } else {
+          this.$router.push('/sending')
+        }
+      }, 250)
+    }
   }
 }
 </script>

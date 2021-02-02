@@ -3,14 +3,7 @@
     <button @click.stop="decrement">
       <v-icon>mdi-minus</v-icon>
     </button>
-    <!-- <div>{{ value }}</div> -->
-    <input
-      max="10"
-      type="number"
-      v-bind="$attrs"
-      :value="value"
-      @input="change"
-    />
+    <input type="number" v-bind="$attrs" :value="value" @input="change" />
     <button @click.stop="increment">
       <v-icon>mdi-plus</v-icon>
     </button>
@@ -38,16 +31,18 @@ export default {
       this.$emit('input', Number(v.target.value))
     },
     increment() {
+      const max = this.$attrs?.max
+      if (max && this.value >= max) return
       const n = this.value + 1
       this.$emit('input', n)
       this.$forceUpdate()
     },
     decrement() {
-      if (this.value > MIN_VALUE) {
-        let n = this.value - 1
-        this.$emit('input', n)
-        this.$forceUpdate()
-      }
+      const min = this.$attrs?.min
+      if (min && this.value <= min) return
+      let n = this.value - 1
+      this.$emit('input', n)
+      this.$forceUpdate()
     }
   }
 }
