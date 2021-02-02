@@ -6,6 +6,7 @@ import basket from './basket/store'
 import certificate from './certificate/store'
 import loading from './loading/store'
 import yookassa from './yookassa/store'
+import auth from './auth/store'
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -20,6 +21,7 @@ export default new Vuex.Store({
     basket,
     certificate,
     loading,
-    yookassa
+    yookassa,
+    auth
   }
 })

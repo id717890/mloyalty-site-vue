@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import AuthService from '@/api/AuthService'
 import { mapMutations, mapState } from 'vuex'
 import Lyaout from './components/Layout/Default'
 import appTypes from '@/store/app/types'
@@ -50,6 +51,11 @@ export default {
     //   console.log('WIDGET counter', window.xprops.counter)
     //   // Always 0
     // }, 3000)
+    AuthService.authManager()
+
+    setTimeout(() => {
+      AuthService.test()
+    }, 2000)
   }
 }
 </script>
