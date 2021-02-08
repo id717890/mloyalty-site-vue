@@ -194,12 +194,12 @@ export default {
         // }
       }).render('#widget-wrapper')
 
-      setTimeout(() => {
-        console.log('PROPS CHANGE')
-        window.code = 'new-wincode'
-        // MloyaltyWidget.updateProps({ code: '12345' })
-        console.log(window.code)
-      }, 2000)
+      // setTimeout(() => {
+      //   console.log('PROPS CHANGE')
+      //   window.code = 'new-wincode'
+      //   // MloyaltyWidget.updateProps({ code: '12345' })
+      //   console.log(window.code)
+      // }, 2000)
     }
   },
   watch: {
@@ -212,7 +212,7 @@ export default {
   mounted() {
     // this[panelTypes.TOGGLE_PANEL](true)
     // console.log(this.isMobile())
-    this.initWidget()
+    // this.initWidget()
     // setTimeout(() => {
     //   let newVal = this.counter + 1
     //   this.$set(this, 'counter', newVal)

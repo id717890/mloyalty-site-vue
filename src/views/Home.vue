@@ -33,16 +33,16 @@
             <div class="pt-4">
               <div class="row">
                 <div class="col-lg-4 col-sm-12 px-1">
-                  <a
+                  <!-- <a
                     href="#"
                     class="ml-silver-btn"
                     @click.prevent="newCertificate"
                     style="font-size: 14px;"
                   >
                     Купить
-                  </a>
+                  </a> -->
                   <!-- <a href="#" @click.prevent="updateProps">props</a> -->
-                  <!-- <button
+                  <button
                     type="button"
                     class="ml-silver-btn w100"
                     style="font-size: 14px;"
@@ -50,7 +50,7 @@
                   >
                     Купить
                   </button>
-                  <button
+                  <!-- <button
                     type="button"
                     class="ml-silver-btn w100"
                     style="font-size: 14px;"
@@ -135,11 +135,11 @@ export default {
       widgetZoidComponent.updateProps({ code: 12345 })
     },
     openSidePanel() {
-      MloyaltyWidget.open('333')
+      MloyaltyWidget.open('1')
       // MloyaltySidePanel.show('mloyalty-side-panel-widget')
     },
     openSidePanel2() {
-      MloyaltyWidget.open('12345')
+      MloyaltyWidget.open('2')
       // MloyaltySidePanel.show('mloyalty-side-panel-widget')
     },
     togglePanelBalance() {
