@@ -23,14 +23,14 @@ window.MloyaltyWidget = zoid.create({
     url: {
       type: 'string',
       required: false
-    }
+    },
     // isMobile: {
     //   type: 'boolean',
     //   required: false
     // },
-    // onHideClose: {
-    //   type: 'function',
-    //   required: true
-    // }
+    onHide: {
+      type: 'function',
+      required: true
+    }
   }
 })

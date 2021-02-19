@@ -43,7 +43,7 @@ export default {
         window,
         document,
         'script',
-        'https://mloyalty-widget.s3-eu-west-1.amazonaws.com/0.4.0/mloyalty-widget.bundle.min.js',
+        'https://mloyalty-widget.s3-eu-west-1.amazonaws.com/0.4.1/mloyalty-widget.bundle.min.js',
         { code: '*' }
       )
     }
@@ -60,7 +60,7 @@ export default {
       openOnExit: false,
       disableOnMobile: false
     })
-    this.initPanel()
+    // this.initPanel()
   }
 }
 </script>

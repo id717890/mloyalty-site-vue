@@ -105,7 +105,8 @@
         >
           <v-icon color="#4D4D4D">mdi-close</v-icon>
         </v-btn>
-        <balance ref="balance" />
+        <div id="widget-balance-wrapper" ref="widget-balance-wrapper"></div>
+        <!-- <balance ref="balance" /> -->
       </v-navigation-drawer>
     </v-main>
   </v-app>
@@ -115,12 +116,12 @@
 import { mapMutations, mapState } from 'vuex'
 import panelTypes from '@/store/panel/types'
 import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
-import Balance from '../components/Panel/Pages/Balance'
+// import Balance from '../components/Panel/Pages/Balance'
 
 export default {
   mixins: [MixinChangePanelPage],
   components: {
-    Balance
+    // Balance
   },
   computed: {
     ...mapState({
@@ -174,45 +175,35 @@ export default {
         return false
       }
     },
+    initWidgetBalance() {
+      this.$refs['widget-balance-wrapper'].innerHTML = null
+      MloyaltyWidget({
+        code: 'Баланс',
+        onHide: () => {}
+      }).render('#widget-balance-wrapper')
+    },
     initWidget() {
       this.$refs['widget-wrapper'].innerHTML = null
-      window.code = 'wincode'
-      console.log(window.code)
       MloyaltyWidget({
-        // counter: this.counter,
-        code: window.code
-        // isMobile: this.isMobile(),
-        // onHideClose: value => {
-        //   this.$set(this, 'isShowMobileCloseBtn', !value)
-        // }
-        // testFunc: callback => {
-        //   const handler = () => callback()
-        //   window.addEventListener('hashchange', handler)
-        //   return {
-        //     cancel: () => window.removeEventListener('hashchange', handler)
-        //   }
-        // }
+        code: 'Купить',
+        onHide: value => {
+          this.$set(this, 'isShowMobileCloseBtn', !value)
+        }
       }).render('#widget-wrapper')
-
-      // setTimeout(() => {
-      //   console.log('PROPS CHANGE')
-      //   window.code = 'new-wincode'
-      //   // MloyaltyWidget.updateProps({ code: '12345' })
-      //   console.log(window.code)
-      // }, 2000)
     }
   },
   watch: {
     showPanelBalance(value) {
       if (value) {
-        this.$refs.balance.resetForm()
+        // this.$refs.balance.resetForm()
       }
     }
   },
   mounted() {
     // this[panelTypes.TOGGLE_PANEL](true)
     // console.log(this.isMobile())
-    // this.initWidget()
+    this.initWidget()
+    this.initWidgetBalance()
     // setTimeout(() => {
     //   let newVal = this.counter + 1
     //   this.$set(this, 'counter', newVal)

@@ -31,48 +31,25 @@
               Выберите, что вы хотите сделать с сертификатом?
             </div>
             <div class="pt-4">
-              <div class="row">
+              <div v-if="test" class="row">
                 <div class="col-lg-4 col-sm-12 px-1">
-                  <!-- <a
+                  <a
                     href="#"
                     class="ml-silver-btn"
                     @click.prevent="newCertificate"
                     style="font-size: 14px;"
                   >
                     Купить
-                  </a> -->
-                  <!-- <a href="#" @click.prevent="updateProps">props</a> -->
-                  <button
-                    type="button"
-                    class="ml-silver-btn w100"
-                    style="font-size: 14px;"
-                    @click="openSidePanel"
-                  >
-                    Купить
-                  </button>
-                  <!-- <button
-                    type="button"
-                    class="ml-silver-btn w100"
-                    style="font-size: 14px;"
-                    @click="openSidePanel2"
-                  >
-                    Купить2
-                  </button> -->
-                  <!-- <a
-                    href="#"
-                    data-mloyalty-side-panel-trigger="mloyalty-side-panel-widget"
-                    data-mloyalty-code="111"
-                    >Виджет 111</a
-                  > -->
+                  </a>
                 </div>
                 <div class="col-lg-4 col-sm-12 px-1">
-                  <router-link
+                  <a
+                    href="#"
                     class="ml-silver-btn"
-                    to="/preview"
                     style="font-size: 14px;"
+                    @click.prevent="openCertificateOwnere"
+                    >Получить</a
                   >
-                    Получить
-                  </router-link>
                 </div>
                 <div class="col-lg-4 col-sm-12 px-1">
                   <a
@@ -83,6 +60,37 @@
                   >
                     Узнать баланс
                   </a>
+                </div>
+              </div>
+              <div v-else class="row">
+                <div class="col-lg-4 col-sm-12 px-1">
+                  <button
+                    type="button"
+                    class="ml-silver-btn w100"
+                    style="font-size: 14px;"
+                    @click="openSidePanel"
+                  >
+                    Купить
+                  </button>
+                </div>
+                <div class="col-lg-4 col-sm-12 px-1">
+                  <a
+                    href="#"
+                    class="ml-silver-btn"
+                    style="font-size: 14px;"
+                    @click.prevent="openCertificateOwnere"
+                    >Получить</a
+                  >
+                </div>
+                <div class="col-lg-4 col-sm-12 px-1">
+                  <button
+                    type="button"
+                    class="ml-silver-btn w100"
+                    style="font-size: 14px;"
+                    @click="openSidePanel2"
+                  >
+                    Узнать баланс
+                  </button>
                 </div>
               </div>
             </div>
@@ -108,18 +116,19 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 import { mapMutations, mapState } from 'vuex'
 import panelTypes from '@/store/panel/types'
 import verificationTypes from '@/store/verificationCode/types'
-import { BALANCE_PAGE, START_PAGE } from '@/helpers/const/widgetPage'
+import { START_PAGE } from '@/helpers/const/widgetPage'
 import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
 
 export default {
   name: 'Home',
   components: {},
   mixins: [MixinChangePanelPage],
-  data: () => ({}),
+  data: () => ({
+    test: true
+  }),
   computed: {
     ...mapState({
       showPanelBalance: state => state.panel.showPanelBalance
@@ -135,12 +144,16 @@ export default {
       widgetZoidComponent.updateProps({ code: 12345 })
     },
     openSidePanel() {
-      MloyaltyWidget.open('1')
+      MloyaltyWidget.open('Купить')
       // MloyaltySidePanel.show('mloyalty-side-panel-widget')
     },
     openSidePanel2() {
-      MloyaltyWidget.open('2')
+      MloyaltyWidget.open('Баланс')
       // MloyaltySidePanel.show('mloyalty-side-panel-widget')
+    },
+    openCertificateOwnere() {
+      const widgetUrl = `${process.env.VUE_APP_WIDGET_URL}/owner?code=Получить&id=1234567890`
+      window.open(widgetUrl, '_blank')
     },
     togglePanelBalance() {
       console.log(this.showPanelBalance)
@@ -158,7 +171,8 @@ export default {
     },
     balance() {
       this.togglePanelBalance()
-    }
+    },
+    balanceWidget() {}
   }
 }
 </script>
