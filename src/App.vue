@@ -43,15 +43,12 @@ export default {
         window,
         document,
         'script',
-        'https://mloyalty-widget.s3-eu-west-1.amazonaws.com/0.4.1/mloyalty-widget.bundle.min.js',
+        'https://mloyalty-widget.s3-eu-west-1.amazonaws.com/0.5.0/mloyalty-widget.bundle.min.js',
         { code: '*' }
       )
     }
   },
   mounted() {
-    // if (window.xprops.testProp) {
-    //   console.log(window.xprops.testProp)
-    // }
     this.initMarquiz(window, document, 'script', {
       host: '//quiz.marquiz.ru',
       id: '5fda3289c9b57700443842f2',

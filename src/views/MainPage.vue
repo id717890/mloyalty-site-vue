@@ -179,7 +179,10 @@ export default {
       this.$refs['widget-balance-wrapper'].innerHTML = null
       MloyaltyWidget({
         code: 'Баланс',
-        onHide: () => {}
+        onHide: () => {},
+        hostname: 'localhost:8080',
+        protocol: 'https',
+        pathname: '/'
       }).render('#widget-balance-wrapper')
     },
     initWidget() {
@@ -188,7 +191,10 @@ export default {
         code: 'Купить',
         onHide: value => {
           this.$set(this, 'isShowMobileCloseBtn', !value)
-        }
+        },
+        hostname: 'localhost:8080',
+        protocol: 'https',
+        pathname: '/'
       }).render('#widget-wrapper')
     }
   },

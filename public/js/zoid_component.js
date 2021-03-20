@@ -16,7 +16,15 @@ window.MloyaltyWidget = zoid.create({
   },
 
   props: {
-    code: {
+    hostname: {
+      type: 'string',
+      required: true
+    },
+    protocol: {
+      type: 'string',
+      required: true
+    },
+    pathname: {
       type: 'string',
       required: true
     },
