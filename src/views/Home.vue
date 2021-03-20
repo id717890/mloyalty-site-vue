@@ -61,6 +61,16 @@
                     Узнать баланс
                   </a>
                 </div>
+                <div class="col-lg-4 col-sm-12 px-1">
+                  <a
+                    href="#"
+                    class="ml-silver-btn"
+                    style="font-size: 14px;"
+                    @click.prevent="basket"
+                  >
+                    Готовая корзина
+                  </a>
+                </div>
               </div>
               <div v-else class="row">
                 <div class="col-lg-4 col-sm-12 px-1">
@@ -90,6 +100,16 @@
                     @click="openSidePanel2"
                   >
                     Узнать баланс
+                  </button>
+                </div>
+                <div class="col-lg-4 col-sm-12 px-1">
+                  <button
+                    type="button"
+                    class="ml-silver-btn w100"
+                    style="font-size: 14px;"
+                    @click="openSidePanelBasket"
+                  >
+                    Готовая корзина
                   </button>
                 </div>
               </div>
@@ -131,13 +151,15 @@ export default {
   }),
   computed: {
     ...mapState({
-      showPanelBalance: state => state.panel.showPanelBalance
+      showPanelBalance: state => state.panel.showPanelBalance,
+      showPanelBasket: state => state.panel.showPanelBasket
     })
   },
   methods: {
     ...mapMutations('panel', [
       panelTypes.TOGGLE_PANEL,
-      panelTypes.TOGGLE_PANEL_BALANCE
+      panelTypes.TOGGLE_PANEL_BALANCE,
+      panelTypes.TOGGLE_PANEL_BASKET
     ]),
     ...mapMutations('verificationCode', [verificationTypes.SET_TEST_CODE]),
     updateProps() {
@@ -145,19 +167,22 @@ export default {
     },
     openSidePanel() {
       MloyaltyWidget.open('Купить')
-      // MloyaltySidePanel.show('mloyalty-side-panel-widget')
     },
     openSidePanel2() {
       MloyaltyWidget.open('Баланс')
-      // MloyaltySidePanel.show('mloyalty-side-panel-widget')
+    },
+    openSidePanelBasket() {
+      MloyaltyWidget.open('Готовая корзина')
     },
     openCertificateOwnere() {
       const widgetUrl = `${process.env.VUE_APP_WIDGET_URL}/owner?code=Получить&id=1234567890`
       window.open(widgetUrl, '_blank')
     },
     togglePanelBalance() {
-      console.log(this.showPanelBalance)
       this[panelTypes.TOGGLE_PANEL_BALANCE](!this.showPanelBalance)
+    },
+    togglePanelBasket() {
+      this[panelTypes.TOGGLE_PANEL_BASKET](!this.showPanelBasket)
     },
     openQuiz() {
       Marquiz.showModal('5fda3289c9b57700443842f2')
@@ -172,7 +197,9 @@ export default {
     balance() {
       this.togglePanelBalance()
     },
-    balanceWidget() {}
+    basket() {
+      this.togglePanelBasket()
+    }
   }
 }
 </script>

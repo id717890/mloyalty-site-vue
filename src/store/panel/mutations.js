@@ -10,5 +10,8 @@ export default {
   },
   [types.TOGGLE_PANEL_BALANCE]: (state, isShow) => {
     state.showPanelBalance = isShow
+  },
+  [types.TOGGLE_PANEL_BASKET]: (state, isShow) => {
+    state.showPanelBasket = isShow
   }
 }

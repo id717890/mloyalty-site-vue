@@ -1,46 +1,5 @@
 <template>
   <v-app>
-    <!-- <v-navigation-drawer v-model="drawer" app color="#f5f5f5">
-      <v-list shaped>
-        <v-list-item to="/">
-          <v-list-item-icon>
-            <v-icon v-text="'mdi-home'"></v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>Main page </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item to="/orders">
-          <v-list-item-icon>
-            <v-icon v-text="'mdi-cart'"></v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>Orders</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item to="/contact">
-          <v-list-item-icon>
-            <v-icon v-text="'mdi-account-box-outline'"></v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>Contacts</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer> -->
-    <!-- <v-app-bar app>
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-
-      <v-toolbar flat color="#f5f5f5">
-        <v-toolbar-title>MLOYALTY</v-toolbar-title>
-
-        <v-toolbar-items class="ml-6">
-          <v-btn text to="/" class="sm-btn-menu">
-            <v-icon>mdi-home</v-icon>
-          </v-btn>
-        </v-toolbar-items>
-      </v-toolbar>
-    </v-app-bar> -->
     <v-main>
       <router-view name="main"></router-view>
       <v-navigation-drawer
@@ -106,7 +65,39 @@
           <v-icon color="#4D4D4D">mdi-close</v-icon>
         </v-btn>
         <div id="widget-balance-wrapper" ref="widget-balance-wrapper"></div>
-        <!-- <balance ref="balance" /> -->
+      </v-navigation-drawer>
+
+      <!-- BASKET PANEL -->
+      <v-navigation-drawer
+        style="overflow: visible; height: 100% !important;"
+        :width="config.panelWidth"
+        :value="showPanelBasket"
+        app
+        stateless
+        temporary
+        touchless
+        right
+      >
+        <v-btn
+          fab
+          small
+          elevation="0"
+          color="#F0F0F0"
+          class="ml-close-panel-btn-mobile hidden-md-and-up"
+          @click.stop="togglePanelBasket"
+        >
+          <v-icon color="#4D4D4D">mdi-close</v-icon>
+        </v-btn>
+        <v-btn
+          fab
+          small
+          color="#F0F0F0"
+          class="ml-close-panel-btn hidden-sm-and-down"
+          @click.stop="togglePanelBasket"
+        >
+          <v-icon color="#4D4D4D">mdi-close</v-icon>
+        </v-btn>
+        <div id="widget-basket-wrapper" ref="widget-basket-wrapper"></div>
       </v-navigation-drawer>
     </v-main>
   </v-app>
@@ -116,17 +107,14 @@
 import { mapMutations, mapState } from 'vuex'
 import panelTypes from '@/store/panel/types'
 import MixinChangePanelPage from '@/helpers/mixins/panel/changePage'
-// import Balance from '../components/Panel/Pages/Balance'
 
 export default {
   mixins: [MixinChangePanelPage],
-  components: {
-    // Balance
-  },
   computed: {
     ...mapState({
       showPanel: state => state.panel.show,
       showPanelBalance: state => state.panel.showPanelBalance,
+      showPanelBasket: state => state.panel.showPanelBasket,
       config: state => state.app.config
     })
   },
@@ -145,7 +133,8 @@ export default {
   methods: {
     ...mapMutations('panel', [
       panelTypes.TOGGLE_PANEL,
-      panelTypes.TOGGLE_PANEL_BALANCE
+      panelTypes.TOGGLE_PANEL_BALANCE,
+      panelTypes.TOGGLE_PANEL_BASKET
     ]),
 
     togglePanel() {
@@ -160,6 +149,9 @@ export default {
     },
     togglePanelBalance() {
       this[panelTypes.TOGGLE_PANEL_BALANCE](!this.showPanelBalance)
+    },
+    togglePanelBasket() {
+      this[panelTypes.TOGGLE_PANEL_BASKET](!this.showPanelBasket)
     },
     // Render the component
     isMobile() {
@@ -185,6 +177,16 @@ export default {
         pathname: '/'
       }).render('#widget-balance-wrapper')
     },
+    initWidgetBasket() {
+      this.$refs['widget-basket-wrapper'].innerHTML = null
+      MloyaltyWidget({
+        code: 'Готовая корзина',
+        onHide: () => {},
+        hostname: 'localhost:8080',
+        protocol: 'https',
+        pathname: '/'
+      }).render('#widget-basket-wrapper')
+    },
     initWidget() {
       this.$refs['widget-wrapper'].innerHTML = null
       MloyaltyWidget({
@@ -196,6 +198,11 @@ export default {
         protocol: 'https',
         pathname: '/'
       }).render('#widget-wrapper')
+    },
+    initAllWidgets() {
+      this.initWidget()
+      this.initWidgetBalance()
+      this.initWidgetBasket()
     }
   },
   watch: {
@@ -206,17 +213,7 @@ export default {
     }
   },
   mounted() {
-    // this[panelTypes.TOGGLE_PANEL](true)
-    // console.log(this.isMobile())
-    this.initWidget()
-    this.initWidgetBalance()
-    // setTimeout(() => {
-    //   let newVal = this.counter + 1
-    //   this.$set(this, 'counter', newVal)
-    //   console.log('SITE', this.counter)
-    //   console.log('SITE', window.xchild)
-    //   // this.testFunc()
-    // }, 3000)
+    this.initAllWidgets()
   }
 }
 </script>
