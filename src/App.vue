@@ -44,7 +44,7 @@ export default {
         document,
         'script',
         'https://mloyalty-widget.s3-eu-west-1.amazonaws.com/0.5.0/mloyalty-widget.bundle.min.js',
-        { code: '*' }
+        { code: '*', debug: true }
       )
     }
   },

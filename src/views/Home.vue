@@ -32,83 +32,93 @@
             </div>
             <div class="pt-4">
               <div v-if="test" class="row">
-                <div class="col-lg-4 col-sm-12 px-1">
+                <div class="col-lg-6 col-sm-12">
                   <a
                     href="#"
                     class="ml-silver-btn"
                     @click.prevent="newCertificate"
                     style="font-size: 14px;"
                   >
+                    <v-icon>mdi-cart</v-icon>
                     Купить
                   </a>
                 </div>
-                <div class="col-lg-4 col-sm-12 px-1">
+                <div class="col-lg-6 col-sm-12">
                   <a
                     href="#"
                     class="ml-silver-btn"
                     style="font-size: 14px;"
                     @click.prevent="openCertificateOwnere"
-                    >Получить</a
                   >
+                    <v-icon>mdi-certificate</v-icon>
+                    Получить
+                  </a>
                 </div>
-                <div class="col-lg-4 col-sm-12 px-1">
+                <div class="col-lg-6 col-sm-12">
                   <a
                     href="#"
                     class="ml-silver-btn"
                     style="font-size: 14px;"
                     @click.prevent="balance"
                   >
+                    <v-icon>mdi-wallet</v-icon>
                     Узнать баланс
                   </a>
                 </div>
-                <div class="col-lg-4 col-sm-12 px-1">
+                <div class="col-lg-6 col-sm-12 ">
                   <a
                     href="#"
                     class="ml-silver-btn"
                     style="font-size: 14px;"
                     @click.prevent="basket"
                   >
+                    <v-icon>mdi-basket-fill</v-icon>
                     Готовая корзина
                   </a>
                 </div>
               </div>
               <div v-else class="row">
-                <div class="col-lg-4 col-sm-12 px-1">
+                <div class="col-lg-6 col-sm-12">
                   <button
                     type="button"
                     class="ml-silver-btn w100"
                     style="font-size: 14px;"
                     @click="openSidePanel"
                   >
+                    <v-icon>mdi-cart</v-icon>
                     Купить
                   </button>
                 </div>
-                <div class="col-lg-4 col-sm-12 px-1">
+                <div class="col-lg-6 col-sm-12">
                   <a
                     href="#"
                     class="ml-silver-btn"
                     style="font-size: 14px;"
                     @click.prevent="openCertificateOwnere"
-                    >Получить</a
                   >
+                    <v-icon>mdi-certificate</v-icon>
+                    Получить
+                  </a>
                 </div>
-                <div class="col-lg-4 col-sm-12 px-1">
+                <div class="col-lg-6 col-sm-12">
                   <button
                     type="button"
                     class="ml-silver-btn w100"
                     style="font-size: 14px;"
                     @click="openSidePanel2"
                   >
+                    <v-icon>mdi-wallet</v-icon>
                     Узнать баланс
                   </button>
                 </div>
-                <div class="col-lg-4 col-sm-12 px-1">
+                <div class="col-lg-6 col-sm-12">
                   <button
                     type="button"
                     class="ml-silver-btn w100"
                     style="font-size: 14px;"
                     @click="openSidePanelBasket"
                   >
+                    <v-icon>mdi-basket-fill</v-icon>
                     Готовая корзина
                   </button>
                 </div>
@@ -175,7 +185,10 @@ export default {
       MloyaltyWidget.open('Готовая корзина')
     },
     openCertificateOwnere() {
-      const widgetUrl = `${process.env.VUE_APP_WIDGET_URL}/owner?code=Получить&id=1234567890`
+      const url = this.test
+        ? 'http://localhost:8081'
+        : process.env.VUE_APP_WIDGET_URL
+      const widgetUrl = `${url}/owner?code=Получить&id=1234567890`
       window.open(widgetUrl, '_blank')
     },
     togglePanelBalance() {
