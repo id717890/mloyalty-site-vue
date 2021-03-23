@@ -57,7 +57,7 @@ export default {
       openOnExit: false,
       disableOnMobile: false
     })
-    // this.initPanel()
+    this.initPanel()
   }
 }
 </script>

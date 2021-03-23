@@ -213,7 +213,7 @@ export default {
     }
   },
   mounted() {
-    this.initAllWidgets()
+    // this.initAllWidgets()
   }
 }
 </script>
