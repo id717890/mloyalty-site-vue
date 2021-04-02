@@ -157,7 +157,7 @@ export default {
   components: {},
   mixins: [MixinChangePanelPage],
   data: () => ({
-    test: false
+    test: true
   }),
   computed: {
     ...mapState({

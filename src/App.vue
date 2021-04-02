@@ -43,8 +43,8 @@ export default {
         window,
         document,
         'script',
-        'https://mloyalty-widget.s3-eu-west-1.amazonaws.com/0.5.0/mloyalty-widget.bundle.min.js',
-        { code: '*', debug: true }
+        'https://mloyalty-widget.s3-eu-west-1.amazonaws.com/0.6.0/mloyalty-widget.bundle.min.js',
+        { code: '*', debug: true, metadata: { id: 1, name: 'SiteWidget' } }
       )
     }
   },
@@ -57,7 +57,7 @@ export default {
       openOnExit: false,
       disableOnMobile: false
     })
-    this.initPanel()
+    // this.initPanel()
   }
 }
 </script>
